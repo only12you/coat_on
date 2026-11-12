@@ -1,0 +1,103 @@
+.tt532{position:fixed;top:0;height:calc(34px + env(safe-area-inset-top,0px));width:max(48px,14vw);z-index:2147483600;pointer-events:none;background:transparent;-webkit-tap-highlight-color:transparent}
+.tt532.l{left:0}.tt532.r{right:0}.tt532.on{pointer-events:auto;cursor:pointer}
+/* v534 일위대가표 코트 카드 — 한 줄 배치 · 큰 테두리 · 네온 · 결과 색 · 좌우 확장 */
+html body #v0,html body #v0 .syb,html body #v0 .syc{padding-left:2px!important;padding-right:2px!important}
+html body #v0 .syc{margin-left:0!important;margin-right:0!important}
+html body #v0 .sa,html body #v0 .syc,html body #v0 .wn,html body #cs,html body #v0 details.g{margin-left:0!important;margin-right:0!important}
+html body #cs .cc{margin-left:0!important;margin-right:0!important}
+html body #cs .cbox{position:relative;border:2px solid var(--cd,#1f6fe5);border-radius:14px;padding:6px 6px 7px;margin:3px 0 4px;background:rgba(255,255,255,.55);--nc:var(--cd,#1f6fe5)}
+html body #cs .cbox .ccard{border:0!important;background:transparent!important;box-shadow:none!important;padding:0 !important;margin:0!important}
+html body #cs .cbox .prow{margin-bottom:4px!important}
+html body #cs .cbox .rec{margin:2px 0 5px!important}
+html body #cs .cg3.cg4{grid-template-columns:repeat(4,minmax(0,1fr))!important;gap:4px!important;margin-bottom:5px!important}
+html body #cs .cg3.cg4 .cell,html body #cs .cg3.cgp .cell,html body #cs .cg3.cgr .cell,html body #cs .cg3.cgr .cell.ro{grid-column:auto!important}
+html body #cs .cg3.cgr{grid-template-columns:repeat(3,minmax(0,1fr))!important}html body #cs .cg3.cgr .lb span{font-size:max(9.5px,2.6vw)!important;white-space:nowrap;letter-spacing:-.05em}html body #cs .cg3.cgr .lb svg{width:12px!important;height:12px!important;flex:none}html body #cs .cg3.cgp{grid-template-columns:repeat(2,minmax(0,1fr))!important;gap:4px!important;margin-bottom:5px!important}
+html body #cs .cg3.cg4 .cell{padding:4px 3px!important}
+html body #cs .cg3.cg4 .lb{gap:2px!important;margin-bottom:2px}
+html body #cs .cg3.cg4 .lb svg{width:12px!important;height:12px!important;flex:none}
+html body #cs .cg3.cg4 .lb span{font-size:max(9.5px,2.6vw)!important;letter-spacing:-.05em;white-space:nowrap}
+html body #cs .cg3.cg4 input{font-size:13px!important;padding-left:4px!important;padding-right:4px!important;text-align:center}
+html body #cs .cg3.cgp .cell{min-width:0}html body #cs .cg3.cgp input{width:100%!important;font-size:14px!important}
+html body #cs .cg3.cgp .lb span{font-size:max(10.5px,2.9vw)!important;white-space:nowrap}
+html body #cs .cbox details.addc{margin:2px 0 5px!important}
+/* 이론·실제 소요량 값 — 모든 코트 동일, 눈에 띄는 색 */
+html body #cs .cell.ro .rov{color:#e0113c!important;font-weight:900!important;font-size:19px!important;background:#fff6f8!important;border:1.5px solid #f2a3b3!important;letter-spacing:-.01em;text-align:center}
+html body #cs .cell.ro .rov.emp{color:#c99aa5!important;font-weight:500!important;font-size:12px!important}
+html body #cs .cg3.cgr .cell.ro{background:#fff!important}
+html body #cs .cg3.cgr .lb span{color:#10264f!important}
+/* 네온 깜박임 (입력된 코트) */
+@property --ccang{syntax:'<angle>';inherits:false;initial-value:0deg}
+@keyframes ccSpin{to{--ccang:360deg}}
+html body #cs .cbox.neon{border-color:transparent!important;animation:none;box-shadow:none}
+html body #cs .cbox.neon::before{content:"";position:absolute;inset:-2px;border-radius:15px;padding:1.6px;pointer-events:none;background:conic-gradient(from var(--ccang),#2bd95b,#4ae878 25%,#b6ffc9 45%,#4ae878 65%,#2bd95b);-webkit-mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);-webkit-mask-composite:xor;mask:linear-gradient(#000 0 0) content-box exclude,linear-gradient(#000 0 0);animation:ccSpin 3s linear infinite}
+@media(prefers-reduced-motion:reduce){html body #cs .cbox.neon::before{animation:none}}
+html body #bb{gap:4px!important}html body #bb button{padding:0 1px!important;font-size:clamp(8.5px,2.45vw,11px)!important;gap:2px!important;white-space:nowrap;letter-spacing:-.04em;min-width:0}html body #bb button svg{width:.85em!important;height:.85em!important}html body.cp #bb button{font-size:clamp(8.5px,2.45vw,11px)!important}html body.cp #bb button.qgb,html body #bb button.qgb{background:linear-gradient(180deg,#e8913a,#c9701a)!important;border-color:#c9701a!important;color:#fff!important}
+html body .esh .eptr.tnr{background:transparent!important;box-shadow:none!important;font-size:inherit!important}
+html body .esh .eptr.tnr>span{color:inherit!important;padding:5px 6px!important}
+html body .esh .eptr.tnr>span.l{color:inherit!important;font-weight:inherit!important}
+html body .esh .eptr.tnr .th{color:#12306b!important;font-weight:800!important}html body .esh .eptr.tnr .th.ac{color:#0f6b57!important}html body .esh .eptr.tnr .th.pr{color:#b0361f!important}
+html body .esh .eptr.tnr .qq{color:#0f6b57!important;font-weight:700!important}
+html body .esh .etb.tsp .eptr.tnr{border-top-color:#dcefe7!important}
+html body .esh .etr.ei.tn{background:transparent!important;box-shadow:none!important}html body .esh .etr.ei.tn .l b{color:inherit!important}html body .esh .etr.ei.tn .l small,html body .esh .etr.ei.tn>div,html body .esh .etr.ei.tn input{color:inherit!important}
+html body .esh .eptr.h>span{font-size:10.5px!important;letter-spacing:-.05em;white-space:nowrap}
+html body #vh.cd .cd-tiles{gap:calc(var(--k)*6)!important;padding:calc(var(--kv,var(--k))*10) calc(var(--k)*10)!important}
+html body #vh.cd .cd-tl{min-height:calc(var(--kv,var(--k))*172)!important;padding-top:calc(var(--kv,var(--k))*16)!important;padding-bottom:calc(var(--k)*34)!important}
+html body #vh.cd .cd-tl b{margin-top:calc(var(--kv,var(--k))*8)!important}
+html body #vh.cd .cd-tl small{margin-top:calc(var(--kv,var(--k))*4)!important}
+/* ===== v548: 일위대가표 새 시안 ===== */
+/* 히어로 */
+html body #hx.hnw{height:158px!important;background:linear-gradient(115deg,#0a4fd0 0,#1568ea 52%,#4aa6ff 100%)!important;border-radius:0 0 0 34px!important;overflow:hidden!important}
+html body #hx.hnw .hxbg,html body #hx.hnw .hxsh,html body #hx.hnw .hxic,html body #hx.hnw .hxtg,html body #hx.hnw .hxbk,html body #hx.hnw .hxtb,html body #hx.hnw .hxs1,html body #hx.hnw .hxs2,html body #hx.hnw .hxbar{display:none!important}
+html body #hx.hnw .hxtt{left:18px!important;top:50px!important}
+html body #hx.hnw #ttl{font:800 29px/1.1 "Noto Sans KR",system-ui,sans-serif!important;margin:0!important;letter-spacing:-.02em}
+#hx .hni,#hx .hnl,#hx .hnt,#hx .hnm{display:none}
+html body #hx.hnw .hni{display:block;position:absolute;right:0;bottom:0;width:66%;height:128px;background:url(../img/c3bfc52cea.jpg) right bottom/cover no-repeat;-webkit-mask-image:linear-gradient(90deg,transparent 0,#000 42%);mask-image:linear-gradient(90deg,transparent 0,#000 42%)}
+html body #hx.hnw .hni::after{content:"";position:absolute;left:0;right:0;top:0;height:34px;background:linear-gradient(180deg,#1b6fe9,rgba(27,111,233,0))}
+html body #hx.hnw .hnl{display:flex;position:absolute;left:18px;top:16px;font:800 22px/1 Poppins,"Noto Sans KR",system-ui,sans-serif;letter-spacing:-.01em;color:#fff;align-items:flex-end}
+.hnl i{font-style:normal;color:#8fd3ff;position:relative;margin-left:5px}
+.hnl i::before{content:"";position:absolute;left:1px;right:1px;top:-9px;height:9px;border-top:2.5px solid #fff;border-left:2.5px solid #fff;transform:scale(1,1);clip-path:polygon(50% 0,100% 100%,0 100%)}
+html body #hx.hnw .hnl i::before{border:0;background:none;height:11px;top:-11px;left:0;right:0;clip-path:none;border-top:0;border-left:0}
+html body #hx.hnw .hnl i::after{content:"";position:absolute;left:2px;top:-10px;width:16px;height:16px;border-left:3px solid #fff;border-top:3px solid #fff;transform:rotate(45deg) scale(.9);transform-origin:center;border-radius:2px 0 0 0;clip-path:polygon(0 0,100% 0,0 100%)}
+html body #hx.hnw .hnt{display:block;position:absolute;left:18px;top:100px;font:500 12.5px/1.45 "Noto Sans KR",system-ui,sans-serif;color:rgba(255,255,255,.95);letter-spacing:-.02em}
+html body #hx.hnw .hnm{display:flex;position:absolute;right:12px;top:12px;width:34px;height:34px;padding:0;border:0;background:transparent;flex-direction:column;justify-content:center;align-items:center;gap:5px}
+.hnm i{display:block;width:22px;height:2.5px;border-radius:2px;background:#fff}
+/* 코트 헤더: 원형 표시 · 크기 */
+html body #cs .chn .chk{display:inline-block;width:22px;height:22px;border-radius:50%;margin-right:9px;vertical-align:-6px;border:2px solid rgba(255,255,255,.92);position:relative;box-sizing:border-box}
+html body #cs .chn .chk.on{background:#fff}
+html body #cs .chn .chk.on::after{content:"";position:absolute;left:6px;top:2px;width:5px;height:10px;border:solid var(--cd,#0d3f9e);border-width:0 2.5px 2.5px 0;transform:rotate(45deg)}
+html body #cs .chn,html body #cs div.cc>div.ch .chn{font-size:15px!important;display:flex;align-items:center;flex-wrap:wrap}
+html body #cs .chn span{font-size:15px!important}
+html body #cs .chs{font-size:10.5px!important;margin-top:3px!important;padding-left:0;white-space:nowrap}
+html body #cs div.cc>div.ch{padding:11px 12px!important;border-radius:15px!important}
+html body #cs .chsel{height:30px!important;font-size:12px!important;border-radius:999px!important}
+/* 코트 탭 */
+html body #cs .ctabs{gap:8px!important;margin:2px 0 10px!important}
+html body #cs .ctab{height:30px!important;font-size:13px!important;padding:0 16px!important;background:#e9edf3!important;border:1.5px solid transparent!important;color:#34425a!important;font-weight:800!important}
+html body #cs .ctab.on{background:#eef5ff!important;border:1.5px solid var(--cc)!important;color:var(--cd)!important;box-shadow:0 0 0 1px rgba(255,255,255,.7) inset}
+/* 노무비 */
+html body #v0 .lbc .lbh small{display:none!important}
+html body #v0 .lbc .lbh{padding:11px 12px!important}
+html body #v0 .lbc .lbh b{font-size:16px!important}
+html body #v0 .lbc .lbic{width:34px!important;height:34px!important;border-radius:11px!important}
+html body #v0 .lbc .lbm{background:#eaf0f8;border-radius:999px;padding:3px;gap:2px}
+html body #v0 .lbc .lbm button{height:28px!important;font-size:13px!important;border:0!important;background:transparent!important;color:#44546f!important;border-radius:999px!important;padding:0 13px!important}
+html body #v0 .lbc .lbm button.on{background:#0b4fd0!important;color:#fff!important}
+html body #v0 .lbc .lbi>span{display:flex;align-items:center;gap:6px;font-size:14px!important;font-weight:800!important;color:#0b2354}
+html body #v0 .lbc .lbi:nth-child(1)>span::before,html body #v0 .lbc .lbi:nth-child(2)>span::before{content:"";width:20px;height:20px;flex:none;background:no-repeat center/contain}
+html body #v0 .lbc .lbi:nth-child(1)>span::before{background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%231560e6'%3E%3Cpath d='M2 6h12v9H2zM14 9h4l3 3v3h-7z'/%3E%3Ccircle cx='6.5' cy='17' r='2' fill='%231560e6' stroke='%23fff' stroke-width='1'/%3E%3Ccircle cx='17.5' cy='17' r='2' fill='%231560e6' stroke='%23fff' stroke-width='1'/%3E%3C/svg%3E")}
+html body #v0 .lbc .lbi:nth-child(2)>span::before{background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%231560e6'%3E%3Ccircle cx='12' cy='7' r='4'/%3E%3Cpath d='M4 21c0-4.5 3.6-7 8-7s8 2.5 8 7z'/%3E%3C/svg%3E")}
+/* 부자재 카드 */
+html body #sbx .sbc{position:relative;background:#fff url(../img/daa7e88f75.jpg) right 0 top 0/auto 118px no-repeat;border-radius:18px;padding:14px 14px 12px;border:1px solid #dbe6f5}
+html body #sbx .sbh{display:block;position:relative;padding-left:46px;min-height:42px;max-width:64%;margin-bottom:34px}
+html body #sbx .sbh::before{content:"!";position:absolute;left:0;top:0;width:34px;height:34px;border-radius:50%;background:#0f2a5c;color:#fff;font:800 20px/34px "Noto Sans KR",system-ui,sans-serif;text-align:center}
+html body #sbx .sbh b{display:block;font-size:17px;font-weight:800;color:#0b2354}
+html body #sbx .sbh small{display:block;font-size:11.5px;color:#5d6f8f;margin-top:2px}
+html body #sbx .sbi{background:rgba(255,255,255,.96);border-radius:14px}
+html body #hx.hnw{position:relative!important;top:auto!important}
+html body #app:has(#hx.hnw) .sawrap{top:0!important;margin-top:-14px;border-radius:22px 22px 0 0!important}
+/* 좌우 확장 */
+html body #app:has(#hx.hnw) .sawrap{padding-left:6px!important;padding-right:6px!important}
+html body #v0.pn{padding-left:4px!important;padding-right:4px!important}
+html body #v0 .syc{padding-left:0!important;padding-right:0!important}
+html body #v0 .syb{padding-left:2px!important;padding-right:2px!important}
+html body #bb{left:4px!important;right:4px!important;max-width:none!important}

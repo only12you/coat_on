@@ -1,0 +1,48 @@
+/* v549: 시안과 같은 상하 간격 */
+html body #hx.hnw{--si:max(env(safe-area-inset-top,0px),20px);height:calc(var(--si) + 124px)!important}
+html body #hx.hnw .hnl{top:calc(var(--si) + 0px)!important}
+html body #hx.hnw .hxtt{top:calc(var(--si) + 34px)!important}
+html body #hx.hnw .hnt{top:calc(var(--si) + 74px)!important}
+html body #hx.hnw .hnm{top:calc(var(--si) - 6px)!important}
+html body #hx.hnw .hni{height:calc(var(--si) + 100px)!important}
+html body #app:has(#hx.hnw) .sawrap{margin-top:0!important;padding-top:6px!important;padding-bottom:0!important}
+html body .sawrap .sa{padding:5px 10px!important}
+html body #v0 .syc{margin-top:7px!important}
+html body #v0 .syh{padding-top:6px!important;padding-bottom:6px!important;min-height:0!important}
+html body #cs .ctabs{margin:0 0 7px!important}
+html body #cs .ctab{height:27px!important}
+html body #cs div.cc>div.ch{padding:5px 12px!important}html body #cs .chs{margin-top:1px!important}
+html body #cs .cc{margin:0 0 6px!important}
+html body #v0 .lbc{margin-top:8px!important}
+html body #v0 .lbc .lbh{padding:4px 10px!important}html body #v0 .lbc .lbi>span{font-size:13px!important}
+html body #v0 .lbc .lbic{width:28px!important;height:28px!important}
+html body #v0 .lbc .lbh b{font-size:15px!important}
+html body #v0 .lbc .lbm button{height:24px!important}
+html body #v0 .lbc .lbg{gap:8px!important;padding-top:4px!important}
+html body #v0 .lbc .lbi{padding:4px 8px 5px!important}
+html body #v0 .lbc .lbi input{height:24px!important;min-height:0!important}
+html body #v0 .lbc .lbn{padding:2px 10px 6px!important;margin:0!important}
+html body #sbx{margin-top:8px!important}
+html body #sbx .sbc{padding:11px 12px 9px!important}
+html body #sbx .sbh{margin-bottom:16px!important;min-height:36px!important}
+html body #sbx .sbi{padding:7px 10px!important;margin-top:6px!important}
+html body #sbx .sbn{margin-top:4px!important;line-height:1.45!important}
+html body .rdr.tnr,html body .rdr.dt.tn{background:transparent!important;box-shadow:none!important;font-size:10.5px!important;color:inherit!important}
+html body .rdr.tnr>span,html body .rdr.tnr .l,html body .rdr.dt.tn .l b,html body .rdr.dt.tn .l{color:inherit!important;font-weight:inherit!important}
+html body .rdr.tnr .qq{color:#0f6b57!important;font-weight:800!important}
+html body .rdr.dt.tn .l b{font-weight:700!important}
+html body .rdr.tnr .l em{display:none!important}
+html body #rs .rch{display:flex!important;flex-direction:row!important;align-items:center;justify-content:space-between;gap:8px}
+html body #rs .rch .rcht{display:flex;flex:1 1 auto;align-items:center;gap:6px;min-width:0;white-space:nowrap}
+html body #rs .rch .rdb{flex:none!important;width:auto!important;min-width:0!important;margin:0 0 0 auto!important;height:26px!important;padding:0 12px;border-radius:999px;border:1.5px solid rgba(255,255,255,.9);background:rgba(255,255,255,.18);color:#fff;font:800 12px "Noto Sans KR",system-ui,sans-serif;letter-spacing:-.02em}
+#rdm{position:fixed;left:0;top:0;right:0;bottom:calc(50px + env(safe-area-inset-bottom,0px));z-index:99;/* 하단 메뉴(z 100)를 가리지 않음 */background:rgba(10,25,60,.5);display:flex;align-items:flex-end;justify-content:center;animation:rdmf .18s ease-out}
+@keyframes rdmf{from{opacity:0}to{opacity:1}}
+#rdm .rdms{position:relative;width:100%;max-width:560px;max-height:86vh;display:flex;flex-direction:column;background:#fff;border-radius:22px 22px 0 0;box-shadow:0 -8px 30px rgba(10,30,80,.3);animation:rdms .22s ease-out}
+@keyframes rdms{from{transform:translateY(40px)}to{transform:none}}
+#rdm .rdmh{flex:none;display:flex;align-items:center;justify-content:space-between;padding:12px 14px 10px 18px;border-bottom:1px solid #e3ebf8}
+#rdm .rdmh b{font-size:16px;color:#0b2354;font-weight:800}
+#rdm .rdmx{width:34px;height:34px;border-radius:50%;border:0;background:#eaf0fa;color:#0b2354;display:grid;place-items:center;padding:0}
+#rdm .rdmx svg{width:18px;height:18px}
+#rdm .rdmb{overflow:auto;padding:4px 12px calc(env(safe-area-inset-bottom,0px) + 14px);-webkit-overflow-scrolling:touch}
+#rdm .rdmf2{flex:none;padding:8px 14px calc(env(safe-area-inset-bottom,0px) + 10px);border-top:1px solid #e3ebf8}
+#rdm .rdmf2 button{width:100%;height:42px;border-radius:12px;border:0;background:#0b4fd0;color:#fff;font:800 14px "Noto Sans KR",system-ui,sans-serif}

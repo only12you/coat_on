@@ -1,0 +1,18 @@
+html body #cs .cc{margin:0 0 calc(var(--u)*8)!important}
+html body #cs .cc>.ch{padding:calc(var(--u)*11) calc(var(--u)*16)!important;min-height:0!important}
+html body #cs .cc>.cbd,html body #cs .cbd{padding-top:calc(var(--u)*8)!important;padding-bottom:calc(var(--u)*6)!important}
+html body #cs .cbd>*{margin-top:0!important;margin-bottom:calc(var(--u)*8)!important}
+html body #cs .prow{margin:0 0 calc(var(--u)*4)!important}
+html body #cs .rec{margin:calc(var(--u)*2) 0 calc(var(--u)*6)!important}
+html body #cs .ccard{margin:0 0 calc(var(--u)*8)!important;padding:calc(var(--u)*10) calc(var(--u)*12)!important}
+html body #cs .cch{margin-bottom:calc(var(--u)*6)!important;gap:calc(var(--u)*8)!important}
+html body #cs .cg3,html body #cs .cg2{gap:calc(var(--u)*7)!important;margin-bottom:calc(var(--u)*7)!important}
+html body #cs .cell{padding:calc(var(--u)*8) calc(var(--u)*10)!important;gap:calc(var(--u)*5)!important}
+html body #cs .cell input{height:calc(var(--u)*50)!important}
+html body #cs .addc{margin:0 0 calc(var(--u)*6)!important}
+html body #cs .addc>summary,html body #cs .pshd{padding-top:calc(var(--u)*6)!important;padding-bottom:calc(var(--u)*6)!important}
+html body #cs .ctabs{margin:0 0 calc(var(--u)*6)!important}
+html body #v0 .sa{margin:0 0 calc(var(--u)*8)!important;padding-top:calc(var(--u)*10)!important;padding-bottom:calc(var(--u)*10)!important}
+html body #v0 .sec{margin:calc(var(--u)*6) 0 calc(var(--u)*4)!important}
+html body #v0 .pn{padding-top:calc(var(--u)*8)!important}
+html body #v0 .lbc{margin:calc(var(--u)*6) 0!important;padding:calc(var(--u)*10) calc(var(--u)*12)!important}

@@ -1,0 +1,36 @@
+/* v593p7 자재정보 */
+#mt{position:fixed;inset:0;z-index:2147483450!important;background:linear-gradient(180deg,#eaf1fd,#f5f8ff);display:flex;flex-direction:column;font-family:inherit;color:#1a2330}
+#mt .mth{flex:none;display:flex;align-items:center;gap:10px;padding:calc(10px + env(safe-area-inset-top)) 14px 10px;background:#fff;border-bottom:1px solid #dbe6f5}
+#mt .mth b{display:block;font-size:19px;font-weight:800;color:#12306b}#mt .mth small{font-size:12.5px;color:#5b6b86}
+#mt .mtbk{width:36px;height:36px;border-radius:50%;border:1px solid #c8d4ea;background:#fff;font-size:24px;line-height:1;color:#12306b}
+#mt .mtsc{flex:1;overflow:auto;padding:12px 12px 0}
+#mt .mtbx{background:#fff;border:1px solid #cfdcf2;border-radius:14px;padding:10px 12px;margin-bottom:12px}
+#mt .mth2{display:flex;align-items:center;gap:8px;margin-bottom:8px;font-size:15px}#mt .mth2 b{color:#12306b}
+#mt .mtic{font-size:20px}
+#mt .mtspr{display:grid;grid-template-columns:1fr;gap:8px}
+#mt .mtf{display:block;min-width:0}#mt .mtf>span{display:block;font-size:11.5px;font-weight:700;color:#5b6b86;margin-bottom:2px}
+#mt .mtf input,#mt .mtf select,#mt .mtmi,#mt .mtch select{width:100%;box-sizing:border-box;height:38px;border:1px solid #c8d4ea;border-radius:10px;padding:0 10px;background:#fff;font-size:14.5px;color:#1a2330}
+#mt .mtn,#mt .mtbg,#mt .mtmid{display:flex;gap:6px;flex-wrap:wrap}
+#mt .mtn button,#mt .mtbg button,#mt .mtmid button{flex:1;min-width:52px;height:36px;border:1px solid #c8d4ea;border-radius:10px;background:#fff;font-size:14px;font-weight:700;color:#2a3342}
+#mt .mtn button.on,#mt .mtbg button.on,#mt .mtmid button.on,#mt .mtt button.on{background:#0f55d6;color:#fff;border-color:#0f55d6}
+#mt .mtmid{margin:8px 0}#mt .mtmid button{border-radius:999px;height:32px;font-size:13px}
+#mt .mtbg{margin-bottom:2px}
+#mt .mtt{display:grid;grid-template-columns:1fr 1fr;gap:0;margin-bottom:10px}
+#mt .mtt button{height:46px;border:1px solid #cfdcf2;background:#fff;font-size:16px;font-weight:800;color:#12306b}
+#mt .mtt button:first-child{border-radius:14px 0 0 14px}#mt .mtt button:last-child{border-radius:0 14px 14px 0}
+#mt .mtc{border:1px solid #dbe6f5;border-radius:12px;padding:8px 10px;margin:8px 0;background:#fafcff}
+#mt .mtch{display:flex;gap:6px;align-items:center;margin-bottom:6px}#mt .mtch>b{width:24px;height:24px;border-radius:50%;background:#0f55d6;color:#fff;display:inline-flex;align-items:center;justify-content:center;font-size:12px;flex:none}
+#mt .mtch .mtcn{width:auto;min-width:38px;border-radius:8px;padding:0 6px}
+#mt .mtch select,#mt .mtmi{flex:1;min-width:0}
+#mt .mtx{margin-left:auto;width:30px;height:30px;border:0;border-radius:8px;background:#fdecec;color:#c23030;font-weight:800}
+#mt .mtg{display:grid;grid-template-columns:repeat(3,1fr);gap:6px;margin-top:6px}
+#mt .mtg .mtf[hidden]{display:none}
+#mt .mta{margin-top:8px;text-align:right;font-size:13px;color:#3d5a8c}#mt .mta b{font-size:16px;color:#0d3b9a}#mt .mta [data-th]{float:left;font-size:11.5px;color:#0f6b57;text-align:left;max-width:62%}
+#mt .mtadd{width:100%;height:42px;border:1.5px dashed #0f55d6;border-radius:12px;background:#f2f7ff;color:#0f55d6;font-weight:800;font-size:14.5px;margin-top:6px}
+#mt .mtem,#mt .mthint{text-align:center;color:#8a93a3;font-size:12.5px;padding:10px}
+#mt .mtr{display:grid;grid-template-columns:1.3fr 1.4fr .8fr .9fr;border-top:1px solid #e6edf8;font-size:12.5px}
+#mt .mtr>span{padding:7px 5px;min-width:0;word-break:break-all}#mt .mtr>span:last-child,#mt .mtr>span:nth-child(3){text-align:right}
+#mt .mtr.h{background:#e9f1fd;font-weight:800;color:#3d5a8c;border-top:0}#mt .mtr.t{font-weight:800;background:#f6f9ff}#mt .mtr.g{background:#e9f1fd;color:#0d3b9a;font-size:14px}#mt .mtr.none{display:block;text-align:center;color:#8a93a3;padding:10px}
+#mt .mtbar{flex:none;display:grid;grid-template-columns:1fr 1fr 2.2fr;gap:8px;padding:10px 12px calc(10px + env(safe-area-inset-bottom));background:rgba(255,255,255,.96);border-top:1px solid #dbe6f5}
+#mt .mtbar button{height:42px;border-radius:12px;border:1px solid #c8d4ea;background:#fff;font-weight:800;color:#12306b;font-size:14px}#mt .mtbar .ok{background:linear-gradient(180deg,#2fa37c,#238a68);color:#fff;border:0}
+body:has(#mt) #gnv2,body:has(#mt) #gnav{display:none!important}

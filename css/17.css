@@ -1,0 +1,3 @@
+html body #cs .cell input:not(#_a):not(#_b){height:calc(var(--u)*60)!important;min-height:calc(var(--u)*60)!important;padding:0 calc(var(--u)*25)!important;border:1px solid #c9d8ef!important;border-radius:var(--rc2)!important;font-size:14px!important;box-sizing:border-box!important}
+html body .ccard .ctg{display:none!important}html body .ccard.cmin>*:not(.cch){display:revert!important}html body .ccard .cch{cursor:default!important}
+.tx-tabs{grid-template-columns:1fr 1fr 1fr!important}.tx-tabs button{gap:calc(var(--u)*8)!important;white-space:nowrap}#tp_allr{margin-top:8px}.tx-card:has(#tp_all:not([hidden])) .tx-ck,.tx-card:has(#tp_all:not([hidden])) .tx-go,.tx-card:has(#tp_all:not([hidden])) #tp_st{display:none!important}#tp_allr .hint{font-size:12px}

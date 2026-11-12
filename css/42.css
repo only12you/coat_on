@@ -1,0 +1,6 @@
+html body #sylib .lb-cs{display:grid;grid-template-columns:minmax(0,1.35fr) minmax(0,1fr);margin:1.8vw 0 0;padding:1.8vw 0;border-radius:1.6vw;background:#f1f5fc}
+html body #sylib .lb-cs>span{display:flex;align-items:center;gap:1.2vw;padding:0 2vw;min-width:0;white-space:nowrap}
+html body #sylib .lb-cs>span:last-child{border-left:1px solid #d9e2f1}
+html body #sylib .lb-cs svg{width:5vw;height:5vw;flex:none;color:#1e5fd8}
+html body #sylib .lb-cs small{font-size:2.8vw;color:#4a5878}
+html body #sylib .lb-cs b{font-size:3vw;font-weight:700;color:#0e2a66;overflow:hidden;text-overflow:ellipsis}

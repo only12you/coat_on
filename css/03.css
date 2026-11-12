@@ -1,0 +1,67 @@
+.sc .fsd{--p:#e8f1ff;--d:#2a5bd7;--bd:#cfe0fb;border:1px solid var(--bd);border-radius:14px;background:#fff;margin:8px 0;overflow:hidden}
+.sc .fsd.k2,.sc .fsd.m2{--p:#e6f6ee;--d:#1f8a5b;--bd:#c6e8d6}.sc .fsd.k4{--p:#fff0e2;--d:#c26a1b;--bd:#f6dcc2}.sc .fsd.k3{--p:#f0ebfb;--d:#6a4cc0;--bd:#dcd2f3}
+.sc .fsd.m3{--p:#fff0e2;--d:#c26a1b;--bd:#f6dcc2}
+.sc .fsd>summary.fps{list-style:none;cursor:pointer;display:flex;align-items:center;gap:8px;margin:0;padding:8px 10px;background:var(--p);-webkit-tap-highlight-color:transparent}
+.sc .fsd>summary::-webkit-details-marker{display:none}
+.sc .fsd>summary>i{flex:none;width:22px;height:22px;border-radius:50%;background:#fff;color:var(--d);font-size:12px;font-weight:800;display:flex;align-items:center;justify-content:center}
+.sc .fsd>summary b{flex:1;min-width:0;font-size:13.5px;color:var(--d);white-space:nowrap}
+.sc .fsd>summary em{font-style:normal;font-size:10.5px;color:#7a88a6;white-space:nowrap;margin:0}
+.sc .fsd>summary>svg.fcv{flex:none;width:16px;height:16px;color:var(--d);transition:transform .15s}
+.sc .fsd[open]>summary>svg.fcv{transform:rotate(90deg)}
+.sc .fsb{padding:8px 10px 10px}.sc .fsb>.sbox,.sc .fsb>.sfr:first-child{margin-top:0}
+html body .sc .fpa{flex:none;width:auto!important;height:26px;display:inline-flex;align-items:center;gap:4px;padding:0 11px!important;margin:0;border-radius:13px!important;background:#fff!important;border:1px solid var(--d)!important;color:var(--d)!important;font-size:12px!important;font-weight:800;line-height:1}
+html body .sc .fpa svg{width:14px;height:14px}
+.sc .fpg{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));border:1px solid #cfe6d9;border-radius:12px;overflow:hidden;background:#fbfffd}
+.sc .fpc{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:2px;padding:8px 1px 7px;text-align:center;cursor:pointer;color:#5b7a6b;-webkit-tap-highlight-color:transparent;transition:background .15s,color .15s}
+.sc .fpc+.fpc{border-left:1px solid #dcefe4}
+.sc .fpc svg{width:30px;height:30px}.sc .fpc b{font-size:clamp(10px,2.9vw,12px);font-weight:800;line-height:1.2;white-space:nowrap}.sc .fpc code{font:600 9px ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;opacity:.75;white-space:nowrap}
+.sc .fpc.on{background:#d7f0e3;color:#17694a;box-shadow:inset 0 -3px 0 #6fc29a}
+.sc .fpv{background:transparent}.sc .fph{display:flex;justify-content:flex-end;align-items:center;gap:6px;margin:0 0 6px}.sc .fph .fpe{color:#7a6ac0;display:flex}.sc .fph .fpe svg{width:16px;height:16px}.sc .fph em{font-style:normal;font-size:10.5px;color:#7a88a6;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;min-width:0}
+.sc .fpd{border-radius:12px;overflow:hidden;border:1px solid #dcd2f3;background:transparent}.sc .fpd svg{display:block;width:100%;height:auto}
+.sc .fpst{display:grid;grid-template-columns:1fr 1.2fr 1.2fr;gap:6px;margin-top:8px}
+.sc .fpst>div{background:#eef4ff;border-radius:10px;padding:6px 8px;min-width:0;display:flex;flex-direction:column;gap:1px}.sc .fpst>div:nth-child(2){background:#e6f6ee}.sc .fpst .hl{background:#fff0e2}
+.sc .fpst span{font-size:10px;color:#6b7a99;white-space:nowrap}.sc .fpst b{font:800 14px ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;color:#2a3350;white-space:nowrap;font-variant-numeric:tabular-nums}.sc .fpst b small{font-size:9.5px;font-weight:600;color:#7a88a6}
+.sc .fpv.f-w .hd,.sc .fpv.f-d .hw{opacity:.25}.sc .fpv.f-l .hw,.sc .fpv.f-l .hd{opacity:.5}
+html body .sc .sph button{flex:none!important;width:30px!important;height:28px!important;min-width:0;padding:0!important;display:inline-flex;align-items:center;justify-content:center;border-radius:8px!important}html body .sc .sph input{flex:1 1 auto!important;width:auto!important;min-width:0!important}
+@media(max-width:360px){.sc .fpc svg{width:26px;height:26px}.sc .fpst b{font-size:12.5px}}
+/* v315: 간격 축소 + 메쉬 폼 통일 */
+html body .sc .scin{padding:7px}
+html body .sc .sch{margin-bottom:3px}
+html body .sc .fsd{margin:4px 0;border-radius:11px}
+html body .sc .fsd>summary.fps{padding:4px 8px;gap:6px}
+html body .sc .fsd>summary>i{width:19px;height:19px;font-size:10.5px}
+html body .sc .fsd>summary b{font-size:12.5px}
+html body .sc .fsd>summary em{font-size:10px}
+html body .sc .fsd>summary>svg.fcv{width:14px;height:14px}
+html body .sc .fpa{height:21px;font-size:11px!important;padding:0 8px!important}
+html body .sc .fpa svg{width:12px;height:12px}
+html body .sc .fsb{padding:4px 7px 6px}
+html body .sc .fsb .sdm{margin:3px 0 0;padding:3px 7px}
+html body .sc .fsb .sadr{margin-bottom:3px}
+html body .sc .fsb .sadr input{height:28px}
+html body .sc .fsb .spt{margin-top:3px;padding:5px;gap:2px}
+html body .sc .fsb .sph input{height:26px}
+html body .sc .fpc{padding:5px 1px 4px}html body .sc .fpc svg{width:24px;height:24px}
+html body .sc .fph{margin:0 0 2px}
+html body .sc .fpst{margin-top:4px;gap:4px}html body .sc .fpst>div{padding:4px 7px}
+html body .sc .fsb .sbox{display:grid;grid-template-columns:repeat(6,minmax(0,1fr));gap:3px 5px;border:0;background:transparent;padding:0}
+html body .sc .fsb .sbox>.spt{grid-column:1/-1;display:grid;grid-template-columns:1fr 1fr;gap:3px 5px;margin-top:0}
+html body .sc .fsb .spt>.sph,html body .sc .fsb .spt>.sdim,html body .sc .fsb .spt>.sz,html body .sc .fsb .spt>label.sr:nth-of-type(1){grid-column:1/-1}
+html body .sc .fsb .sbox>.sr{grid-column:span 2}
+html body .sc .fsb .sbox>.sr:has(input[type=text]){grid-column:span 3}
+html body .sc .fsb .sbox>.sr,html body .sc .fsb .spt>.sr{flex-direction:column;align-items:stretch;justify-content:flex-start;gap:2px;min-height:0}
+html body .sc .fsb .sbox>.sr>span,html body .sc .fsb .spt>.sr>span{flex:none;font-size:9.5px;color:#5a6b86;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+html body #app .sc .fsb .sbox>.sr>i,html body #app .sc .fsb .spt>.sr>i{display:flex;align-items:center;width:100%!important;height:30px;border:1px solid #cfdcf0;border-radius:7px;background:#fff;padding:0 6px}
+html body .sc .fsb .sprod{grid-template-columns:1.05fr .8fr 1.65fr}
+html body .sc .fsb .spk input{min-width:0;padding:0 4px!important}
+html body .sc .fsb .sph input{border:1px solid #c9d6ec!important;height:32px!important;font-size:14px;background:#fff}
+html body .sc .fsb .spt{border-color:#c9d6ec}
+.sc .fpe0{font-size:11px;color:#8b96ad;text-align:center;padding:8px 4px;border:1px dashed #c9d6ec;border-radius:8px}.sc .fpe0 b{color:#c26a1b}
+/* v318: 입력칸 포커스 네온 */
+.sc .fpv .ov{opacity:0;pointer-events:none}
+.sc .fpv.f-w .ow,.sc .fpv.f-d .od,.sc .fpv.f-l .ol,.sc .fpv.f-q .oq{opacity:1}
+.sc .fpv.f-w .hd,.sc .fpv.f-w .hl2,.sc .fpv.f-d .hw,.sc .fpv.f-d .hl2,.sc .fpv.f-l .hw,.sc .fpv.f-l .hd,.sc .fpv.f-q .hw,.sc .fpv.f-q .hd,.sc .fpv.f-q .hl2{opacity:.3}
+.sc .fpv.f-lo .fpst .hl{box-shadow:0 0 0 2px #1f9d55}
+/* 제품 DB 제품보기: 줄바꿈 대신 한 줄 */
+html body .dxf:not(.w) .dxv{flex-wrap:nowrap!important;white-space:nowrap!important;word-break:keep-all!important;overflow:hidden;min-width:0}
+html body .dxf:not(.w) .dxv em{flex:none}

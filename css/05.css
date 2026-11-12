@@ -1,0 +1,27 @@
+#pqtv .pqsb.pdf2{--u:calc(min(100vw,560px)/852);font-size:max(9.5px,calc(var(--u)*16))!important}
+#pqtv .pfh{gap:calc(var(--u)*10);padding:calc(env(safe-area-inset-top,0px) + calc(var(--u)*10)) calc(var(--u)*14) calc(var(--u)*10)}
+#pqtv .pfbk{width:calc(var(--u)*30);height:calc(var(--u)*30);min-width:26px;min-height:26px}#pqtv .pfbk svg{width:100%;height:100%}
+#pqtv .pfhi{width:calc(var(--u)*52);height:calc(var(--u)*52);min-width:38px;min-height:38px;border-radius:calc(var(--u)*12)}#pqtv .pfhi svg{width:55%;height:55%}
+#pqtv .pfh b{font-size:max(14px,calc(var(--u)*26))}#pqtv .pfh small{font-size:max(9.5px,calc(var(--u)*16))}
+#pqtv .pfb{padding:calc(var(--u)*10) calc(var(--u)*12) 90px;gap:calc(var(--u)*10)}
+#pqtv .pfc{border-radius:calc(var(--u)*12)}
+#pqtv .psh{padding:calc(var(--u)*8) calc(var(--u)*12);gap:calc(var(--u)*8)}
+#pqtv .psn{width:max(26px,calc(var(--u)*42));height:max(26px,calc(var(--u)*42));font-size:max(12px,calc(var(--u)*20))}
+#pqtv .psh b{font-size:max(13px,calc(var(--u)*23))}#pqtv .psh small{font-size:max(9px,calc(var(--u)*13.5));min-width:90px}
+#pqtv .pfn{font-size:max(9px,calc(var(--u)*13.5));padding:calc(var(--u)*5) calc(var(--u)*9);border-radius:calc(var(--u)*8)}#pqtv .pfn svg{width:max(12px,calc(var(--u)*16));height:max(12px,calc(var(--u)*16))}
+#pqtv .pg2{gap:calc(var(--u)*8) calc(var(--u)*10);padding:calc(var(--u)*8) calc(var(--u)*10) calc(var(--u)*10)}
+#pqtv .pg2.p3x{grid-template-columns:repeat(3,minmax(0,1fr))}
+#pqtv .pfl{gap:calc(var(--u)*4)}#pqtv .pfl>label{font-size:max(10px,calc(var(--u)*17.5));gap:calc(var(--u)*4)}#pqtv .pfl label svg{width:max(13px,calc(var(--u)*22));height:max(13px,calc(var(--u)*22))}
+#pqtv .p3x .pfl>label{font-size:max(9.5px,calc(var(--u)*15))}
+#pqtv .pbx{height:max(34px,calc(var(--u)*44));border-radius:calc(var(--u)*9)}#pqtv .p3x .pbx{height:max(32px,calc(var(--u)*40))}
+#pqtv .pbx input,#pqtv .pbx select{font-size:max(11px,calc(var(--u)*17))!important;padding:0 calc(var(--u)*9)!important}
+#pqtv .pdu{font-size:max(10px,calc(var(--u)*15));min-width:calc(var(--u)*42);padding:0 calc(var(--u)*7)}
+#pqtv .pdc2{font-size:max(9px,calc(var(--u)*13))}
+#pqtv .pft{height:max(34px,calc(var(--u)*44));border-radius:calc(var(--u)*9)}#pqtv .pft button{font-size:max(11px,calc(var(--u)*18))}#pqtv .pft svg{width:max(13px,calc(var(--u)*20));height:max(13px,calc(var(--u)*20))}
+#pqtv .pin{margin:0 calc(var(--u)*10) calc(var(--u)*10);border-radius:calc(var(--u)*11)}
+#pqtv .pit{padding:calc(var(--u)*8) calc(var(--u)*11);gap:calc(var(--u)*7)}#pqtv .pit b{font-size:max(12px,calc(var(--u)*21))}#pqtv .pit>svg{width:max(16px,calc(var(--u)*24));height:max(16px,calc(var(--u)*24))}#pqtv .pit small{font-size:max(9px,calc(var(--u)*13.5))}
+#pqtv .pdg>div{font-size:max(10px,calc(var(--u)*15));min-height:max(30px,calc(var(--u)*38))}#pqtv .pgh{min-height:max(32px,calc(var(--u)*42))!important}#pqtv .pgv input{height:max(30px,calc(var(--u)*38));font-size:max(10px,calc(var(--u)*15))}#pqtv .pgh input{font-size:max(11px,calc(var(--u)*17));width:max(24px,calc(var(--u)*34))}
+#pqtv .pdadd{font-size:max(10px,calc(var(--u)*15))}
+#pqtv .pfa{padding:calc(var(--u)*8) calc(var(--u)*12) calc(env(safe-area-inset-bottom,0px) + calc(var(--u)*8));gap:calc(var(--u)*8)}
+#pqtv .pfa button{height:max(40px,calc(var(--u)*50));font-size:max(11px,calc(var(--u)*18));border-radius:calc(var(--u)*11)}#pqtv .pfa svg{width:max(15px,calc(var(--u)*22));height:max(15px,calc(var(--u)*22))}
+html body #saw .sa{flex-wrap:wrap!important;row-gap:0}html body #saw .fmbar{flex:0 0 100%}html body #saw .fmbar{--u:calc(min(100vw,560px)/852);display:flex;align-items:center;gap:calc(var(--u)*14);width:100%;margin:calc(var(--u)*12) 0 0;padding:calc(var(--u)*12) calc(var(--u)*16);border:0;border-radius:calc(var(--u)*14);background:#eef4ff;text-align:left;cursor:pointer;font-family:inherit}html body #saw .fmpin{flex:none;width:calc(var(--u)*26);height:calc(var(--u)*26);min-width:16px;color:#2f6fdc;display:flex}html body #saw .fmpin svg{width:100%;height:100%}html body #saw .fmtx{display:flex;flex-direction:column;gap:calc(var(--u)*4);min-width:0}html body #saw .fmtx b{font-size:max(10.5px,calc(var(--u)*22));font-weight:800;color:#1f5fd0;line-height:1.3}html body #saw .fmtx small{font-size:max(9.5px,calc(var(--u)*18));color:#5a6b86;font-weight:500}

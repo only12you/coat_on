@@ -1,0 +1,25 @@
+html body #v3 .spdbp .lb-fl{grid-template-columns:repeat(5,minmax(0,1fr))!important;gap:4px!important}
+html body #v3 .spdbp .lb-fl button{border-width:1.5px!important}
+html body #v3 .spdbp .lb-fl button.p{background:#dbe9ff!important;border-color:#9cc2fb!important;color:#1b4fb3!important}
+html body #v3 .spdbp .lb-fl button.p i.n{background:#1f6fe5;color:#fff}
+html body #v3 .spdbp .lb-fl button.rg{background:#dff5e8!important;border-color:#9fd9b7!important;color:#1d7a47!important}
+html body #v3 .spdbp .lb-fl button.ed{background:#fff0d6!important;border-color:#f2cf8f!important;color:#a6620a!important}
+html body #v3 .spdbp .lb-fl button.dl{background:#fde2e6!important;border-color:#f3a9b4!important;color:#b8283f!important}
+html body #v3 .spdbp .lb-fl button.rd{background:#ece4fb!important;border-color:#c5b0ef!important;color:#6a3fc0!important}
+#lbrg{width:228px;padding:8px;border-radius:14px;background:#fff;box-shadow:0 6px 24px rgba(10,30,80,.35);display:flex;flex-direction:column;gap:6px}
+#lbrg button{display:flex;align-items:center;gap:10px;height:52px;padding:0 10px;border:1.5px solid #cfe9d8;border-radius:10px;background:#eefaf3;color:#1d7a47;text-align:left}
+#lbrg button:nth-child(2){background:#e9f1ff;border-color:#c3d8f8;color:#1b4fb3}
+#lbrg button:nth-child(3){background:#fff4df;border-color:#f2dcae;color:#a6620a}
+#lbrg .rgi svg{width:22px;height:22px}
+#lbrg .rgt{display:flex;flex-direction:column;gap:3px}
+#lbrg .rgt b{font:800 14px/1 system-ui,-apple-system,"Noto Sans KR",sans-serif}
+#lbrg .rgt small{font:500 11px/1 system-ui,sans-serif;opacity:.85}
+html body .syed input:not(#_a):not(#_b):not(#_c),html body .syed select:not(#_a):not(#_b):not(#_c){min-height:30.3px!important;height:30.3px!important;font-size:11.9px!important;padding-left:7.3px!important;padding-right:7.3px!important}
+html body .syed .se-l input{height:30.3px!important;min-height:30.3px!important;font-size:11.9px!important;line-height:20px!important}
+html body .syed .se-r{grid-template-columns:minmax(0,1fr) 66px 30.3px!important}
+html body .syed .se-r select,html body .syed .se-r input{height:30.3px!important;font-size:11.9px!important}
+html body .syed .se-d input{padding-right:26px!important}
+html body .syed .se-x2 input{height:30.3px!important;font-size:11.9px!important}
+html body .syed .se-sgi{min-height:30px!important}
+html body .syed .se-sgi b{font-size:12px!important}
+.se-sg.fx{position:fixed!important;z-index:2147483200;margin:0!important;box-shadow:0 4px 16px rgba(10,30,80,.3)}

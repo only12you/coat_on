@@ -1,0 +1,34 @@
+html body #hx .hns{display:none!important}
+html body #hx.hn1 .hns{display:none!important;position:absolute;left:4vw;top:2.2vw;font:600 2.9vw/1 system-ui,-apple-system,"Noto Sans KR",sans-serif;color:#fff;opacity:.9;letter-spacing:.02em;z-index:3}
+html body #sylib{padding-left:2.6vw!important;padding-right:2.6vw!important;margin-top:0!important}
+html body #sylib .ndtb{display:grid;grid-template-columns:repeat(3,1fr);gap:1.6vw;margin:2vw 0 2vw}
+html body #sylib .ndtb button{display:flex!important;flex-direction:row;align-items:center;justify-content:center;gap:1.2vw;height:10.5vw;width:auto!important;margin:0!important;padding:0 1vw!important;border:1.5px solid #cfdcf3;border-radius:2.6vw;background:#fff;color:#2a4a8a;font:700 3.5vw/1 system-ui,-apple-system,"Noto Sans KR",sans-serif;white-space:nowrap}
+html body #sylib .ndtb button.on{background:#1e5fd8;color:#fff;border-color:#1e5fd8}
+html body #sylib .ndtb svg{width:4.6vw;height:4.6vw;flex:none}
+html body #sylib .ndty{margin:2vw 0 1vw}
+html body #sylib .ndsh{display:flex;align-items:center;gap:1.4vw;margin-bottom:1.8vw}
+html body #sylib .ndsh b{white-space:nowrap;flex:none;font:800 4.2vw/1 system-ui,-apple-system,"Noto Sans KR",sans-serif;color:#14306b}
+html body #sylib .ndgi,html body #sylib .ndbi{display:inline-flex;color:#1e5fd8}
+html body #sylib .ndgi svg,html body #sylib .ndbi svg{width:4.8vw;height:4.8vw}
+html body #sylib .ndal{margin-left:auto;border:0;background:none;color:#1e5fd8;font:700 3.3vw/1 system-ui,-apple-system,"Noto Sans KR",sans-serif;padding:1vw}
+html body #sylib .ndtl{display:grid;grid-template-columns:repeat(4,1fr);gap:1.6vw}
+html body #sylib .ndtl button{position:relative;display:flex!important;flex-direction:column;align-items:center;justify-content:center;gap:1.2vw;width:auto!important;margin:0!important;height:17vw;padding:0!important;border:1.5px solid #cfdcf3;border-radius:2.6vw;background:#fff;color:#2a4a8a}
+html body #sylib .ndtl button.on{background:#e8f0ff;border-color:#1e5fd8;color:#1e5fd8}
+html body #sylib .ndtl svg{width:6.2vw;height:6.2vw}
+html body #sylib .ndtl b{font:800 3.6vw/1 system-ui,-apple-system,"Noto Sans KR",sans-serif;white-space:nowrap}
+html body #sylib .ndtl i{position:absolute;right:1vw;top:1vw;width:3vw;height:3vw;border-radius:50%;background:#1e5fd8}
+html body #sylib .ndsc{display:flex;gap:1.4vw;margin-top:1.8vw;overflow-x:auto;scrollbar-width:none}
+html body #sylib .ndsc button{flex:none;width:auto!important;margin:0!important;padding:1.8vw 3.6vw!important;height:auto!important;border:1.5px solid #cfdcf3;border-radius:5vw;background:#fff;color:#2a4a8a;font:700 3.4vw/1 system-ui,-apple-system,"Noto Sans KR",sans-serif;white-space:nowrap}
+html body #sylib .ndsc button.on{background:#1e5fd8;color:#fff;border-color:#1e5fd8}
+html body #sylib .ndcb{display:flex;align-items:center;gap:1.4vw;margin:2.4vw 0 2vw}
+html body #sylib .ndcb b{font:800 3.8vw/1 system-ui,-apple-system,"Noto Sans KR",sans-serif;color:#14306b}
+html body #sylib .ndcb small{font-weight:600;color:#6b7fa8}
+html body #sylib .ndcb select{margin-left:auto;width:auto!important;height:8vw;padding:0 2vw;border:1.5px solid #cfdcf3;border-radius:2vw;background:#fff;color:#2a4a8a;font:700 3.3vw system-ui,-apple-system,"Noto Sans KR",sans-serif}
+html body #sylib:not(.fo) .lb-pl{display:none!important}
+html body #sylib .lb-tgs{display:flex;flex-wrap:wrap;gap:1vw;margin-top:1.2vw}
+html body #sylib .lb-tgs span{padding:.8vw 2vw;border-radius:5vw;background:#eaf1ff;color:#1e5fd8;font:700 2.9vw/1.2 system-ui,-apple-system,"Noto Sans KR",sans-serif}
+html body #sylib .lb-tx{flex:1;min-width:0}
+html body #sylib .lb-ph{flex:none;display:flex;align-items:center;justify-content:center;width:16vw;height:16vw;border-radius:2.4vw;background:#e8f0ff;color:#1e5fd8;overflow:hidden;margin-right:2.4vw}
+html body #sylib .lb-ph img{width:100%;height:100%;object-fit:cover}
+html body #sylib .lb-ph svg{width:8vw;height:8vw}
+html body #sylib .lb-ph.t-1{background:#fff1e0;color:#d9731a}html body #sylib .lb-ph.t-2{background:#e6f6ec;color:#1c8a4a}html body #sylib .lb-ph.t-3{background:#f1eaff;color:#7a45d0}

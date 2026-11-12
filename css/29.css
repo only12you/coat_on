@@ -1,0 +1,5 @@
+/* v435 제품 DB: 히어로 + 도구 줄 + 검색까지 상단 고정 / 도구 줄 항상 표시(설정 버튼 삭제) / 검색 글자 30% 확대 */
+html body.pg1 #hx .dshb button:nth-child(n+2){display:none!important}
+html body.pg1 #v1>.dbtp{display:grid!important;position:sticky!important;top:var(--sk1,0)!important;z-index:7!important;margin:0 calc(var(--u)*-10) 0!important;padding:calc(var(--u)*12) calc(var(--u)*10) calc(var(--u)*8)!important;background:#f3f7fd!important}
+html body #app #v1 .dsq{position:sticky!important;top:var(--sk2,0)!important;z-index:7!important}
+html body #app #v1 .dsq input#q,html body #app #v1 .dsq input#q::placeholder{font-size:max(16px,calc(var(--u)*22.75))!important}

@@ -1,0 +1,15 @@
+#gnv2{position:fixed;left:50%;transform:translateX(-50%);bottom:0;width:100%;max-width:560px;height:calc(50px + env(safe-area-inset-bottom));z-index:100;display:grid;grid-template-columns:repeat(5,1fr);padding:4px 5px env(safe-area-inset-bottom);background:#fff;border-radius:18px 18px 0 0;box-shadow:0 -5px 18px rgba(20,60,150,.14);opacity:1;box-sizing:border-box}
+body.mhp #gnv2,body[data-pg="9"] #gnv2{max-width:900px}
+#gnv2 button{position:relative;width:auto!important;border:0!important;background:none!important;box-shadow:none!important;border-radius:0!important;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:1px;color:#4d5f82;font:600 9.2px/1 var(--mf,"Pretendard Variable",Pretendard,"Noto Sans KR",sans-serif)!important;padding:0!important;height:auto!important;min-height:0!important;-webkit-tap-highlight-color:transparent}
+#gnv2 button svg{width:21px;height:21px;fill:none;stroke:currentColor;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
+#gnv2 button.on{color:#1b63e6;font-weight:800!important}
+#gnv2 button.on svg{fill:none;stroke:#1b63e6}
+#gnv2 button.on[data-g=home] svg{fill:#1b63e6}
+#gnv2 button.on::after{content:"";position:absolute;left:16%;right:16%;bottom:0;height:2.5px;border-radius:3px;background:#1b63e6}
+.mh-nav,.lh-nav{display:none!important}
+html body #bb#bb,html body #bb3#bb3,html body.cp #bb#bb{bottom:var(--gnh)!important}
+html body #qmb{bottom:calc(var(--gnh) + 14px)!important}
+body.mhp #qmb{bottom:calc(var(--gnh) + 14px)!important}
+html body{padding-bottom:var(--gnh)}
+html body #qmb#qmb,html body #qmo{display:none!important}
+html body .qmp{bottom:calc(var(--gnh) + 10px)!important}

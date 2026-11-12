@@ -1,0 +1,19 @@
+html body #dsp#dsp .dsa{display:grid!important;grid-template-columns:repeat(5,1fr)!important;gap:calc(var(--u)*6)!important}html body #dsp#dsp .dsa button{padding:0 2px!important;gap:calc(var(--u)*3)!important;min-width:0!important}html body #dsp#dsp .dsa button span{font-size:calc(var(--u)*17)!important}html body #dsp#dsp .dsa button svg{width:calc(var(--u)*20)!important;height:calc(var(--u)*20)!important}html body #dsp#dsp .dsa button.pd{background:#c9252f!important;color:#fff!important;border-color:#c9252f!important}
+html body #sh{bottom:calc(var(--gnh,50px) - 14px)!important}html body #sh .shb{max-height:calc(100dvh - var(--gnh,50px) - 2px)!important;overflow-y:auto!important;padding-bottom:20px!important}
+html body #es .zbar{padding:4px 8px 5px!important;background:#fff!important}
+html body #es .zbar button{height:38px!important;font-size:9.2px!important;font-weight:700!important}
+html body #es .zbar button svg{width:1.05em!important;height:1.05em!important}
+html body #sylib .ndtb button{height:30px!important;min-height:30px!important;font-size:15.3px!important}
+html body #sylib .ndtl button{flex-direction:row!important;align-items:center!important;justify-content:center!important;gap:3px!important;height:40px!important;min-height:0!important;padding:0 2px!important;white-space:nowrap!important}
+html body #sylib .ndtl button svg{width:17px!important;height:17px!important;flex:none!important;margin:0!important}
+html body #sylib .ndtl button b,html body #sylib .ndtl button em{display:inline!important;font-size:11.5px!important;margin:0!important;line-height:1!important}
+html body #sylib .ndtl button em{font-style:normal!important;opacity:.85}
+html body #sylib .lb-sr .lb-s,html body #sylib .lb-sr .lb-f{height:30px!important;min-height:30px!important;border:1px solid #c9d8ef!important;background:#fff!important;box-sizing:border-box!important}
+html body #sylib .lb-sr .lb-s input{height:28px!important;font-size:14px!important;font-weight:400!important}
+html body #sylib .lb-sr .lb-f{font-size:14px!important;padding:0 12px!important}
+html body #v3 .spdbp .lb-fl#lb-fl{position:fixed!important;left:50%!important;right:auto!important;transform:translateX(-50%)!important;bottom:var(--gnh,50px)!important;width:100%!important;max-width:560px!important;box-sizing:border-box!important;margin:0!important;display:grid!important;grid-template-columns:repeat(5,minmax(0,1fr))!important;gap:6px!important;padding:6px 8px!important;background:#fff!important;border:0!important;border-top:1px solid #d6e3f7!important;border-radius:0!important;box-shadow:0 -6px 18px rgba(40,90,170,.08)!important;z-index:18!important}
+html body #v3 .spdbp .lb-fl#lb-fl button{position:static!important;display:flex!important;flex-direction:row!important;align-items:center!important;justify-content:center!important;gap:3px!important;height:34px!important;min-height:0!important;padding:0 2px!important;font-size:10.5px!important;font-weight:700!important;white-space:nowrap!important;background:#fff!important;color:#0b4fd0!important;border:1px solid #9ec2f2!important;box-shadow:none!important;border-radius:var(--rc2,6.7px)!important;transform:none!important;width:auto!important;margin:0!important}
+html body #v3 .spdbp .lb-fl#lb-fl button svg{width:1.1em!important;height:1.1em!important;flex:none!important}
+html body #v3 .spdbp .lb-fl#lb-fl button.ed{background:linear-gradient(180deg,#e8913a,#c9701a)!important;color:#fff!important;border-color:#c9701a!important}
+html body #v3 .spdbp .lb-fl#lb-fl button.dl{color:#c43d52!important;border-color:#f0b4bd!important}
+html body #v3 .spdbp .lb-fl#lb-fl button.rd{background:linear-gradient(180deg,#1f6fe5,#0b55d0)!important;color:#fff!important;border:0!important}

@@ -1,0 +1,14 @@
+html body #syed#syed.sx .sx-bd{padding-left:8px!important;padding-right:8px!important}
+html body #syed#syed.sx details.sx-mr{padding-left:4px!important;padding-right:4px!important}
+html body #syed#syed.sx details.sx-mr>summary{padding-left:8px!important}
+html body #syed#syed.sx .sx-cd{padding-left:8px!important;padding-right:8px!important}
+html body #syed .sx-cd>b{margin-left:-8px!important;margin-right:-8px!important;margin-top:-8px!important}
+#hqd .h-g.one{display:block}
+#hqd .h-cd.mg{display:grid;grid-template-columns:471fr 314fr;gap:calc(var(--q)*20);padding:calc(var(--q)*20) calc(var(--q)*22) calc(var(--q)*18)}
+#hqd .h-cd.mg .h-ci{min-width:0;position:relative}
+#hqd .h-cd.mg .h-ci.s{border-left:1px solid #e6edf8;padding-left:calc(var(--q)*18);margin-left:calc(var(--q)*-4)}
+#hqd .h-ci.s .h-ch b{font-size:max(9px,calc(var(--q)*22))}
+#hqd .h-ico.h-act{position:static!important;margin-left:auto;display:flex;flex-direction:column;gap:calc(var(--q)*8);align-items:stretch}
+#hqd .h-ab{height:calc(var(--q)*52);padding:0 calc(var(--q)*18);border-radius:calc(var(--q)*26)!important;border:0;background:rgba(255,255,255,.85);color:#1d4fb8;display:flex;align-items:center;justify-content:center;gap:calc(var(--q)*8);font:700 max(9px,calc(var(--q)*19))/1 "Noto Sans KR",system-ui,sans-serif;white-space:nowrap;box-shadow:0 calc(var(--q)*3) calc(var(--q)*10) rgba(40,90,170,.18)}
+#hqd .h-ab.go{background:linear-gradient(180deg,#3b8bff,#1d5fe6);color:#fff}
+#hqd .h-ab svg{width:calc(var(--q)*28);height:calc(var(--q)*28);fill:none;stroke:currentColor;stroke-width:2.2;stroke-linecap:round;stroke-linejoin:round;flex:none}

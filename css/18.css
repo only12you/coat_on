@@ -1,0 +1,10 @@
+html body :is(#ap,#hq) .aph{height:calc(var(--u)*236)!important;min-height:calc(var(--u)*236)!important;padding:0!important;display:block!important}
+html body :is(#ap,#hq) .aph:after{background:linear-gradient(90deg,rgba(7,66,178,.96) 0,rgba(10,84,200,.86) 38%,rgba(14,100,215,.35) 68%,rgba(14,100,215,0) 100%)!important}
+html body :is(#ap,#hq) .aph img{object-position:70% 57%!important}
+html body :is(#ap,#hq) .aph .apbk{position:absolute!important;left:calc(var(--u)*22)!important;top:calc(var(--u)*114)!important;width:30px!important;height:30px!important;min-width:30px!important;padding:0!important;border-radius:999px!important;background:#0a3a8f!important;border:2px solid rgba(255,255,255,.22)!important;color:#fff!important;display:flex!important;align-items:center!important;justify-content:center!important;box-shadow:0 4px 12px rgba(0,20,80,.35)!important}
+html body :is(#ap,#hq) .aph .apbk svg{width:58%!important;height:58%!important}
+html body :is(#ap,#hq) .aph .apht{position:absolute!important;left:calc(var(--u)*100)!important;top:calc(var(--u)*92)!important;display:flex!important;flex-direction:column!important;align-items:flex-start!important;gap:0!important}
+html body :is(#ap,#hq) .aph .aps1{font:500 10px/1.35 Poppins,"Noto Sans KR",system-ui,sans-serif!important;color:rgba(255,255,255,.9)!important;letter-spacing:.01em;white-space:nowrap}
+html body :is(#ap,#hq) .aph .apht b{font:800 19px/1.15 "Noto Sans KR",system-ui,sans-serif!important;letter-spacing:-.01em;margin-top:calc(var(--u)*4);white-space:nowrap;color:#fff}
+html body :is(#ap,#hq) .aph .aphb{display:block;width:calc(var(--u)*76);height:max(3px,calc(var(--u)*6));border-radius:4px;background:#fff;margin:calc(var(--u)*7) 0 calc(var(--u)*6)}
+html body :is(#ap,#hq) .aph .apht small{font:400 9.5px/1.3 Poppins,"Noto Sans KR",system-ui,sans-serif!important;color:rgba(255,255,255,.88)!important;white-space:nowrap}

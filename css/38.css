@@ -1,0 +1,5 @@
+.esh .etr{grid-template-columns:1fr 54px 108px 52px 88px 100px}
+html body .rdr.dt{grid-template-columns:1fr 40px 62px 28px 50px 58px!important}
+html body .rdr.dt>span:nth-child(3),html body .rdr.dt>span:nth-child(4){text-align:center!important}
+html body .rdr.dt>span:nth-child(4),html body .rdr.dt>span:nth-child(5){text-align:right!important}
+html body .rdr.dt.h{line-height:1.2}

@@ -1,0 +1,77 @@
+html body #sylib,html body #hx.hn1,html body #cpm{font-family:Pretendard,"Noto Sans KR","Apple SD Gothic Neo","Malgun Gothic",system-ui,sans-serif!important}
+html body #sylib *{font-family:inherit}
+/* 히어로 */
+html body #hx.hn1{height:calc(var(--si,20px) + 160px)!important;border-radius:0!important;background:#0b55d6!important}
+html body #hx.hn1 .hni{width:74%!important;height:100%!important;background-position:62% 40%!important}
+html body #hx.hn1 .hnl{left:5.4vw!important;top:calc(var(--si,20px) + 14px)!important;font:900 8.4vw/1 Poppins,Pretendard,"Noto Sans KR",sans-serif!important;letter-spacing:-.01em}
+html body #hx.hn1 .hnt{left:5.4vw!important;top:calc(var(--si,20px) + 62px)!important}
+html body #hx.hn1 .hnt .hdt{font-size:5.6vw!important;font-weight:700!important;letter-spacing:-.02em;margin-bottom:2.2vw!important}
+html body #hx.hn1 .hnt .hds{font-size:3.15vw!important;line-height:1.45!important;font-weight:500!important;color:#fff!important;opacity:1!important}
+html body #hx.hn1 .hgear{right:4.4vw!important;top:calc(var(--si,20px) + 4px)!important;width:8vw!important;height:8vw!important;background:none!important}
+html body #hx.hn1 .hgear svg{width:7vw!important;height:7vw!important}
+/* 탭 */
+html body #hx.hn1{position:relative!important;z-index:0!important}
+html body #sylib{position:relative;z-index:2;background:linear-gradient(180deg,#f2f6fd,#f9fbff)!important;padding-top:0!important}
+html body #sylib .ndtb{position:relative;z-index:6;margin:-6.4vw 0 3vw!important;padding:0!important;gap:0!important;border:1.5px solid #cdd9ee;border-radius:6vw!important;background:#fff!important;box-shadow:0 1.4vw 3.6vw rgba(20,70,170,.18)!important;height:11.4vw;overflow:visible}
+html body #sylib .ndtb button{height:100%!important;border-radius:6vw!important;font:700 3.9vw/1 inherit!important;font-family:inherit!important;gap:1.8vw!important;position:relative}
+html body #sylib .ndtb button svg{width:5.6vw!important;height:5.6vw!important}
+html body #sylib .ndtb button:not(.on):not(:last-child)::after{content:"";position:absolute;right:0;top:12%;bottom:12%;width:1px;background:#d5deee}
+html body #sylib .ndtb button.on{background:linear-gradient(180deg,#2a7bf0,#0b4fd0)!important;box-shadow:0 1vw 2.6vw rgba(11,79,208,.45)}
+/* 검색 */
+html body #sylib .lb-sr{gap:2.4vw!important;margin:0 0 3.4vw!important}
+html body #sylib .lb-s{border:1.5px solid #bccdea!important;border-radius:999px!important;background:#f8fbff!important;height:8.6vw!important;box-shadow:none!important}
+html body #sylib .lb-s input{font-size:3.5vw!important;background:transparent!important}
+html body #sylib .lb-s svg{color:#1e5fd8}
+html body #sylib .lb-f{height:8.6vw!important;border:1.5px solid #bccdea!important;border-radius:999px!important;background:#f8fbff!important;color:#0b4fd0!important;font-weight:800!important;padding:0 4vw!important;gap:1.2vw}
+html body #sylib .lb-f span{font-size:3.7vw!important;font-weight:800!important}
+/* 유형 분류 */
+html body #sylib .ndty{margin:0 0 2vw!important}
+html body #sylib .ndsh{margin-bottom:1.8vw!important;gap:1.8vw!important}
+html body #sylib .ndsh .ndbar{display:block;width:.9vw;height:4.4vw;border-radius:1px;background:#1e5fd8;flex:none}
+html body #sylib .ndsh b{font-size:4.4vw!important;font-weight:800!important;color:#0e2a66!important}
+html body #sylib .ndtl{grid-template-columns:repeat(5,1fr)!important;gap:1.8vw!important}
+html body #sylib .ndtl button{position:relative;height:12.6vw!important;border:1.5px solid #cfdcf3!important;border-radius:3vw!important;background:linear-gradient(180deg,#fff,#f1f6fe)!important;box-shadow:0 .8vw 2vw rgba(20,70,170,.12);color:#1e5fd8!important;gap:.8vw!important;flex-direction:column}
+html body #sylib .ndtl button svg{width:6.2vw!important;height:6.2vw!important;color:inherit!important}
+html body #sylib .ndtl button b{font-size:3vw!important;font-weight:700!important;color:#0e2a66}
+html body #sylib .ndtl button.on{background:linear-gradient(180deg,#2a7bf0,#0b4fd0)!important;border-color:#0b4fd0!important;color:#fff!important}
+html body #sylib .ndtl button.on b{color:#fff}
+html body #sylib .ndtl button.on::after{content:"";position:absolute;left:50%;bottom:-1.6vw;width:2.6vw;height:2.6vw;background:#0b4fd0;transform:translateX(-50%) rotate(45deg);border-radius:0 0 .6vw 0}
+html body #sylib .ndsc{display:grid!important;grid-template-columns:repeat(5,1fr);gap:0!important;margin-top:3.6vw!important;padding:.8vw;border-radius:5vw;background:#eaf0fa;overflow:visible!important}
+html body #sylib .ndsc button{width:auto!important;height:8vw!important;padding:0!important;border:0!important;border-radius:5vw!important;background:transparent!important;color:#0e2a66!important;font-size:3.5vw!important;font-weight:700!important;position:relative}
+html body #sylib .ndsc button:not(.on):not(:last-child)::after{content:"";position:absolute;right:0;top:25%;bottom:25%;width:1px;background:#cfd9ec}
+html body #sylib .ndsc button.on{background:linear-gradient(180deg,#2a7bf0,#0b4fd0)!important;color:#fff!important;box-shadow:0 .8vw 2vw rgba(11,79,208,.35)}
+/* 건수 */
+html body #sylib .ndcb{margin:3.4vw 0 2.6vw!important;gap:2vw!important}
+html body #sylib .ndcb .ndbi svg{width:7vw!important;height:7vw!important}
+html body #sylib .ndcb b{font-size:4.9vw!important;font-weight:800!important;color:#0e2a66!important}
+html body #sylib .ndcb select{appearance:none;-webkit-appearance:none;height:8.6vw!important;padding:0 8vw 0 4vw!important;border:1.5px solid #cfdcf3!important;border-radius:2.6vw!important;background:#fff url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%230b4fd0' stroke-width='3' stroke-linecap='round'%3E%3Cpath d='M6 9l6 6 6-6'/%3E%3C/svg%3E") no-repeat right 2.4vw center/4vw!important;font-size:3.7vw!important;font-weight:700!important;color:#0b4fd0!important}
+/* 카드 */
+html body #sylib .lb-ls{display:flex;flex-direction:column;gap:2.4vw}
+html body #sylib .lb-c{position:relative;padding:2.8vw 3.2vw 2.4vw!important;margin:0!important;border-radius:2.4vw!important;border:1px solid #e2eaf7!important;background:#fff!important;box-shadow:0 .6vw 2.4vw rgba(20,60,140,.09)!important}
+html body #sylib .lb-c.sel{border:1.5px solid #1e5fd8!important}
+html body #sylib .lb-th{position:relative;display:block!important;padding:0!important;margin:0!important}
+html body #sylib .lb-ph,html body #sylib .lb-b,html body #sylib .lb-bd,html body #sylib .lb-fv{display:none!important}
+html body #sylib .lb-tx{display:block;padding-right:7vw}
+html body #sylib .lb-nm{display:block;font-size:4.5vw!important;line-height:1.25!important;font-weight:800!important;color:#0e2a66!important;letter-spacing:-.02em}
+html body #sylib .lb-tgs{gap:1.6vw!important;margin-top:1.6vw!important}
+html body #sylib .lb-tgs span{padding:.9vw 2.8vw!important;border-radius:5vw!important;background:#e6efff!important;color:#1e5fd8!important;font-size:3.1vw!important;font-weight:700!important}
+html body #sylib .lb-tgs span:nth-child(n+4){display:none}
+html body #sylib .lb-ds{margin:1.8vw 0 0;font-size:3.3vw;line-height:1.35;color:#2b3550;font-weight:400}
+html body #sylib .lb-gt{position:absolute!important;right:-1vw;top:-.4vw;width:7vw!important;height:7vw!important;padding:0!important;border:0!important;background:none!important;color:#1e5fd8;display:grid;place-items:center}
+html body #sylib .lb-gt svg{width:5.4vw;height:5.4vw}
+html body #sylib .lb-dt{position:absolute!important;right:6vw;top:.4vw;width:6vw!important;height:6vw!important;opacity:.55}
+html body #sylib .lb-ck{position:absolute!important;right:6vw;top:9.4vw;z-index:2;transform:scale(.85)}
+html body #sylib .lb-m{display:grid!important;grid-template-columns:1fr 1.15fr 1fr;margin:2.4vw 0 0!important;padding:1.8vw 0!important;border:0!important;border-radius:1.6vw!important;background:#f1f5fc!important}
+html body #sylib .lb-m>span{display:grid!important;grid-template-columns:auto 1fr;column-gap:1.6vw;align-items:center;text-align:left!important;padding:0 2.4vw;border-right:1px solid #d9e2f1!important;min-width:0}
+html body #sylib .lb-m>span:last-child{border-right:0!important}
+html body #sylib .lb-c .lb-m>span>svg,html body #sylib .lb-c .lb-m span svg{grid-row:1/3;width:5.6vw!important;height:5.6vw!important;min-width:5.6vw;color:#1e5fd8;stroke-width:1.8!important}
+html body #sylib .lb-m>span:first-child svg{color:#2f9d57}
+html body #sylib .lb-m small{display:block;font-size:2.9vw!important;color:#4a5878!important;line-height:1.2}
+html body #sylib .lb-m b{display:block;font-size:3.1vw!important;color:#0e2a66!important;font-weight:600!important;line-height:1.25;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+/* 비교 바 */
+html body #sylib .cpbar{display:flex;align-items:center;gap:3vw;margin:2.6vw 0 2vw!important;padding:2.2vw 3.6vw!important;border:0!important;border-radius:5vw!important;background:linear-gradient(180deg,#e9f1ff,#dfeaff)!important;box-shadow:0 .8vw 2.4vw rgba(20,70,170,.14)!important}
+html body #sylib .cpbar .cps{display:grid;place-items:center;color:#1e5fd8}html body #sylib .cpbar .cps svg{width:9vw;height:9vw}
+html body #sylib .cpt b{font-size:4.6vw!important;font-weight:800!important;color:#0e2a66!important}
+html body #sylib .cpt small{font-size:2.9vw!important;color:#33466f!important}
+html body #sylib .cpb{width:8vw!important;height:8vw!important;padding:0!important;border-radius:50%!important;background:none!important;color:#1e5fd8!important;display:grid!important;place-items:center}
+html body #sylib .cpb svg{width:5.6vw;height:5.6vw}

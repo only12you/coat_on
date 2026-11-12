@@ -1,0 +1,5 @@
+.sy-grip{flex:none;width:26px;height:28px;display:flex;align-items:center;justify-content:center;border:0;background:none;color:#7d8fb3;padding:0;touch-action:none;cursor:grab;-webkit-user-select:none;user-select:none;-webkit-tap-highlight-color:transparent}
+.sy-grip svg{width:16px;height:16px;pointer-events:none}
+.syq-r button.sy-grip{border:0!important;background:none!important;color:#7d8fb3!important;width:22px!important;height:24px!important;border-radius:0!important}
+.sy-t.shift,.syq-r.shift{transition:transform .16s ease}
+.sy-t.dragging,.syq-r.dragging{position:relative;z-index:60;box-shadow:0 10px 24px rgba(11,42,102,.28);transition:none!important;opacity:.97}

@@ -1,0 +1,66 @@
+html body #mh .mh-go{width:auto!important;justify-self:start;margin-top:calc(var(--u)*10)}
+html body #mh .mh-pill{width:auto!important}
+html body #mh .mh-s{grid-template-columns:minmax(0,1fr) calc(var(--u)*107) calc(var(--u)*66);gap:calc(var(--u)*8);min-height:calc(var(--u)*164);padding:calc(var(--u)*14) calc(var(--u)*14) calc(var(--u)*24)}
+html body #mh .mh-ring{width:calc(var(--u)*107);height:calc(var(--u)*107)}
+html body #mh .mh-rg{position:absolute;inset:0;border-radius:50%!important;background:conic-gradient(from 0deg,#b6e01c 0,#ffc21a 14%,#ff8a14 28%,#c56ee0 46%,#7b6cf2 58%,#2f7bf3 72%,#1fa2f7 86%,#7fd4a0 94%,#b6e01c 100%);-webkit-mask:radial-gradient(circle closest-side,transparent 65%,#000 66%);mask:radial-gradient(circle closest-side,transparent 65%,#000 66%)}
+html body #mh .mh-ring::after{content:"";position:absolute;inset:calc(var(--u)*-6);border-radius:50%!important;border:calc(var(--u)*1.5) solid rgba(120,170,255,.28);pointer-events:none}
+html body #mh .mh-ring div{inset:calc(var(--u)*18);background:#fff;border-radius:50%!important;box-shadow:inset 0 0 0 calc(var(--u)*1.5) #e6efff}
+html body #mh .mh-ring b{font-size:calc(var(--u)*22)}
+html body #mh .mh-ring small{font-size:calc(var(--u)*8.5);white-space:nowrap}
+html body #mh .mh-m{min-width:0}
+html body #mh .mh-m b{font-size:calc(var(--u)*18)}
+html body #mh .mh-c{height:calc(var(--u)*88)}
+html body #mh .mh-c .h{height:calc(var(--u)*30)}
+html body #mh .mh-c .bd{height:calc(var(--u)*58);padding:calc(var(--u)*9) calc(var(--u)*10)}
+html body #mh .mh-c .bd svg.p{height:calc(var(--u)*50)}
+html body #mh .mh-dots i{border-radius:99px!important}
+html body #mh .mh-dots i.on{width:calc(var(--u)*20)}
+html body.mhp{max-width:900px!important}
+html body #mh{--u:calc(min(100vw,900px)/390);max-width:900px}
+html body #mh .mh-hero,html body #mh .mh-kpi{max-width:none}
+html body #mh .mh-kpi .go,html body #mh .mh-t .c,html body #mh .mh-c .h .a,html body #mh .mh-ib{border-radius:50%!important}
+html body #mh .mh-go,html body #mh .mh-pill{border-radius:999px!important}
+html body #mh .mh-kpi{border-radius:calc(var(--u)*33)!important}
+html body #mh .mh-t{border-radius:calc(var(--u)*13)!important}
+html body #mh .mh-lcc{border-radius:calc(var(--u)*20)!important}
+html body #mh .mh-c{border-radius:calc(var(--u)*15)!important}
+html body #lhd .lh-ib{border-radius:50%!important}
+html body #mh .mh-nav{max-width:900px;height:calc(var(--u)*70 + env(safe-area-inset-bottom));border-radius:calc(var(--u)*22) calc(var(--u)*22) 0 0!important}
+html body #mh .mh-nav button{font-size:calc(var(--u)*11.5);gap:calc(var(--u)*3)}
+html body #mh .mh-nav button svg{width:calc(var(--u)*26);height:calc(var(--u)*26)}
+html body #mh .mh-ib{width:calc(var(--u)*34);height:calc(var(--u)*34)}
+html body #mh .mh-ib svg{width:calc(var(--u)*23);height:calc(var(--u)*23)}
+html body #mh .mh-hero{padding-left:calc(var(--u)*18);padding-right:calc(var(--u)*18)}
+html body #mh .mh-kpi,html body #mh .mh-tiles,html body #mh .mh-lcc,html body #mh .mh-g{margin-left:calc(var(--u)*12);margin-right:calc(var(--u)*12)}
+html body #mh .mh-pill svg,html body #mh .mh-go svg{width:calc(var(--u)*10);height:calc(var(--u)*10)}
+html body #mh .mh-kpi .go svg{width:calc(var(--u)*15);height:calc(var(--u)*15)}
+html body #mh .mh-c .h .a svg{width:calc(var(--u)*9);height:calc(var(--u)*9)}
+html body #mh .mh-dots{gap:calc(var(--u)*5)}
+html body #mh .mh-dots i{width:calc(var(--u)*6);height:calc(var(--u)*6)}
+html body #lhd .lh-env .rw{width:calc(100% - var(--k)*172);left:calc(var(--k)*14);gap:calc(var(--k)*6)}
+html body #lhd .lh-env .m{gap:calc(var(--k)*5)}
+html body #lhd .lh-env .m+.m{padding-left:calc(var(--k)*8)}
+html body #lhd .lh-env .m svg{width:calc(var(--k)*22);height:calc(var(--k)*30)}
+html body #lhd .lh-env .m small{font-size:calc(var(--k)*16)}
+html body #lhd .lh-env .m b{font-size:calc(var(--k)*23);white-space:nowrap}
+html body #lhd .lh-env .bd{width:calc(var(--k)*128);height:calc(var(--k)*128);right:calc(var(--k)*10);top:calc(var(--k)*2)}
+html body #lhd .lh-op .bd{gap:calc(var(--k)*12)}
+html body #lhd .lh-op svg.ly{width:calc(var(--k)*108);height:calc(var(--k)*90)}
+html body #lhd .lh-op li{font-size:calc(var(--k)*19);line-height:calc(var(--k)*32);padding-left:calc(var(--k)*32)}
+html body #lhd .lh-op li::before{width:calc(var(--k)*21);height:calc(var(--k)*21)}
+html body #lhd .lh-op li::after{left:calc(var(--k)*7);top:calc(var(--k)*10)}
+html body #lhd .lh-kpi .k1{flex:0 0 calc(var(--k)*310);padding-left:calc(var(--k)*22);padding-right:calc(var(--k)*10);gap:calc(var(--k)*12)}
+html body #lhd .lh-kpi .k1 b{max-width:calc(var(--k)*215);font-size:calc(var(--k)*25)}
+html body #lhd .lh-kpi .k2{flex:0 0 calc(var(--k)*240)}
+html body #lhd .lh-kpi svg.ki{width:calc(var(--k)*46);height:calc(var(--k)*46)}
+html body #v3 .syp .sy-lcard{padding-left:0!important;padding-right:0!important;border-left-width:0!important;border-right-width:0!important}
+html body #v3 .syp{margin:0!important;padding-left:2px!important;padding-right:2px!important;box-sizing:border-box!important;width:100%!important;max-width:none!important}
+html body #v3 .syp .sy-cc{margin:0 0 8px!important}
+html body #v3 .syp .sy-cc .sy-sw{position:relative;display:inline-block;margin:0 6px;flex:none}
+html body #v3 .syp .sy-cc .sy-sw::after{content:"";position:absolute;right:9px;top:50%;width:6px;height:6px;margin-top:-5px;border-right:2px solid currentColor;border-bottom:2px solid currentColor;transform:rotate(45deg);pointer-events:none;color:var(--cd,#1a4fb5)}
+html body #v3#v3#v3 .syp .sy-cc .sy-sel{width:auto!important;height:26px!important;min-width:64px;margin:0!important;padding:0 22px 0 10px!important;border:1.5px solid var(--cd,#1a4fb5)!important;border-radius:999px!important;background:rgba(255,255,255,.7) none!important;color:var(--cd,#1a4fb5)!important;-webkit-text-fill-color:var(--cd,#1a4fb5)!important;font-size:12.5px!important;font-weight:800!important;font-family:inherit;-webkit-appearance:none;appearance:none;box-shadow:none!important}
+html body #v3 .syp .sy-cc .chsel{width:auto!important}
+html body #v3 .syp .sy-mv{display:flex;gap:6px;margin-top:8px}
+html body #v3 .syp .sy-mv .gb{flex:1;height:30px!important;font-size:11px!important;border-radius:9px!important}
+html body #v3 .syp .sy-cc .addc{margin-top:6px}
+html body #v3 .syp .sy-cc .chn .chk.on::after{border-style:solid!important;border-color:var(--cd,#0d3f9e)!important;border-width:0 2.5px 2.5px 0!important}

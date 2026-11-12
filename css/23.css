@@ -1,0 +1,13 @@
+html body #splash{--spimg:url(../img/7ab80c1c9c.jpg);background:#8fc4f6 var(--spimg) center/cover no-repeat}
+html body #splash::before{content:"";position:absolute;inset:0;backdrop-filter:blur(22px);-webkit-backdrop-filter:blur(22px);background:rgba(190,220,250,.25)}
+html body #splash .sp-v{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);width:max(100vw,calc(100dvh*852/1846));aspect-ratio:852/1846}
+html body #splash .sp-img{position:absolute;inset:0;background:var(--spimg) center/100% 100% no-repeat}
+html body #splash .sp-go{position:absolute;left:16%;width:67.7%;top:85.2%;height:7%;border-radius:999px;cursor:pointer;-webkit-tap-highlight-color:transparent;outline:0;background:transparent}
+html body #splash .sp-go:active{background:rgba(255,255,255,.18)}
+html body #splash{opacity:1;transition:opacity .4s}html body #splash.hide{opacity:0;pointer-events:none}
+html body #splash .sp-ring{position:absolute;left:23.4%;width:53.2%;top:86.7%;height:5.9%;pointer-events:none;overflow:visible}
+html body #splash .sp-ring rect{fill:none;stroke:url(#rg593);stroke-linecap:round;stroke-dasharray:24 76;animation:rd593 2.4s linear infinite}
+html body #splash .sp-ring .rc{stroke-width:3.5}
+html body #splash .sp-ring .rg{stroke-width:9;opacity:.95}
+@keyframes rd593{from{stroke-dashoffset:0}to{stroke-dashoffset:-100}}
+@media (prefers-reduced-motion:reduce){html body #splash .sp-ring rect{animation-duration:8s}}

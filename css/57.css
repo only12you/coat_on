@@ -1,0 +1,17 @@
+html body #bb3:not([hidden]){display:grid!important;position:fixed!important;left:50%!important;right:auto!important;transform:translateX(-50%)!important;width:100%!important;max-width:560px!important;box-sizing:border-box!important;bottom:var(--gnh,50px)!important;margin:0!important;grid-template-columns:repeat(6,minmax(0,1fr))!important;gap:5px!important;padding:6px 8px!important;background:#fff!important;border:0!important;border-top:1px solid #d6e3f7!important;border-radius:0!important;box-shadow:0 -6px 18px rgba(40,90,170,.08)!important;z-index:18!important}
+html body #bb3#bb3 button,html body #bb3#bb3 button.mn,html body #bb3#bb3 button.ok{display:flex!important;flex-direction:row!important;align-items:center!important;justify-content:center!important;gap:2px!important;height:34px!important;min-height:0!important;max-height:34px!important;padding:0 1px!important;font-size:10.5px!important;font-weight:700!important;white-space:nowrap!important;background:#fff!important;color:#0b4fd0!important;border:1px solid #9ec2f2!important;border-radius:var(--rc2,6.7px)!important;box-shadow:none!important;width:auto!important;margin:0!important;grid-column:auto!important;line-height:1!important}
+html body #bb3#bb3 button svg{width:1.05em!important;height:1.05em!important;flex:none!important;margin:0!important}
+html body #bb3#bb3 button svg,html body #bb3#bb3 button svg *{stroke:currentColor!important;color:inherit!important;opacity:1!important;fill:none!important;stroke-width:2.2!important}
+html body #bb3#bb3 button span{font-size:10.5px!important;line-height:1!important}
+html body #bb3#bb3 button.e{color:#c43d52!important;border-color:#f0b4bd!important}
+html body #bb3#bb3 button.f{background:linear-gradient(180deg,#1f6fe5,#0b55d0)!important;color:#fff!important;border:0!important}
+html body #bb3#bb3 button.ok{background:linear-gradient(180deg,#2fa37c,#238a68)!important;color:#fff!important;border:1px solid #238a68!important}
+html body #v3#v3 button.sy-ls{height:34px!important;min-height:0!important;width:auto!important;padding:0 8px!important;gap:3px!important;font-size:10.5px!important;font-weight:700!important;border-radius:var(--rc2,6.7px)!important}
+html body #v3#v3 button.sy-ls.sy-edb{background:linear-gradient(180deg,#e8913a,#c9701a)!important;border:1px solid #c9701a!important;color:#fff!important}
+html body #v3#v3 button.sy-ls svg{width:1.05em!important;height:1.05em!important}
+html body #sylib .ndtb button span,html body #sylib .ndtb button{font-size:12.2px!important}
+html body #sylib .lb-c .lb-tgs{display:flex!important;align-items:center!important;flex-wrap:nowrap!important;gap:5px!important;width:calc(100% - 26px)!important;overflow:hidden!important;margin-top:5px!important}
+html body #sylib .lb-c .lb-tgs>span{display:inline-flex!important;align-items:center!important;justify-content:center!important;height:22px!important;min-height:0!important;margin:0!important;padding:0 8px!important;box-sizing:border-box!important;line-height:1!important;font-size:10px!important;white-space:nowrap!important;flex:none!important;vertical-align:middle!important}
+html body #sylib .lb-c .lb-tgs>span.tkp2{background:linear-gradient(180deg,#f6a13c,#e07a12)!important;color:#fff!important;border:1px solid #d9730e!important;font-weight:800!important;box-shadow:0 2px 6px rgba(224,122,18,.35)!important}
+html body #sylib .lb-c .lb-rt{justify-content:flex-end!important}
+html body #sylib #cpbar{box-sizing:border-box!important;display:flex!important;align-items:center!important}
