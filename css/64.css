@@ -74,9 +74,13 @@
 #qv .qvw{padding-top:54px}
 
 /* 일위대가표: 사양 표 + 견적 세부(수량·단가·금액) 결합 */
-.esh .eptr.mg{grid-template-columns:50px minmax(150px,1fr) 52px 40px 40px 54px 54px 76px 76px 78px 56px 82px 96px}
+.esh .eptr.mg{grid-template-columns:50px minmax(110px,1fr) 78px 52px 40px 40px 54px 54px 76px 76px 78px 56px 82px 96px}
 .esh .eptr.mg>span{padding:8px 3px;font-size:12.5px}.esh .eptr.mg.h>span{font-size:11.5px;line-height:1.25}
 .esh .eptr.mg .sq{font-weight:700;color:#12306b;white-space:nowrap}.esh .eptr.mg .sz{font-size:11px;color:#5b6a86;line-height:1.2}
 .esh .eptr.mg input.r{width:100%;box-sizing:border-box;text-align:right;border:1px solid #cfd9ec;border-radius:5px;padding:5px 4px;font:inherit;font-size:12.5px;background:#fff;min-width:0}
 .esh .eptr.mg .am{font-weight:800;text-align:right;padding-right:8px;white-space:nowrap}
 .esh .eptr.mg.tnr{background:#f7faff}
+.esh .eptr.mg .mf{font-size:11.5px;color:#4b5a76;text-align:center}
+.esh .eptr.g1{background:#dfe8f7!important;font-size:12px}.esh .eptr.g1>span{padding:5px 2px!important;font-size:12px!important;font-weight:800;border-left:1px solid #fff;color:#12306b}
+.esh .eptr.g1>.g-p{grid-column:1/4}.esh .eptr.g1>.g-a{grid-column:4/5;background:#d6efe2;color:#0b5a3a}.esh .eptr.g1>.g-c{grid-column:5/7}.esh .eptr.g1>.g-u{grid-column:7/9;background:#fde7c8;color:#8a4a00}.esh .eptr.g1>.g-t{grid-column:9/11;background:#fbd9a8;color:#7a3d00}.esh .eptr.g1>.g-e{grid-column:11/15}
+.esh .eptr.mg.h>.c-a{background:#e1f4ea;color:#0b5a3a}.esh .eptr.mg.h>.c-u{background:#fff1dc;color:#8a4a00}.esh .eptr.mg.h>.c-t{background:#fde3bd;color:#7a3d00}
