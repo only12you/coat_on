@@ -131,9 +131,7 @@ css/62.css
 js/069-mv593s.js
 css/63.css
 css/64.css
-css/65.css
 js/070-std593s.jsjs/072-dge.js
 js/073-dgs.js
 js/074-basis.js
 js/075-life.js
-js/076-mat.js
