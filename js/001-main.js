@@ -650,8 +650,8 @@ function esHTMLD0(){
  const sp=esGroups().map(g=>(g.sn?`<div class="eptr mg sgh"><span>${esc(g.sn)}</span></div>`:'')+g.L.map(x=>{const p=P(x.c.n)||{},e=ev(x.c,p),a=x.r[0],t=x.r[1],u=UN(p),Ac=+x.c.area||g.A,uu=u=='kg'?'kg':'L';
   const k=g.k+x.i,kt=g.kt+x.i,r1=RM[k]||{},r2=RM[kt]||{},sm=a.amt,pu=(+x.c.price||0)>0;
   const th=a.nc||!(Ac>0)?'-':F(a.th*Ac,1)+' '+uu,ac=a.nc||!(Ac>0)?'-':F(a.ac*Ac,1)+' '+uu;
-  let h=`<div class="eptr mg ei${x.i?'':''}" data-k="${k}"><span>${g.k=='s'?'S':''}${g.k=='s'?syK(x.i)+1:x.i+1}차${x.lab?`<small>${esc(x.lab)}</small>`:''}</span><span class="l">${esc(x.c.n)}${p.mf?`<em>${esc(p.mf)}</em>`:''}</span><span>${Ac>0?F(Ac):'-'}</span><span>${e.dft?F(e.dft):'-'}</span><span>-</span><span class="th">${a.nc?'-':F(a.th)}</span><span class="th ac">${a.nc?'-':F(a.ac)}</span><span class="th sq">${th}</span><span class="th sq ac">${ac}</span><span class="sz">${esc(r1.s||'-')}</span><span>${qpi(k,'q',r1.q)}</span><span>${qpi(k,'p',r1.p)}</span><span class="am"></span></div>`;
-  if(t){const tn=tnClean(p.tn||'희석제');h+=`<div class="eptr mg ei tnr" data-k="${kt}"><span>└</span><span class="l">${esc(tn)}</span><span>-</span><span>-</span><span>${+e.tr>0?F(+(+e.tr).toFixed(1)):'-'}</span><span class="th">${F(t.th,3)}</span><span class="th ac">${F(t.ac,3)}</span><span class="th sq">${Ac>0?F(t.th*Ac,1)+' L':'-'}</span><span class="th sq ac">${Ac>0?F(t.ac*Ac,1)+' L':'-'}</span><span class="sz">${esc(r2.s||'-')}</span><span>${qpi(kt,'q',r2.q)}</span><span>${qpi(kt,'p',r2.p)}</span><span class="am"></span></div>`}
+  let h=`<div class="eptr mg ei${x.i?'':''}" data-k="${k}"><span>${g.k=='s'?'S':''}${g.k=='s'?syK(x.i)+1:x.i+1}차${x.lab?`<small>${esc(x.lab)}</small>`:''}</span><span class="l">${esc(x.c.n)}</span><span class="mf">${esc(p.mf||'-')}</span><span>${Ac>0?F(Ac):'-'}</span><span>${e.dft?F(e.dft):'-'}</span><span>-</span><span class="th">${a.nc?'-':F(a.th)}</span><span class="th ac">${a.nc?'-':F(a.ac)}</span><span class="th sq">${th}</span><span class="th sq ac">${ac}</span><span class="sz">${esc(r1.s||'-')}</span><span>${qpi(k,'q',r1.q)}</span><span>${qpi(k,'p',r1.p)}</span><span class="am"></span></div>`;
+  if(t){const tn=tnClean(p.tn||'희석제');h+=`<div class="eptr mg ei tnr" data-k="${kt}"><span>└</span><span class="l">${esc(tn)}</span><span class="mf">-</span><span>-</span><span>-</span><span>${+e.tr>0?F(+(+e.tr).toFixed(1)):'-'}</span><span class="th">${F(t.th,3)}</span><span class="th ac">${F(t.ac,3)}</span><span class="th sq">${Ac>0?F(t.th*Ac,1)+' L':'-'}</span><span class="th sq ac">${Ac>0?F(t.ac*Ac,1)+' L':'-'}</span><span class="sz">${esc(r2.s||'-')}</span><span>${qpi(kt,'q',r2.q)}</span><span>${qpi(kt,'p',r2.p)}</span><span class="am"></span></div>`}
   return h}).join('')).join('');
  let no=0,prev=null,psn=null;
  const ar='';
@@ -659,7 +659,7 @@ function esHTMLD0(){
  return `<div class="esh epd land"><div class="eph"><div class="epk">일 위 대 가 표</div>${S.ttl?`<div class="ettl">${esc(S.ttl)}</div>`:''}</div>
 ${info}
 <div class="ept tsp">도장 시스템 및 제품 사양 · 견적 세부 내역</div>
-<div class="etb tsp"><div class="eptr mg h"><span>구분</span><span>제품 · 제조사</span><span>도포면적<br>(㎡)</span><span>DFT<br>(㎛)</span><span>희석율<br>(%)</span><span>이론<br>(L·kg/㎡)</span><span>실제<br>(L·kg/㎡)</span><span>이론<br>소요량</span><span>실제<br>소요량</span><span>규격</span><span>수량</span><span>단가(원)</span><span>금액(원)</span></div>${sp||'<div class="eptr none">일위대가표에 제품을 입력하면 자동 반영됩니다</div>'}</div>
+<div class="etb tsp"><div class="eptr mg h g1"><span class="g-p">제 품</span><span class="g-a">도포면적</span><span class="g-c">도장 조건</span><span class="g-u">㎡당 소요량 (L·kg/㎡)</span><span class="g-t">총 소요량 (도포면적 기준)</span><span class="g-e">견적 세부 내역</span></div><div class="eptr mg h"><span>구분</span><span>제품명</span><span>제조사</span><span class="c-a">면적<br>(㎡)</span><span>DFT<br>(㎛)</span><span>희석율<br>(%)</span><span class="c-u">이론</span><span class="c-u">실제</span><span class="c-t">이론<br>소요량</span><span class="c-t">실제<br>소요량</span><span>규격</span><span>수량</span><span>단가(원)</span><span>금액(원)</span></div>${sp||'<div class="eptr none">일위대가표에 제품을 입력하면 자동 반영됩니다</div>'}</div>
 ${xr?`<div class="ept tdt">추가 항목</div>
 <div class="etb tdt"><div class="etr h"><div>품명</div><div>면적<br>(㎡)</div><div>규격</div><div>수량</div><div>단가(원)</div><div>금액(원)</div></div>${xr}</div>`:''}
 <div class="eptot"><div class="trw"><span>공급가액</span><b id="esS"></b></div><div class="trw"><span>VAT (10%)</span><b id="esV"></b></div><div class="trw tt"><span>총 합계</span><b id="esT"></b></div></div>
@@ -802,7 +802,7 @@ if(s.tn)s.tn=s.tn.replace(/^\/\s*|\s*(?:저장\s*기간|포장\s*규격|색상|�
 return s};
 parseDry=L=>D(normL(L).filter(l=>!NZ.test(l)));parsePot=L=>P(normL(L).filter(l=>!NZ.test(l)))}
 
-const APPV={v:'v593p18',d:'2026.11.12'};
+const APPV={v:'v593p19',d:'2026.11.12'};
 function gnav(n){document.body.classList.toggle('inapp',n!=2);document.querySelectorAll('#gnav .hni').forEach((b,i)=>b.classList.toggle('on',i==NAVI(n)))}
 const APPMK={n:'',c:''};/* 제작자 정보: 현재 비공개. 값을 넣으면 '저작권·이용 안내'에 제작자 행이 나타납니다 */
 function showInfo(){
