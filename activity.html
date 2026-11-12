@@ -285,6 +285,8 @@ details.mg>details.mi{margin-left:10px}
 .v2 .brand{position:absolute;left:clamp(16px,13%,52px);top:calc(14px + env(safe-area-inset-top));line-height:1.05}
 .v2 .brand b{display:block;font-size:clamp(22px,3.5dvh,28px);font-weight:800;letter-spacing:-.3px}.v2 .brand span{font-size:clamp(13px,1.9dvh,16px);opacity:.95}
 .v2 .tools{position:absolute;right:12px;top:calc(12px + env(safe-area-inset-top));display:flex;gap:8px}
+.v2 .tools #cobk{height:38px;padding:0 13px;border-radius:19px;background:#12306b;color:#fff;font:700 13px/38px system-ui,sans-serif;text-decoration:none;white-space:nowrap;box-shadow:inset 0 0 0 1px #ffffff55}
+html.cobad .v2 .tools #cobk{background:#c23030}html.cowarn .v2 .tools #cobk{background:#d98a00}
 .v2 .tools button{width:38px;height:38px;border-radius:50%;background:#ffffff38;color:#fff;display:grid;place-items:center;box-shadow:inset 0 0 0 1px #ffffff55;-webkit-backdrop-filter:blur(6px);backdrop-filter:blur(6px)}.v2 .tools svg{width:20px;height:20px}
 .v2 .ttl{position:absolute;left:min(26%,106px);right:8px;bottom:24px}
 .v2 .ttl h1{margin:0;font-size:clamp(22px,3.5dvh,30px);font-weight:800;letter-spacing:-.5px;text-shadow:0 2px 8px #0a2a8a55}.v2 .ttl p{margin:4px 0 0;font-size:clamp(11.5px,1.65dvh,13.5px);line-height:1.4;text-shadow:0 1px 6px #0a2a8a66}
@@ -488,7 +490,7 @@ window.Rep = (function () {
     a.download = title.replace(/[\\/:*?"<>|]/g, '') + '.xlsx'; document.body.appendChild(a); a.click(); setTimeout(() => { URL.revokeObjectURL(a.href); a.remove(); }, 1000);
   }
 
-  // 공사 개요판 사진 → 항목 자동 추출 (아트팩트: Claude 샘플 기능 / zip 앱: 본인 Anthropic API 키)
+  // 공사 개요판 사진 → 항목 자동 추출 (아트팩트: Claude 샘플 기능 / zip 앱: 자동 입력 없음, API 키 사용 안 함)
   const SIGN = new Set(['pname', 'addr', 'dev', 'des', 'bld', 'area', 'use', 'sup', 'start', 'end', 'b', 'f', 'dong', 'hh']);
   const dataBlob = u => { const bin = atob(u.split(',')[1]), a = new Uint8Array(bin.length); for (let i = 0; i < bin.length; i++) a[i] = bin.charCodeAt(i); return new Blob([a], { type: 'image/jpeg' }); };
   const parseJSON = s => { const m = String(s).match(/\{[\s\S]*\}/); if (!m) throw new Error('결과를 해석하지 못했습니다.'); return JSON.parse(m[0]); };
@@ -502,12 +504,9 @@ window.Rep = (function () {
       if (cl.limits && !(await cl.limits()).images) throw new Error('이 화면에서는 사진 인식을 사용할 수 없습니다.');
       return parseJSON((await cl(q, { images: [dataBlob(url)], cache: false })).text);
     }
-    let key = localStorage.getItem('ar-key');
-    if (!key) { key = (window.prompt('사진 자동 입력용 Anthropic API 키를 입력하세요.\n(이 기기의 브라우저에만 저장됩니다)') || '').trim(); if (!key) throw new Error('API 키가 없어 자동 입력을 건너뛰었습니다.'); localStorage.setItem('ar-key', key); }
-    const res = await fetch('https://api.anthropic.com/v1/messages', { method: 'POST', headers: { 'content-type': 'application/json', 'x-api-key': key, 'anthropic-version': '2023-06-01', 'anthropic-dangerous-direct-browser-access': 'true' },
-      body: JSON.stringify({ model: 'claude-sonnet-5-5', max_tokens: 1000, messages: [{ role: 'user', content: [{ type: 'image', source: { type: 'base64', media_type: 'image/jpeg', data: url.split(',')[1] } }, { type: 'text', text: q }] }] }) });
-    if (!res.ok) { if (res.status === 401) localStorage.removeItem('ar-key'); throw new Error('AI 호출 실패 (' + res.status + ')' + (res.status === 401 ? ' — API 키를 확인하세요' : '')); }
-    return parseJSON((await res.json()).content.map(c => c.text || '').join(''));
+    // API 키 입력·저장 기능 제거: 이전에 저장된 키가 있으면 삭제
+    try { localStorage.removeItem('ar-key'); } catch (e) {}
+    throw new Error('이 화면에서는 사진 자동 입력을 사용할 수 없어요. 사진은 첨부됐으니 항목은 직접 입력해 주세요.');
   }
 
   const prevA = (code, d, title) => {
@@ -1200,7 +1199,7 @@ E5c:{sec:[R("PCM 코터사 점유 확대",[["거래처 개요",C4],["매출 및 
     app.innerHTML = `
       <header class="h2">${HERO2}
         <div class="brand"><b>COAT ON</b><span>Activity Report</span></div>
-        <div class="tools"><button id="arch" aria-label="보고서 보관함">${I.doc}</button><button id="gear" aria-label="설정">${I.gear}</button></div>
+        <div class="tools"><a id="cobk" href="index.html">← CoatOn</a><button id="arch" aria-label="보고서 보관함">${I.doc}</button><button id="gear" aria-label="설정">${I.gear}</button></div>
         <div class="ttl"><h1>${s === 1 ? '활동 유형 설정' : '세부 유형 선택'}</h1><p>${s === 1 ? '활동 목적을 선택하시면<br>해당 양식으로 보고서를 작성할 수 있습니다.' : '선택한 활동의 세부 항목을 고르면<br>입력 양식이 열립니다.'}</p></div>
       </header>
       <main class="sh">
@@ -1312,4 +1311,9 @@ E5c:{sec:[R("PCM 코터사 점유 확대",[["거래처 개요",C4],["매출 및 
   home();
 })();
 </script>
-<a id="cobk" href="index.html" style="position:fixed;right:12px;bottom:calc(14px + env(safe-area-inset-bottom));z-index:50;padding:8px 14px;border-radius:999px;background:#12306b;color:#fff;font:700 13px system-ui;text-decoration:none;box-shadow:0 2px 8px rgba(0,0,0,.3)">← CoatOn</a></body></html>
+<script>
+(function(){var B='v593p13';
+document.addEventListener('click',function(e){var a=e.target.closest&&e.target.closest('#cobk');if(a&&window.__idxBad){e.preventDefault();alert('같은 폴더의 index.html이 옛 버전입니다.\nzip 안의 모든 파일(index.html, js, css, sw.js 포함)을 함께 올려야 합니다.\n(이 화면 '+B+')');}},true);
+fetch('index.html',{cache:'reload'}).then(function(r){return r.text()}).then(function(t){var m=/COATON_BUILD="([^"]+)"/.exec(t);
+if(!m){window.__idxBad=1;document.documentElement.classList.add('cobad')}else if(m[1]!==B){document.documentElement.classList.add('cowarn')}}).catch(function(){})})();
+</script></body></html>
