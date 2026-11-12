@@ -1,0 +1,2 @@
+(function(){function sk(){try{if(!document.body.classList.contains('pg1'))return;var v=document.getElementById('v1'),h=document.getElementById('hx');if(!v||!h||v.hidden)return;var t=v.querySelector(':scope>.dbtp'),hh=h.getBoundingClientRect().height,th=t?t.getBoundingClientRect().height:0;v.style.setProperty('--sk1',hh+'px');v.style.setProperty('--sk2',(hh+th)+'px')}catch(e){}}
+window.addEventListener('resize',sk);window.addEventListener('load',function(){sk();setTimeout(sk,300)});setInterval(sk,400)})();

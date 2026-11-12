@@ -1,0 +1,5 @@
+(function(){const X=['file','checkbox','radio','range','hidden','color','button','submit','image','reset'];
+function run(r){try{(r||document).querySelectorAll('input,select,textarea').forEach(e=>{if(e.classList.contains('scpill')){e.removeAttribute('data-ib');return}if(X.includes(e.type)||e.closest('.pbx,.esh,.a4,.pqc,.hd,header')||e.classList.contains('scpill'))return;const w=e.parentElement;if(!w)return;const c=getComputedStyle(w);const bw=c.borderTopWidth!=='0px'&&c.borderTopStyle!=='none';const bg=c.backgroundColor!=='rgba(0, 0, 0, 0)'&&c.backgroundColor!=='transparent';if(bw||bg){e.removeAttribute('data-ib');return}if(w.querySelector(':scope>button,:scope>span,:scope>i,:scope>b')&&w.children.length>1&&!/^(LABEL|DIV)$/.test(w.tagName)){e.removeAttribute('data-ib');return}e.setAttribute('data-ib','1')})}catch(x){}}
+run();window.addEventListener('load',()=>{run();setTimeout(run,800)});setInterval(run,1500);
+new MutationObserver(m=>{for(const x of m)for(const a of x.addedNodes)if(a.nodeType==1){run(a.parentElement||document);return}}).observe(document.documentElement,{childList:true,subtree:true});
+})();

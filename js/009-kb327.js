@@ -1,0 +1,1 @@
+{const _h=hdr;hdr=function(n){_h(n);document.body.classList.toggle('pg4',n==4);if(n==4){const e=document.getElementById('hs2');if(e)e.textContent='TDS 원문의 설명 문구·표·이미지는\n저장하지 않고, 계산에 필요한 값만 검토 후 등록합니다.'}}}
