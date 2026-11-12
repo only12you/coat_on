@@ -494,6 +494,49 @@ window.Rep = (function () {
   const SIGN = new Set(['pname', 'addr', 'dev', 'des', 'bld', 'area', 'use', 'sup', 'start', 'end', 'b', 'f', 'dong', 'hh']);
   const dataBlob = u => { const bin = atob(u.split(',')[1]), a = new Uint8Array(bin.length); for (let i = 0; i < bin.length; i++) a[i] = bin.charCodeAt(i); return new Blob([a], { type: 'image/jpeg' }); };
   const parseJSON = s => { const m = String(s).match(/\{[\s\S]*\}/); if (!m) throw new Error('결과를 해석하지 못했습니다.'); return JSON.parse(m[0]); };
+
+  // ===== 키 없이 기기에서 글자 읽기(Tesseract OCR) → 공사 개요판 항목 추출 =====
+  const parseSign = raw => {
+    const L = String(raw || '').replace(/\r/g, '').split('\n').map(x => x.replace(/[ \t　]+/g, ' ').trim()).filter(Boolean);
+    const LBL = { pname: ['공사명', '사업명', '현장명', '공사이름', '프로젝트명'], addr: ['공사위치', '대지위치', '현장위치', '사업위치', '소재지', '위치'], dev: ['건축주', '시행자', '시행사', '사업주체', '발주처', '발주자'],
+      des: ['설계자', '설계사', '설계업체', '설계'], bld: ['시공자', '시공사', '시공업체', '건설사', '시공'], sup: ['감리자', '감리단', '감리업체', '감리'], area: ['연면적'], use: ['주용도', '용도'] };
+    const rx = lab => new RegExp(lab.split('').join('\\s*') + '\\s*[:：|｜\\-]?\\s*(.+)$');
+    const clean = v => String(v || '').replace(/^[\s|｜:：\-·.]+|[\s|｜]+$/g, '').trim();
+    const ov = {}, yymm = (y, m) => String(y).slice(-2) + '.' + String(m).padStart(2, '0');
+    for (const k in LBL) {
+      for (const line of L) {
+        let v = '';
+        for (const lab of LBL[k]) { const m = line.match(rx(lab)); if (m && clean(m[1]).length >= 2) { v = clean(m[1]); break; } }
+        if (v) { ov[k] = v; break; }
+      }
+    }
+    if (ov.area) { const m = String(ov.area).match(/(\d[\d,\.]*)\s*(㎡|m2|m²|㎡|M2)?/); ov.area = m ? m[1] + '㎡' : ov.area; }
+    const dre = /(20\d{2}|\d{2})\s*[.\-/년]\s*(\d{1,2})/g;
+    for (const line of L) {
+      if (/공사\s*기간|착공|준공|완공/.test(line)) { const ds = [...line.matchAll(dre)].map(m => yymm(m[1], m[2])); if (ds[0] && !ov.start) ov.start = ds[0]; if (ds[1] && !ov.end) ov.end = ds[1]; }
+    }
+    const all = L.join(' ');
+    let m;
+    if ((m = all.match(/지하\s*(\d+)\s*층/))) ov.b = m[1] + 'B';
+    if ((m = all.match(/지상\s*(\d+)\s*층/))) ov.f = m[1] + 'F';
+    if ((m = all.match(/(\d+)\s*개?\s*동/))) ov.dong = m[1];
+    if ((m = all.match(/(\d[\d,]*)\s*세대/))) ov.hh = m[1].replace(/,/g, '');
+    return { h: { site: ov.pname || '' }, ov, m: {}, prog: [], plan: [], req: [] };
+  };
+  window.__parseSign = parseSign;
+  const ocrPrep = url => new Promise((ok, no) => { const im = new Image(); im.onload = () => { const L = Math.max(im.width, im.height), k = L > 2600 ? 2400 / L : L < 1600 ? Math.min(2.5, 2000 / L) : 1, c = document.createElement('canvas'); c.width = Math.round(im.width * k); c.height = Math.round(im.height * k);
+    const g = c.getContext('2d'); g.drawImage(im, 0, 0, c.width, c.height); const d = g.getImageData(0, 0, c.width, c.height), p = d.data; let mn = 255, mx = 0;
+    for (let i = 0; i < p.length; i += 4) { const y = (p[i] * .3 + p[i + 1] * .59 + p[i + 2] * .11) | 0; p[i] = p[i + 1] = p[i + 2] = y; if (y < mn) mn = y; if (y > mx) mx = y; }
+    const sc = 255 / Math.max(40, mx - mn); for (let i = 0; i < p.length; i += 4) { const y = Math.max(0, Math.min(255, (p[i] - mn) * sc)); p[i] = p[i + 1] = p[i + 2] = y; }
+    g.putImageData(d, 0, 0); ok(c); }; im.onerror = () => no(new Error('사진을 열지 못했어요.')); im.src = url; });
+  let OCRW = null;
+  async function ocrSign(url) {
+    if (!window.Tesseract) await new Promise((ok, no) => { const s = document.createElement('script'); s.src = 'https://cdn.jsdelivr.net/npm/tesseract.js@5.1.1/dist/tesseract.min.js'; s.onload = ok; s.onerror = () => no(new Error('글자 읽기 도구를 불러오지 못했어요 (인터넷 연결이 필요해요).')); document.head.append(s); });
+    if (!OCRW) OCRW = await Promise.race([window.Tesseract.createWorker('kor+eng'), new Promise((_, no) => setTimeout(() => no(new Error('언어 데이터를 내려받지 못했어요 (인터넷 연결 확인).')), 120000))]);
+    const c = await ocrPrep(url), r = await OCRW.recognize(c), res = parseSign(r.data.text);
+    if (!Object.keys(res.ov).length) throw new Error('사진에서 항목을 찾지 못했어요. 표지판을 가까이서 반듯하게 다시 찍어 보세요.');
+    return res;
+  }
   async function readSign(url, fields, rowsTxt) {
     const q = '첨부 사진은 (가) 공사 개요 표지판이거나 (나) 작성이 끝난 현장 보고서(표 양식)입니다. 사진에 실제로 적힌 내용만 읽어 아래 형식의 JSON 객체 하나로만 답하세요(설명·코드블록 금지). 보이지 않거나 불확실한 값은 빈 문자열("")이나 빈 배열로 두고 절대 추측하지 마세요. 날짜는 YY.MM 형식(예: 25.11), 지하/지상은 1B, 15F 형식, 연면적은 숫자와 단위(예: 163,917㎡)로 쓰고, 표에 적힌 숫자·금액은 적힌 그대로 문자열로 쓰세요. 건축주·발주처는 시행사, 설계자는 설계사, 시공자는 시공사, 공사기간은 공사시작·공사종료로 나누세요.\n' +
       '형식: {"h":{"bu":"사업부","site":"현장명","act":"활동 내용","mgr":"담당자(판촉 주체)"},"ov":{현장 개요 항목},"m":{"자재행번호":{"spec":"현장스펙/당사제품","qty":"물량","unit":"단위","amt":"금액","vendor":"업체"}},"prog":["진행 사항"],"plan":["예정 사항"],"req":["지원 요청"],"photo":{"x":0.55,"y":0.2,"w":0.4,"h":0.5}}\n' +
@@ -506,7 +549,7 @@ window.Rep = (function () {
     }
     // API 키 입력·저장 기능 제거: 이전에 저장된 키가 있으면 삭제
     try { localStorage.removeItem('ar-key'); } catch (e) {}
-    throw new Error('이 화면에서는 사진 자동 입력을 사용할 수 없어요. 사진은 첨부됐으니 항목은 직접 입력해 주세요.');
+    return ocrSign(url);
   }
 
   const prevA = (code, d, title) => {
@@ -592,7 +635,7 @@ window.Rep = (function () {
       const flat = f.ov.flat().filter(x => x.k !== 'prom');
       const rowsTxt = f.rows.map((x, n) => n + ': ' + (x.g ? x.g + (x.i ? ' ' + x.i : '') : x.i)).join('\n');
       const auto = async () => {
-        const st = document.getElementById('ai'); st.textContent = '🔍 사진에서 정보를 읽는 중…';
+        const st = document.getElementById('ai'); st.textContent = '🔍 사진에서 글자를 읽는 중… (처음 한 번은 언어 데이터를 내려받느라 1분쯤 걸릴 수 있어요)';
         try {
           const r = await readSign(d.photo, flat, rowsTxt); let n = 0; afP.clear();
           const S = v => (v == null ? '' : String(v)).trim(), h = r.h || {}, ov = r.ov || {};
@@ -1312,7 +1355,7 @@ E5c:{sec:[R("PCM 코터사 점유 확대",[["거래처 개요",C4],["매출 및 
 })();
 </script>
 <script>
-(function(){var B='v593p13';
+(function(){var B='v593p14';
 document.addEventListener('click',function(e){var a=e.target.closest&&e.target.closest('#cobk');if(a&&window.__idxBad){e.preventDefault();alert('같은 폴더의 index.html이 옛 버전입니다.\nzip 안의 모든 파일(index.html, js, css, sw.js 포함)을 함께 올려야 합니다.\n(이 화면 '+B+')');}},true);
 fetch('index.html',{cache:'reload'}).then(function(r){return r.text()}).then(function(t){var m=/COATON_BUILD="([^"]+)"/.exec(t);
 if(!m){window.__idxBad=1;document.documentElement.classList.add('cobad')}else if(m[1]!==B){document.documentElement.classList.add('cowarn')}}).catch(function(){})})();

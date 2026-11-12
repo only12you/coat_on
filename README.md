@@ -1,3 +1,4 @@
+v593p14 Activity 사진 자동 입력: API 키 없이 기기에서 글자 읽기(OCR)로 공사 개요판 항목 추출, 버전 v593p14
 v593p13 Activity 화면 CoatOn 버튼을 떠 있는 버튼에서 헤더 고정 위치로 변경(다음 단계 버튼과 겹침 해소), 버전 v593p13
 v593p12 Activity 사진 불러오기에서 Anthropic API 키 입력·저장·호출 제거(저장된 키는 삭제, 자동 입력 없이 사진만 첨부), 버전 v593p12
 v593p11 Activity 화면 CoatOn 복귀 버튼에 버전 표시·같은 폴더 index.html 버전 점검(옛 버전이면 경고), 버전 v593p11
