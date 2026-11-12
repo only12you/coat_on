@@ -327,6 +327,18 @@ details.mg>details.mi{margin-left:10px}
 .ovh{display:flex;align-items:flex-start;gap:8px;justify-content:space-between}.ovh h3{font-size:20px}.ovat{flex:none;border:1.5px solid #bcd0f7;background:#eef3ff;color:#1f3f9f;border-radius:14px;padding:9px 10px;font-size:12px;font-weight:700;white-space:nowrap;cursor:pointer}
 .fm.dz .sc .rg{margin:12px 0}.fm.dz .sc .gbt{margin:4px 0 10px}.fm.dz .sc .ovh{margin:0 0 4px}.fm.dz .sc .ovw2{margin:6px 0}.fm.dz .sc .ovh p{margin:4px 0 0}
 .fm.dz .ovt td textarea,.fm .ovt td textarea{width:100%!important;box-sizing:border-box!important;border:0!important;border-radius:0!important;background:transparent!important;box-shadow:none!important;padding:8px 2px!important;min-height:0!important;margin:0!important;text-align:center;font-size:11.5px!important;word-break:keep-all;overflow-wrap:anywhere}.fm .ovt td textarea.af{background:#fff7b0!important}.fm .ovt td textarea:focus{outline:2px solid #2f5bea;outline-offset:-2px}
+.fm.dz .sc .ovbtn{display:block;margin:8px 0 4px;text-align:center;background:#2f5bea;color:#fff;border-radius:12px;padding:11px 8px;font-size:14px;font-weight:800;cursor:pointer}.fm.dz .sc .ovt1 small{font-size:12px;color:#6b7893;font-weight:600}
+.fm.dz .sc .ovw2{min-height:calc(100dvh - 400px);min-height:calc(100vh - 400px)}.fm.dz .sc .ovt{height:auto}.ovph{font-size:12px;color:#7d8aa3;text-align:center;line-height:1.4}.fm.dz .sc .ovw2 .ovt{align-self:stretch;height:100%}
+.fm .ovt td textarea{height:100%}
+
+/* A1 입력 표준화: 글자·간격 통일 */
+.fm.dz .fbox input,.fm.dz .fbox select{font-size:13px!important;padding:10px 12px!important;min-height:42px;box-sizing:border-box}
+.fm.dz .fbox .fd>span{font-size:12px!important}
+.fm.dz .sc .ovbtn{font-size:16px;padding:16px 8px;margin:10px 0 8px;border-radius:14px;box-shadow:0 4px 12px #2f5bea40}
+.fm.dz .sc .gbt{margin:8px 0 0}.fm.dz .sc .gbt b,.fm.dz .sc .gbt button{font-size:13px;padding:11px 2px}
+.fm.dz .sc .msg#ai{font-size:12px;margin:0 0 10px}
+.fm .ovt th{font-size:12px!important;padding:7px 1px!important}.fm .ovt td textarea{font-size:13px!important;padding:10px 2px!important}.fm .ovt td{height:44px}
+.ovib{cursor:pointer}.ovib .ovph{font-size:13px;line-height:1.6}.ovx{top:34px}
 </style></head><body><div id="app"></div>
 <script>// 표준화 유형 데이터 — Activity 표준화 정의 사진 기준 (양식이 준비된 서브유형은 forms.js 의 READY 참고)
 window.ACTIVITY_TYPES = [
@@ -383,7 +395,7 @@ window.Rep = (function () {
   const sp = (g, items) => items.map(i => ({ g, i }));
   const F = {
     A1: {
-      ov: [[T('code', '현장 코드', 2, '2026030729'), T('pname', '프로젝트명칭', 4)], [T('addr', '소재지', 4), T('prom', '판촉 주체 / 담당자', 2)],
+      ov: [[T('code', '현장 코드', 2), T('pname', '프로젝트명칭', 4)], [T('addr', '소재지', 4), T('prom', '판촉 주체 / 담당자', 2)],
         [T('dev', '시행사', 2), T('des', '설계사', 2), T('bld', '시공사', 2)], [T('area', '연면적', 2, '163,917㎡'), T('use', '주용도', 2), T('sup', '감리업체', 2)],
         five, [T('stage', '현공정', 2), T('memo', '비고', 4)]],
       mh: ['사업부', '품목', '현장스펙 / 당사제품', '물량', '단위', '금액 (백만원)', '수주/판매업체'], vend: '수주/판매업체',
@@ -391,7 +403,7 @@ window.Rep = (function () {
         ...sp('유통도료', ['수성', '에폭시', '내화도료', '플랜트']), ...sp('상품', ['', ''])]
     },
     A2: {
-      ov: [[T('code', '현장 코드', 2, '2026030729'), T('pname', '현장명', 4)], [T('addr', '소재지', 4), T('prom', '판촉 주체 / 담당자', 2)],
+      ov: [[T('code', '현장 코드', 2), T('pname', '현장명', 4)], [T('addr', '소재지', 4), T('prom', '판촉 주체 / 담당자', 2)],
         [T('bid', '입찰 게시일', 2, '2025-11-13'), T('sup', '감리업체', 2), T('win', '수주업체', 2)],
         [C('ext', '외부', 1), C('int', '내부', 1), C('park', '주차장', 1), C('wp', '방수', 1), T('amt', '금액 (백만원)', 2)],
         five, [C('our', '당사 디자인 제출', 2), C('rival', '경쟁사 디자인 제출', 2), C('pat', '특허공법', 2)]],
@@ -533,6 +545,42 @@ window.Rep = (function () {
     if ((m = all.match(/(\d[\d,]*)\s*세대/))) ov.hh = m[1].replace(/,/g, '');
     return { h: { site: ov.pname || '' }, ov, m: {}, prog: [], plan: [], req: [] };
   };
+  // 보고서 표(라벨 칸 아래에 값 칸) 형태의 사진: 글자 위치(좌표)로 라벨 바로 아래 값을 찾음
+  const parsePos = words => {
+    const W = (words || []).filter(w => w && w.text && w.bbox && String(w.text).trim()).map(w => { const b = w.bbox; return { t: String(w.text).trim(), x0: b.x0, x1: b.x1, y0: b.y0, y1: b.y1, cx: (b.x0 + b.x1) / 2, cy: (b.y0 + b.y1) / 2, h: b.y1 - b.y0 }; });
+    if (W.length < 4) return {};
+    const hs = W.map(w => w.h).sort((a, b) => a - b), H = hs[hs.length >> 1] || 20;
+    const LB = { code: ['현장코드'], pname: ['프로젝트명칭', '프로젝트명'], addr: ['소재지'], dev: ['시행사'], des: ['설계사'], bld: ['시공사'], area: ['연면적'], use: ['주용도'], sup: ['감리업체'], start: ['공사시작'], end: ['공사종료'], b: ['지하'], f: ['지상'], dong: ['동'], hh: ['세대수'], stage: ['현공정'], memo: ['비고'] };
+    const ALL = new Set([].concat(...Object.values(LB), ['판촉주체', '담당자', '이미지', '구분']));
+    const rows = []; W.slice().sort((a, b) => a.cy - b.cy).forEach(w => { const r = rows.find(r => Math.abs(r.cy - w.cy) < H * .6); if (r) { r.w.push(w); r.cy = (r.cy * (r.w.length - 1) + w.cy) / r.w.length; } else rows.push({ cy: w.cy, w: [w] }); });
+    rows.forEach(r => r.w.sort((a, b) => a.x0 - b.x0)); rows.sort((a, b) => a.cy - b.cy);
+    const strip = x => x.replace(/[\s|｜:：·.]/g, '');
+    const out = {}, used = new Set();
+    for (const k in LB) {
+      let hit = null;
+      rows.forEach((r, ri) => { if (hit) return; for (let i = 0; i < r.w.length && !hit; i++) { let j = i, tx = ''; while (j < r.w.length && j < i + 3) { tx += strip(r.w[j].t); if (LB[k].includes(tx)) { hit = { ri, i, j }; break; } if (tx.length > 6) break; j++; } } });
+      if (!hit) continue;
+      const r = rows[hit.ri], ws = r.w.slice(hit.i, hit.j + 1), lx0 = Math.min(...ws.map(w => w.x0)), lx1 = Math.max(...ws.map(w => w.x1)), lc = (lx0 + lx1) / 2, lw = lx1 - lx0, tol = Math.max(lw * 1.2, H * 5);
+      for (let q = hit.ri + 1; q < rows.length && q <= hit.ri + 2; q++) {
+        const c = rows[q].w.filter(w => Math.abs(w.cx - lc) <= tol + (w.x1 - w.x0) / 2);
+        if (!c.length) continue;
+        let st = c.reduce((m, w) => Math.abs(w.cx - lc) < Math.abs(m.cx - lc) ? w : m), L = rows[q].w.indexOf(st), R = L;
+        const gap = H * 1.1;
+        while (L > 0 && rows[q].w[L].x0 - rows[q].w[L - 1].x1 < gap) L--;
+        while (R < rows[q].w.length - 1 && rows[q].w[R + 1].x0 - rows[q].w[R].x1 < gap) R++;
+        const seg = rows[q].w.slice(L, R + 1), v = seg.map(w => w.t).join(' ').replace(/^[\s|｜:：]+|[\s|｜]+$/g, '').trim();
+        if (!v) continue;
+        if (seg.some(w => ALL.has(strip(w.t)))) break;   // 값 칸이 비어 있고 다음 라벨 줄이 잡힌 경우
+        const key = q + ':' + L; if (used.has(key)) break; used.add(key);
+        out[k] = v; break;
+      }
+    }
+    if (out.area) { const m = out.area.match(/(\d[\d,\.]*)\s*(㎡|m2|m²|M2)?/); if (m) out.area = m[1] + '㎡'; }
+    if (out.code) { const m = out.code.replace(/\s/g, '').match(/\d{8,12}/); out.code = m ? m[0] : out.code; }
+    ['dong', 'hh'].forEach(k => { if (out[k]) { const m = out[k].match(/\d[\d,]*/); if (m) out[k] = m[0]; } });
+    return out;
+  };
+  window.__parsePos = parsePos;
   window.__parseSign = parseSign;
   const ocrPrep = url => new Promise((ok, no) => { const im = new Image(); im.onload = () => { const L = Math.max(im.width, im.height), k = L > 2600 ? 2400 / L : L < 1600 ? Math.min(2.5, 2000 / L) : 1, c = document.createElement('canvas'); c.width = Math.round(im.width * k); c.height = Math.round(im.height * k);
     const g = c.getContext('2d'); g.drawImage(im, 0, 0, c.width, c.height); const d = g.getImageData(0, 0, c.width, c.height), p = d.data; let mn = 255, mx = 0;
@@ -544,7 +592,10 @@ window.Rep = (function () {
     if (!window.Tesseract) await new Promise((ok, no) => { const s = document.createElement('script'); s.src = 'https://cdn.jsdelivr.net/npm/tesseract.js@5.1.1/dist/tesseract.min.js'; s.onload = ok; s.onerror = () => no(new Error('글자 읽기 도구를 불러오지 못했어요 (인터넷 연결이 필요해요).')); document.head.append(s); });
     if (!OCRW) OCRW = await Promise.race([window.Tesseract.createWorker('kor+eng'), new Promise((_, no) => setTimeout(() => no(new Error('언어 데이터를 내려받지 못했어요 (인터넷 연결 확인).')), 120000))]);
     const c = await ocrPrep(url), r = await OCRW.recognize(c), res = parseSign(r.data.text);
-    if (!Object.keys(res.ov).length) throw new Error('사진에서 항목을 찾지 못했어요. 표지판을 가까이서 반듯하게 다시 찍어 보세요.');
+    let pp = {}; try { pp = parsePos(r.data.words); } catch (e) {}
+    Object.keys(pp).forEach(k => { if (pp[k]) res.ov[k] = pp[k]; });
+    if (res.ov.pname) res.h.site = res.ov.pname;
+    if (!Object.keys(res.ov).length) throw new Error('사진에서 항목을 찾지 못했어요. 읽힌 글자: “' + String(r.data.text || '').replace(/\s+/g, ' ').slice(0, 120) + '” — 표 전체가 화면에 반듯하게 꽉 차도록 다시 찍어 보세요.');
     return res;
   }
   async function readSign(url, fields, rowsTxt) {
@@ -629,17 +680,13 @@ window.Rep = (function () {
           <label class="fd w2"><span>사업부</span><select data-p="h.bu"><option value="">선택</option>${BU.map(b => `<option${d.h.bu === b ? ' selected' : ''}>${b}</option>`).join('')}</select></label>
           <label class="fd w2"><span>담당자 (= 판촉 주체)</span><input data-p="h.mgr" value="${esc(d.h.mgr)}"></label>
           ${inp('h.site', d.h.site, '현장명', 'placeholder="예) KG 바이오탱크 신축공사"')}${inp('h.act', d.h.act, '활동 내용', 'placeholder="예) 판촉의 건"')}</div></div>
-        <div class="ovh"><div><h3><i></i>현장 개요</h3><p>공사 개요서와 사진을 첨부하면 항목이 자동으로 입력됩니다.</p></div><label class="ovat">📷 사진 / 문서 첨부<input type="file" accept="image/*" class="phi" hidden></label></div>
+        <h4 data-j="1" class="ovt1">1) 현장 개요 <small>· 현장 사진</small></h4>
         <div class="gbt"><b>구분</b>${t.subs.map((s, n) => `<button data-go="${n}" class="${n === i ? 'y' : ''}">${s}</button>`).join('')}</div>
-        <div class="rg"><div class="rgh"><i></i><b>공사 개요서 등록 (OCR 자동 인식)</b></div><p>공사 개요서 사진을 첨부하면 정보가 자동으로 입력됩니다.</p>
-          <div class="rgb"><label class="rgp"><span class="rgi">🖼</span><b>개요서 첨부</b><small>(사진)</small><input type="file" accept="image/*" class="phi" hidden></label><em>또는</em><label class="rgp"><span class="rgi">📷</span><b>사진 촬영</b><small>(공사 개요서)</small><input type="file" accept="image/*" capture="environment" class="phi" hidden></label></div>
-          <div class="rgf"><span id="pv">${d.photo ? `<img src="${d.photo}" alt="">` : ''}</span><button type="button" id="rd">✨ 자동 입력 다시</button></div><div class="msg" id="ai">사진을 올리면 항목이 자동 입력돼요. 노란 칸을 확인하고 틀린 곳은 고쳐 주세요.</div></div>
-        <h4 data-j="1">1) 현장 개요</h4>
+        <label class="ovbtn">📷 개요서 사진으로 자동 입력 (OCR)<input type="file" accept="image/*" class="phi" hidden></label><span id="pv" hidden></span><button type="button" id="rd" hidden></button><div class="msg" id="ai">개요서 사진을 올리면 표가 자동으로 채워져요. 노란 칸은 확인해 주세요.</div>
         <div class="ovw2"><table class="ovt">${f.ov.map(row => '<tr>' + row.map(x => `<th colspan="${x.s}">${x.k === 'prom' ? '판촉 주체' : x.l}</th>`).join('') + '</tr><tr>' + row.map(x => x.c
           ? `<td colspan="${x.s}"><label class="ck"><input type="checkbox" data-p="ov.${x.k}" ${d.ov[x.k] ? 'checked' : ''}><span>해당</span></label></td>`
           : `<td colspan="${x.s}"><textarea rows="1" class="${x.k === 'code' ? 'rd' : ''}" data-p="${x.k === 'prom' ? 'h.mgr' : 'ov.' + x.k}" placeholder="${x.k === 'prom' ? '담당자' : x.ph || ''}">${esc(x.k === 'prom' ? d.h.mgr : d.ov[x.k])}</textarea></td>`).join('') + '</tr>').join('')}</table>
-          <div class="ovi"><div class="ovih">이미지</div><div class="ovib" id="spv0">${d.sp[0] ? `<img src="${d.sp[0]}" alt="">` : '📷'}</div><label class="ovch">🖼 사진 변경<input type="file" accept="image/*" class="spi" data-k="0" hidden></label><button type="button" class="spx ovx" data-k="0"${d.sp[0] ? '' : ' hidden'}>✕ 삭제</button></div></div>
-        ${spHTML()}
+          <div class="ovi"><div class="ovih">이미지</div><div class="ovib" id="spv0" role="button" tabindex="0">${d.sp[0] ? `<img src="${d.sp[0]}" alt="">` : '<span class="ovph">📷<br>눌러서<br>현장 사진 선택</span>'}</div><input type="file" accept="image/*" class="spi" data-k="0" hidden><button type="button" class="spx ovx" data-k="0"${d.sp[0] ? '' : ' hidden'}>✕ 삭제</button></div></div>
         <details class="mat"${d.m.some(m => Object.values(m).some(v => v)) ? ' open' : ''}><summary>2) 자재 정보 <small>입력 <b id="mc">0</b>건 · 합계 <b id="sum">0</b> 백만원</small></summary>
         ${matHTML()}</details>
         ${sec('prog', '3) 진행 사항')}${sec('plan', '4) 예정 사항')}${sec('req', '5) 지원 요청')}
@@ -690,7 +737,8 @@ window.Rep = (function () {
       });
       app.querySelectorAll('[data-go]').forEach(b => b.onclick = () => { const n = +b.dataset.go; if (n === i) return; go(n); });
       document.getElementById('bk').onclick = back;
-      const spShow = k => { document.getElementById('spv' + k).innerHTML = d.sp[k] ? `<img src="${d.sp[k]}" alt="">` : '📷'; app.querySelector(`.spx[data-k="${k}"]`).hidden = !d.sp[k]; };
+      document.getElementById('spv0').onclick = () => app.querySelector('.spi[data-k="0"]').click();
+      const spShow = k => { document.getElementById('spv' + k).innerHTML = d.sp[k] ? `<img src="${d.sp[k]}" alt="">` : (k === 0 ? '<span class="ovph">📷<br>눌러서<br>현장 사진 선택</span>' : '📷'); app.querySelector(`.spx[data-k="${k}"]`).hidden = !d.sp[k]; };
       app.querySelectorAll('.spi').forEach(i => i.onchange = e => { const k = +i.dataset.k, fl = e.target.files[0]; if (!fl) return; shrink(fl, (url, asp) => { d.sp[k] = url; d.sa[k] = asp; saveSp(); spShow(k); e.target.value = ''; }); });
       app.querySelectorAll('.spx').forEach(b => b.onclick = () => { const k = +b.dataset.k; d.sp[k] = null; d.sa[k] = 0; saveSp(); spShow(k); });
       document.getElementById('mex').onclick = () => app.querySelectorAll('details.mg,details.mi').forEach(x => { x.open = true; });
