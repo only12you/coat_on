@@ -315,6 +315,18 @@ details.mg>details.mi{margin-left:10px}
 .v2 .next:disabled{background:#aab9dd;box-shadow:none}.v2 .next svg{width:18px;height:18px;flex:none}
 .v2 .prev{flex:none;width:92px;height:clamp(44px,6dvh,54px);border-radius:999px;background:#fff;color:#1456e6;font-weight:800;font-size:15px;box-shadow:inset 0 0 0 1.5px #1456e6}
 @media (max-height:700px){.v2 .info{display:none}}
+
+.gbt{display:grid;grid-template-columns:.9fr 1.2fr 1.2fr 1.2fr;margin:10px 14px 4px;border:2px solid #111;background:#fff}.gbt b{background:#e6e6e6;text-align:center;padding:10px 2px;font-size:13px;border-right:1px solid #111}.gbt button{border:0;border-right:1px solid #111;background:#fff;font-size:13px;padding:10px 2px;font-family:inherit}.gbt button:last-child{border-right:0}.gbt button.y{background:#ffff00;font-weight:800}
+.rg{margin:12px 14px;background:linear-gradient(#fff,#f4f7ff);border-radius:22px;padding:16px;box-shadow:0 3px 14px #2a4a8a1c}.rgh{display:flex;align-items:center;gap:8px}.rgh i{width:6px;height:24px;border-radius:3px;background:#2f5bea}.rgh b{font-size:17px;font-weight:800;color:#14213d}.rg>p{margin:6px 0 10px;font-size:12.5px;color:#6b7893}
+.rgb{display:flex;align-items:stretch;border:1.5px solid #cfdaf5;border-radius:16px;background:#eef3ff;padding:10px 4px}.rgb em{align-self:center;font-style:normal;font-size:12px;color:#6b7893;padding:0 6px;border-left:1px solid #d5def5;border-right:1px solid #d5def5;margin:4px 0}.rgp{flex:1;display:flex;flex-direction:column;align-items:center;gap:2px;padding:6px 2px;cursor:pointer}.rgp .rgi{font-size:30px}.rgp b{font-size:14.5px;color:#1f3f9f}.rgp small{font-size:11px;color:#6b7893}
+.rgf{display:flex;align-items:center;gap:10px;margin-top:8px}.rgf #pv img{width:40px;height:40px;object-fit:cover;border-radius:6px}.rgf button{margin-left:auto;border:1.5px solid #2f5bea;background:#fff;color:#2f5bea;border-radius:999px;padding:7px 12px;font-size:12px;font-weight:700;font-family:inherit}
+.ovh{margin:16px 14px 0}.ovh h3{margin:0;display:flex;align-items:center;gap:8px;font-size:21px;font-weight:800;color:#14213d}.ovh h3 i{width:6px;height:24px;border-radius:3px;background:#2f5bea}.ovh p{margin:4px 0 0;font-size:12.5px;color:#6b7893}
+.ovw2{display:flex;gap:6px;align-items:stretch;margin:6px 14px}.ovt{flex:1 1 62%;min-width:0;border-collapse:collapse;table-layout:fixed;border:2px solid #111;background:#fff}.ovt th{background:#e6e6e6;border:1px solid #111;font-size:11px;font-weight:700;padding:5px 1px;color:#111;word-break:keep-all}.ovt td{border:1px solid #111;padding:0;text-align:center}.ovt td textarea{display:block;resize:none;overflow:hidden;line-height:1.35;width:100%;box-sizing:border-box;border:0;background:transparent;text-align:center;font:inherit;font-size:11.5px;padding:8px 1px;min-width:0}.ovt td textarea.rd{color:#c0262d}.ovt td textarea.af{background:#fff7b0}.ovt .ck{font-size:11px}
+.ovi{flex:1 1 38%;min-width:0;display:flex;flex-direction:column;border:2px solid #111;background:#fff;position:relative}.ovih{background:#e6e6e6;text-align:center;font-size:11px;font-weight:700;padding:5px 0;border-bottom:1px solid #111}.ovib{flex:1;min-height:150px;display:flex;align-items:center;justify-content:center;font-size:28px;overflow:hidden;background:#f3f5f9}.ovib img{width:100%;height:100%;object-fit:cover;display:block;border-radius:0;max-height:none}
+.ovch{position:absolute;right:6px;bottom:6px;background:#0d111ad9;color:#fff;border-radius:999px;padding:7px 10px;font-size:11.5px;font-weight:700;cursor:pointer}.ovx{position:absolute;right:6px;top:30px;border:0;background:#0d111ad9;color:#fff;border-radius:999px;padding:5px 8px;font-size:11px}.ovx[hidden]{display:none}
+.ovh{display:flex;align-items:flex-start;gap:8px;justify-content:space-between}.ovh h3{font-size:20px}.ovat{flex:none;border:1.5px solid #bcd0f7;background:#eef3ff;color:#1f3f9f;border-radius:14px;padding:9px 10px;font-size:12px;font-weight:700;white-space:nowrap;cursor:pointer}
+.fm.dz .sc .rg{margin:12px 0}.fm.dz .sc .gbt{margin:4px 0 10px}.fm.dz .sc .ovh{margin:0 0 4px}.fm.dz .sc .ovw2{margin:6px 0}.fm.dz .sc .ovh p{margin:4px 0 0}
+.fm.dz .ovt td textarea,.fm .ovt td textarea{width:100%!important;box-sizing:border-box!important;border:0!important;border-radius:0!important;background:transparent!important;box-shadow:none!important;padding:8px 2px!important;min-height:0!important;margin:0!important;text-align:center;font-size:11.5px!important;word-break:keep-all;overflow-wrap:anywhere}.fm .ovt td textarea.af{background:#fff7b0!important}.fm .ovt td textarea:focus{outline:2px solid #2f5bea;outline-offset:-2px}
 </style></head><body><div id="app"></div>
 <script>// 표준화 유형 데이터 — Activity 표준화 정의 사진 기준 (양식이 준비된 서브유형은 forms.js 의 READY 참고)
 window.ACTIVITY_TYPES = [
@@ -495,7 +507,7 @@ window.Rep = (function () {
   // ===== 키 없이 기기에서 글자 읽기(Tesseract OCR) → 공사 개요판 항목 추출 =====
   const parseSign = raw => {
     const L = String(raw || '').replace(/\r/g, '').split('\n').map(x => x.replace(/[ \t　]+/g, ' ').trim()).filter(Boolean);
-    const LBL = { pname: ['공사명', '사업명', '현장명', '공사이름', '프로젝트명'], addr: ['공사위치', '대지위치', '현장위치', '사업위치', '소재지', '위치'], dev: ['건축주', '시행자', '시행사', '사업주체', '발주처', '발주자'],
+    const LBL = { pname: ['프로젝트명칭', '공사명', '사업명', '현장명', '공사이름', '프로젝트명'], addr: ['공사위치', '대지위치', '현장위치', '사업위치', '소재지', '위치'], dev: ['건축주', '시행자', '시행사', '사업주체', '발주처', '발주자'],
       des: ['설계자', '설계사', '설계업체', '설계'], bld: ['시공자', '시공사', '시공업체', '건설사', '시공'], sup: ['감리자', '감리단', '감리업체', '감리'], area: ['연면적'], use: ['주용도', '용도'] };
     const rx = lab => new RegExp(lab.split('').join('\\s*') + '\\s*[:：|｜\\-]?\\s*(.+)$');
     const clean = v => String(v || '').replace(/^[\s|｜:：\-·.]+|[\s|｜]+$/g, '').trim();
@@ -507,6 +519,7 @@ window.Rep = (function () {
         if (v) { ov[k] = v; break; }
       }
     }
+    { const m = String(raw || '').match(/(?<!\d)(20\d{8})(?!\d)/); if (m) ov.code = m[1]; }
     if (ov.area) { const m = String(ov.area).match(/(\d[\d,\.]*)\s*(㎡|m2|m²|㎡|M2)?/); ov.area = m ? m[1] + '㎡' : ov.area; }
     const dre = /(20\d{2}|\d{2})\s*[.\-/년]\s*(\d{1,2})/g;
     for (const line of L) {
@@ -607,7 +620,7 @@ window.Rep = (function () {
         const mc = document.getElementById('mc'); if (mc) mc.textContent = d.m.filter(filled).length; };
       const circ = n => n < 20 ? String.fromCharCode(0x2460 + n) : '(' + (n + 1) + ')';
       const listHTML = k => d[k].map((v, n) => `<div class="li"><b>${circ(n)}</b><textarea rows="2" data-p="${k}.${n}">${esc(v)}</textarea><button type="button" class="x" data-del="${k}.${n}" aria-label="삭제">✕</button></div>`).join('') + `<button type="button" class="addb" data-add="${k}">＋ 항목 추가</button>`;
-      const spHTML = () => `<div class="photo one"><b class="pt">현장 사진</b>${[0, 1].map(k => `<label class="pbtn"><i class="sth" id="spv${k}">${d.sp[k] ? `<img src="${d.sp[k]}" alt="">` : '📷'}</i> 사진 ${k + 1}<input type="file" accept="image/*" class="spi" data-k="${k}" hidden></label><button type="button" class="pbtn alt spx" data-k="${k}"${d.sp[k] ? '' : ' hidden'}>✕</button>`).join('')}</div>`;
+      const spHTML = () => `<div class="photo one"><b class="pt">추가 현장 사진</b>${[1].map(k => `<label class="pbtn"><i class="sth" id="spv${k}">${d.sp[k] ? `<img src="${d.sp[k]}" alt="">` : '📷'}</i> 사진 ${k + 1}<input type="file" accept="image/*" class="spi" data-k="${k}" hidden></label><button type="button" class="pbtn alt spx" data-k="${k}"${d.sp[k] ? '' : ' hidden'}>✕</button>`).join('')}</div>`;
       const sec = (k, h) => `<h4>${h}</h4><div id="ls-${k}">${listHTML(k)}</div>`;
       app.innerHTML = `<div class="step2 fm">
         <div class="top"><button id="bk" aria-label="뒤로">${I.back}</button><h2>${code}. ${t.subs[i]}</h2></div>
@@ -616,12 +629,16 @@ window.Rep = (function () {
           <label class="fd w2"><span>사업부</span><select data-p="h.bu"><option value="">선택</option>${BU.map(b => `<option${d.h.bu === b ? ' selected' : ''}>${b}</option>`).join('')}</select></label>
           <label class="fd w2"><span>담당자 (= 판촉 주체)</span><input data-p="h.mgr" value="${esc(d.h.mgr)}"></label>
           ${inp('h.site', d.h.site, '현장명', 'placeholder="예) KG 바이오탱크 신축공사"')}${inp('h.act', d.h.act, '활동 내용', 'placeholder="예) 판촉의 건"')}</div></div>
-        <div class="tbox"><label>② 본문 : 구분</label><div class="strip">${t.subs.map((s, n) => `<button data-go="${n}" class="${n === i ? 'y' : ''}">${s}</button>`).join('')}</div></div>
-        <h4>1) 현장 개요</h4>
-        <div class="photo one"><span id="pv">${d.photo ? `<img src="${d.photo}" alt="">` : ''}</span><label class="pbtn">📷 촬영<input type="file" accept="image/*" capture="environment" class="phi" hidden></label><label class="pbtn alt">🖼 불러오기<input type="file" accept="image/*" class="phi" hidden></label><button type="button" class="pbtn alt" id="rd">✨ 자동 입력</button></div><div class="msg" id="ai">개요판 또는 작성 완료된 보고서 사진을 올리면 모든 항목이 자동 입력돼요. 엑셀 이미지 칸에는 아래 현장 사진이 들어가고, 현장 사진이 없으면 개요판 사진이 대신 들어가요.</div>
-        ${f.ov.map(row => `<div class="fr">${row.map(x => x.c
-          ? `<label class="chk w${x.s}"><input type="checkbox" data-p="ov.${x.k}" ${d.ov[x.k] ? 'checked' : ''}><span>${x.l}</span></label>`
-          : `<label class="fd w${x.s}"><span>${x.l}</span><input data-p="${x.k === 'prom' ? 'h.mgr' : 'ov.' + x.k}" value="${esc(x.k === 'prom' ? d.h.mgr : d.ov[x.k])}" placeholder="${x.k === 'prom' ? '제목의 담당자와 동일' : x.ph || ''}"></label>`).join('')}</div>`).join('')}
+        <div class="ovh"><div><h3><i></i>현장 개요</h3><p>공사 개요서와 사진을 첨부하면 항목이 자동으로 입력됩니다.</p></div><label class="ovat">📷 사진 / 문서 첨부<input type="file" accept="image/*" class="phi" hidden></label></div>
+        <div class="gbt"><b>구분</b>${t.subs.map((s, n) => `<button data-go="${n}" class="${n === i ? 'y' : ''}">${s}</button>`).join('')}</div>
+        <div class="rg"><div class="rgh"><i></i><b>공사 개요서 등록 (OCR 자동 인식)</b></div><p>공사 개요서 사진을 첨부하면 정보가 자동으로 입력됩니다.</p>
+          <div class="rgb"><label class="rgp"><span class="rgi">🖼</span><b>개요서 첨부</b><small>(사진)</small><input type="file" accept="image/*" class="phi" hidden></label><em>또는</em><label class="rgp"><span class="rgi">📷</span><b>사진 촬영</b><small>(공사 개요서)</small><input type="file" accept="image/*" capture="environment" class="phi" hidden></label></div>
+          <div class="rgf"><span id="pv">${d.photo ? `<img src="${d.photo}" alt="">` : ''}</span><button type="button" id="rd">✨ 자동 입력 다시</button></div><div class="msg" id="ai">사진을 올리면 항목이 자동 입력돼요. 노란 칸을 확인하고 틀린 곳은 고쳐 주세요.</div></div>
+        <h4 data-j="1">1) 현장 개요</h4>
+        <div class="ovw2"><table class="ovt">${f.ov.map(row => '<tr>' + row.map(x => `<th colspan="${x.s}">${x.k === 'prom' ? '판촉 주체' : x.l}</th>`).join('') + '</tr><tr>' + row.map(x => x.c
+          ? `<td colspan="${x.s}"><label class="ck"><input type="checkbox" data-p="ov.${x.k}" ${d.ov[x.k] ? 'checked' : ''}><span>해당</span></label></td>`
+          : `<td colspan="${x.s}"><textarea rows="1" class="${x.k === 'code' ? 'rd' : ''}" data-p="${x.k === 'prom' ? 'h.mgr' : 'ov.' + x.k}" placeholder="${x.k === 'prom' ? '담당자' : x.ph || ''}">${esc(x.k === 'prom' ? d.h.mgr : d.ov[x.k])}</textarea></td>`).join('') + '</tr>').join('')}</table>
+          <div class="ovi"><div class="ovih">이미지</div><div class="ovib" id="spv0">${d.sp[0] ? `<img src="${d.sp[0]}" alt="">` : '📷'}</div><label class="ovch">🖼 사진 변경<input type="file" accept="image/*" class="spi" data-k="0" hidden></label><button type="button" class="spx ovx" data-k="0"${d.sp[0] ? '' : ' hidden'}>✕ 삭제</button></div></div>
         ${spHTML()}
         <details class="mat"${d.m.some(m => Object.values(m).some(v => v)) ? ' open' : ''}><summary>2) 자재 정보 <small>입력 <b id="mc">0</b>건 · 합계 <b id="sum">0</b> 백만원</small></summary>
         ${matHTML()}</details>
@@ -629,6 +646,9 @@ window.Rep = (function () {
         <div class="act"><button type="button" id="pvb">👁 미리보기</button><button type="button" id="svb">💾 저장</button><button type="button" id="nw">＋ 새로 작성</button></div><button class="cta xl" id="xl">📊 Excel 보고서 만들기</button><div class="msg" id="msg"></div></div>`;
       const sumUp = () => { const s = d.m.reduce((a, m) => a + (parseFloat(String(m.amt || '').replace(/,/g, '')) || 0), 0); document.getElementById('sum').textContent = s.toLocaleString(); };
       sumUp(); refreshMat();
+      const grow = el => { el.style.height = 'auto'; el.style.height = el.scrollHeight + 'px'; };
+      const growAll = () => app.querySelectorAll('.ovt textarea').forEach(grow); growAll(); setTimeout(growAll, 150);
+      app.querySelector('.fm').addEventListener('input', e => { if (e.target.matches('.ovt textarea')) grow(e.target); });
       const flat = f.ov.flat().filter(x => x.k !== 'prom');
       const rowsTxt = f.rows.map((x, n) => n + ': ' + (x.g ? x.g + (x.i ? ' ' + x.i : '') : x.i)).join('\n');
       const auto = async () => {
@@ -658,7 +678,7 @@ window.Rep = (function () {
         set(p, el.type === 'checkbox' ? el.checked : el.value);
         if (p.startsWith('h.')) { if (p === 'h.mgr' && !d.ov.prom) { /* 담당자는 제목용 */ } document.getElementById('ttl').innerHTML = titleHTML(); }
         if (p.startsWith('m.')) { sumUp(); refreshMat(); }
-        if (p === 'h.mgr') app.querySelectorAll('[data-p="h.mgr"]').forEach(o => { if (o !== el) o.value = el.value; });
+        if (p === 'h.mgr') app.querySelectorAll('[data-p="h.mgr"]').forEach(o => { if (o !== el) { o.value = el.value; if (o.matches('.ovt textarea')) { o.style.height = 'auto'; o.style.height = o.scrollHeight + 'px'; } } });
         persist();
       };
       app.querySelector('.fm').addEventListener('input', on); app.querySelector('.fm').addEventListener('change', on);
@@ -1123,8 +1143,8 @@ E5c:{sec:[R("PCM 코터사 점유 확대",[["거래처 개요",C4],["매출 및 
         if (n.matches('.act, #xl, #msg')) return;
         if (n.matches('.note') && !cur) return;
         if (n.matches('details.mat')) { cur = null; const sc = mk('mat'); root.insertBefore(sc, n); sc.appendChild(n); return; }
-        if (n.tagName === 'H4') { cur = mk(''); root.insertBefore(cur, n); }
-        if (!cur) cur = mk('');
+        if (n.tagName === 'H4' && !(cur && n.hasAttribute('data-j'))) { cur = mk(''); root.insertBefore(cur, n); }
+        if (!cur) { cur = mk(''); root.insertBefore(cur, n); }
         cur.appendChild(n);
       });
       const num = el => { el.innerHTML = el.innerHTML.replace(/^\s*(\d+)\)\s*/, '<i class="nb">$1</i>'); };
