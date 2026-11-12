@@ -21,6 +21,8 @@ settings:'<circle cx="12" cy="12" r="3"/><path d="M12 2.5v3M12 18.5v3M2.5 12h3M1
 help:'<path d="M12 6c-2-1.5-5-1.5-8 0v13c3-1.5 6-1.5 8 0 2-1.5 5-1.5 8 0V6c-3-1.5-6-1.5-8 0zM12 6v13"/>',
 legal:'<circle cx="12" cy="12" r="9"/><path d="M12 11v6M12 7.6h.01"/>',
 info:'<path d="M6 3h12v18H6z"/><path d="M9 8h6M9 12h6M9 16h4"/>',
+mat:'<rect x="4" y="4" width="16" height="16" rx="2"/><path d="M4 10h16M10 10v10"/>',
+act:'<path d="M6 3h12v18H6z"/><path d="M9 8h6M9 12h6M9 16h3"/>',
 adm:'<path d="M12 3l8 3v6c0 5-3.5 8-8 9-4.5-1-8-4-8-9V6z"/>',
 s_calc:'<rect x="5" y="3" width="14" height="18" rx="2"/><path d="M8 7h8M8 12h.01M12 12h.01M16 12h.01M8 16h.01M12 16h.01M16 16h.01"/>',
 s_ana:'<path d="M5 20V11M10 20V4M15 20v-9M20 20v-5"/>',
@@ -54,6 +56,8 @@ settings:{n:'설정',k:'설정 언어 테마 알림 다크',sheet:1,o:()=>openSe
 help:{n:'사용법',k:'사용법 도움말 매뉴얼 help 가이드',sheet:1,o:()=>helpOpen()},
 legal:{n:'자료이용안내',k:'자료이용안내 자료이용 이용약관 개인정보 약관 면책',sheet:1,o:()=>legalOpen()},
 info:{n:'정보',k:'정보 버전 앱정보 info',sheet:1,o:()=>showInfo()},
+mat:{n:'자재정보',k:'자재정보 자재 건재 도료 현장스펙 coat',sheet:1,o:()=>matOpen()},
+act:{n:'Activity',k:'activity report 액티비티 리포트 활동 보고서',sheet:1,o:()=>{location.href='activity.html'}},
 adm:{n:'관리자',k:'관리자 admin 배포 데이터',page:'adm',o:()=>T(7)},
 home:{n:'홈',k:'홈 home 메인 최근작업',page:'home',o:()=>T(2)},
 menu:{n:'전체 메뉴',k:'전체메뉴 메뉴',page:'menu',o:()=>openMenu()}
@@ -62,7 +66,7 @@ const SEC=[
 {id:'calc',t:'산출',d:'공사비 산출 및 견적에 필요한 메뉴입니다.',c:'#1f6fe5',c2:'#4ea0ff',cb:'#e6f0ff',bg:'#f1f7ff',bd:'#d3e3fa',art:'a1',ic:'s_calc',it:['calc','sys','quote','fill','mesh']},
 {id:'ana',t:'도장 분석',d:'도장 사양, 수명, 경제성 분석에 필요한 메뉴입니다.',c:'#16a06a',c2:'#4cc596',cb:'#e2f6ed',bg:'#f0faf6',bd:'#cfeadf',art:'a2',ic:'s_ana',it:['hq','lcc','area','cmp']},
 {id:'db',t:'DB',d:'기준정보를 관리하는 메뉴입니다.',c:'#6a4ad6',c2:'#9a7df0',cb:'#ece7fb',bg:'#f5f2fe',bd:'#ded6f8',art:'a3',ic:'s_db',it:['db','aptdb','spdb','pum']},
-{id:'adm',t:'관리',d:'프로그램 유지관리 및 안내 메뉴입니다.',c:'#ef7418',c2:'#f9a24e',cb:'#fdeddd',bg:'#fff6ee',bd:'#fadcc3',art:'a4',ic:'s_adm',it:['backup','settings','help','legal','info']}
+{id:'adm',t:'관리',d:'프로그램 유지관리 및 안내 메뉴입니다.',c:'#ef7418',c2:'#f9a24e',cb:'#fdeddd',bg:'#fff6ee',bd:'#fadcc3',art:'a4',ic:'s_adm',it:['backup','settings','help','legal','info','mat','act']}
 ];
 const CAT={calc:'calc',sys:'calc',quote:'calc',fill:'calc',mesh:'calc',hq:'ana',lcc:'ana',area:'ana',db:'db',aptdb:'db',spdb:'db',tds:'db',cmp:'ana',csv:'adm',adm:'adm'};
 const NAV=window.NAV={cur:'home',stack:[],going:0,rc:[]};
