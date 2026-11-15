@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="ko"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="color-scheme" content="light"><title>Activity Report</title><link rel="manifest" href="manifest.webmanifest"><link rel="apple-touch-icon" href="../icon-180.png"><link rel="icon" href="../favicon-32.png"><meta name="theme-color" content="#1f4fd0">
+<html lang="ko"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="color-scheme" content="light"><title>Activity Report</title><link rel="manifest" href="manifest.webmanifest"><link rel="apple-touch-icon" href="icon-180.png"><link rel="icon" href="icon-192.png"><meta name="theme-color" content="#1f4fd0">
 <style>:root{
   --blue:#1f4fd0; --blue-d:#0f3aa8; --ink:#1b2436; --muted:#6b7488; --line:#e3e9f3;
   --bg:#eef3fb; --card:#fff;
@@ -339,6 +339,24 @@ details.mg>details.mi{margin-left:10px}
 .fm.dz .sc .msg#ai{font-size:12px;margin:0 0 10px}
 .fm .ovt th{font-size:12px!important;padding:7px 1px!important}.fm .ovt td textarea{font-size:13px!important;padding:10px 2px!important}.fm .ovt td{height:44px}
 .ovib{cursor:pointer}.ovib .ovph{font-size:13px;line-height:1.6}.ovx{top:34px}
+
+/* ===== 스크롤 축소(컴팩트) ===== */
+.fm.dz .top.hd,.fm.dz .hbg{height:84px!important;min-height:0!important}.fm.dz .top.hd{padding-top:8px!important;padding-bottom:8px!important}
+.fm.dz .tbox.tcard{padding:10px 14px!important;margin-top:8px!important}.fm.dz .tcard .t em{font-size:14.5px!important;line-height:1.35!important}.fm.dz .tcard .t{gap:0 6px}
+.fm.dz .fbox{margin-top:8px!important;padding:10px 12px 12px!important}.fm.dz .fbox .fr{gap:8px 8px!important}
+.fm.dz .fbox .fd{gap:3px!important}.fm.dz .fbox input,.fm.dz .fbox select{min-height:36px!important;padding:7px 10px!important}
+.fm.dz .sc{margin-top:8px!important;padding:10px 12px 12px!important}.fm.dz .sc>h4{margin:0 0 6px!important}
+.fm.dz .sc .ovbtn{padding:10px 8px!important;margin:6px 0 4px!important;font-size:14.5px!important}
+.fm.dz .sc .msg#ai{font-size:11px!important;padding:5px 10px!important;margin:0 0 6px!important;line-height:1.35}
+.fm.dz .sc .gbt b,.fm.dz .sc .gbt button{padding:8px 2px!important}.fm.dz .sc .gbt{margin:4px 0 0!important}
+.fm.dz .sc .ovw2{min-height:0!important}.fm .ovt td{height:34px!important}.fm .ovt td textarea{padding:6px 2px!important;font-size:12.5px!important}.fm .ovt th{padding:5px 1px!important;font-size:11.5px!important}
+.ovib{min-height:120px!important}
+.fm.dz .li{margin-bottom:6px!important}.fm.dz .li textarea{min-height:38px!important;height:38px;resize:none!important;padding:8px 10px!important}
+.fm.dz .addb{min-height:0!important;padding:9px 8px!important}
+.step2.fm.dz{padding-bottom:92px!important}
+.ovlk{display:block;width:100%;margin:0 0 6px;background:none;border:1.5px dashed #9db4ee;color:#2f4fb5;border-radius:10px;padding:8px;font-size:12.5px;font-weight:700;font-family:inherit}
+.bv{font-style:normal;font-size:10px;opacity:.75;margin-left:4px}
+.pstw{position:fixed;inset:0;background:#0b1730b3;z-index:9999;display:flex;align-items:center;justify-content:center;padding:16px}.pstb{background:#fff;border-radius:18px;padding:16px;width:100%;max-width:400px}.pstb b{font-size:16px}.pstb p{font-size:12.5px;color:#5b6a86;line-height:1.5;margin:6px 0 8px}.pstb textarea{width:100%;height:220px;box-sizing:border-box;border:1.5px solid #cfd9ec;border-radius:10px;padding:10px;font:inherit;font-size:13px}.pstr{display:flex;gap:8px;margin-top:10px}.pstr button{flex:1;border-radius:12px;padding:12px;font-weight:800;border:1.5px solid #bcd0f7;background:#fff;font-family:inherit}.pstr #psto{background:#2f5bea;color:#fff;border-color:#2f5bea}
 </style></head><body><div id="app"></div>
 <script>// 표준화 유형 데이터 — Activity 표준화 정의 사진 기준 (양식이 준비된 서브유형은 forms.js 의 READY 참고)
 window.ACTIVITY_TYPES = [
@@ -518,32 +536,57 @@ window.Rep = (function () {
 
   // ===== 키 없이 기기에서 글자 읽기(Tesseract OCR) → 공사 개요판 항목 추출 =====
   const parseSign = raw => {
-    const L = String(raw || '').replace(/\r/g, '').split('\n').map(x => x.replace(/[ \t　]+/g, ' ').trim()).filter(Boolean);
-    const LBL = { pname: ['프로젝트명칭', '공사명', '사업명', '현장명', '공사이름', '프로젝트명'], addr: ['공사위치', '대지위치', '현장위치', '사업위치', '소재지', '위치'], dev: ['건축주', '시행자', '시행사', '사업주체', '발주처', '발주자'],
-      des: ['설계자', '설계사', '설계업체', '설계'], bld: ['시공자', '시공사', '시공업체', '건설사', '시공'], sup: ['감리자', '감리단', '감리업체', '감리'], area: ['연면적'], use: ['주용도', '용도'] };
-    const rx = lab => new RegExp(lab.split('').join('\\s*') + '\\s*[:：|｜\\-]?\\s*(.+)$');
-    const clean = v => String(v || '').replace(/^[\s|｜:：\-·.]+|[\s|｜]+$/g, '').trim();
+    const txt = String(raw || '').replace(/\r/g, '');
+    const L = txt.split('\n').map(x => x.replace(/[ \t　]+/g, ' ').replace(/[|｜]/g, ' ').trim()).filter(Boolean);
+    const FIELDS = { pname: ['프로젝트명칭', '프로젝트명', '공사명', '사업명', '현장명'], addr: ['대지위치', '건축위치', '공사위치', '현장위치', '사업위치', '소재지'], dev: ['건축주', '발주자', '발주처', '시행자', '시행사', '사업주체'],
+      des: ['건축설계', '설계자', '설계사', '설계업체', '설계'], bld: ['시공자', '시공사', '시공업체', '시공'], sup: ['건축감리', '감리자', '감리사', '감리업체', '감리단', '감리'], area: ['연면적'], use: ['주용도', '용도'] };
+    const STOP = ['대지면적', '건축면적', '구조및층수', '구조', '규모', '층수', '공사예정기간', '공사기간', '허가일', '허가번호', '연락처', '현장대리인', '현장책임자', '현장소장', '허가기관', '조감도'];
+    const sp = s => s.split('').join('\\s*');
+    const LAB = []; for (const k in FIELDS) FIELDS[k].forEach(l => LAB.push({ k, l })); STOP.forEach(l => LAB.push({ k: '', l }));
+    LAB.forEach(o => { o.rx = new RegExp('(?<![가-힣])' + sp(o.l) + '(?![가-힣]{2,}\\s*$)', 'g'); });
+    const hits = line => { const a = []; LAB.forEach(o => { o.rx.lastIndex = 0; let m; while ((m = o.rx.exec(line))) a.push({ k: o.k, s: m.index, e: m.index + m[0].length, n: o.l.length }); });
+      a.sort((x, y) => x.s - y.s || y.n - x.n); const r = []; a.forEach(h => { if (!r.length || h.s >= r[r.length - 1].e) r.push(h); }); return r; };
+    const PH = /\s*[\(（]?\s*(TEL|Tel|tel|전화|연락처)\b.*$|\s*[☎☏☎︎].*$|\s*[\(（]?\s*0\d{1,2}\s*[\-)\)]\s*\d{3,4}.*$/;
+    const clean = v => String(v || '').replace(PH, '').replace(/^[\s:：\-·.]+/, '').replace(/[\s(（:：\-,]+$/, '').replace(/\s+/g, ' ').trim();
+    const isAddr = v => /(시|도)\s+\S+(구|군|시)\s+\S+(읍|면|동|로|길)/.test(v) && /\d/.test(v) && !/(건축사|사무소|건설|주식회사|㈜|\(주\)|종합|엔지니어링|엔씨|설계|감리)/.test(v);
     const ov = {}, yymm = (y, m) => String(y).slice(-2) + '.' + String(m).padStart(2, '0');
-    for (const k in LBL) {
-      for (const line of L) {
-        let v = '';
-        for (const lab of LBL[k]) { const m = line.match(rx(lab)); if (m && clean(m[1]).length >= 2) { v = clean(m[1]); break; } }
-        if (v) { ov[k] = v; break; }
-      }
-    }
-    { const m = String(raw || '').match(/(?<!\d)(20\d{8})(?!\d)/); if (m) ov.code = m[1]; }
-    if (ov.area) { const m = String(ov.area).match(/(\d[\d,\.]*)\s*(㎡|m2|m²|㎡|M2)?/); ov.area = m ? m[1] + '㎡' : ov.area; }
+    const lineHits = L.map(hits);
+    L.forEach((line, li) => {
+      const hs = lineHits[li];
+      hs.forEach((h, hi) => {
+        if (!h.k || ov[h.k] !== undefined) return;
+        const end = hi + 1 < hs.length ? hs[hi + 1].s : line.length;
+        let v = clean(line.slice(h.e, end));
+        if (!v && hs.length === 1) { const nx = L[li + 1]; if (nx && !lineHits[li + 1].length) v = clean(nx); }
+        if (h.k === 'area') {
+          const hdr = hs.filter(x => ['대지면적', '건축면적', '연면적'].includes(LAB.find(o => o.l.length === x.n && new RegExp(o.rx.source).test(line.slice(x.s, x.e)))?.l));
+          let m = v.match(/(\d[\d,]*(?:\.\d+)?)\s*(㎡|m2|m²|M2)?/);
+          if (!m || /대지|건축면/.test(line.slice(h.e, end))) {
+            const cols = line.match(/(대지\s*면적|건축\s*면적|연\s*면적)/g) || [], idx = cols.findIndex(c => /연/.test(c)), nx = L[li + 1] || '', nums = nx.match(/\d[\d,]*(?:\.\d+)?/g) || [];
+            m = cols.length > 1 && nums[idx] ? [null, nums[idx]] : null;
+          }
+          if (m) ov.area = m[1] + '㎡'; return;
+        }
+        if ((h.k === 'des' || h.k === 'bld' || h.k === 'sup') && isAddr(v)) { ov[h.k] = ''; return; }
+        if (v.length >= 2) ov[h.k] = v;
+      });
+    });
+    Object.keys(ov).forEach(k => { if (!ov[k]) delete ov[k]; });
+    { const m = txt.match(/(?<!\d)(20\d{8})(?!\d)/); if (m) ov.code = m[1]; }
     const dre = /(20\d{2}|\d{2})\s*[.\-/년]\s*(\d{1,2})/g;
     for (const line of L) {
-      if (/공사\s*기간|착공|준공|완공/.test(line)) { const ds = [...line.matchAll(dre)].map(m => yymm(m[1], m[2])); if (ds[0] && !ov.start) ov.start = ds[0]; if (ds[1] && !ov.end) ov.end = ds[1]; }
+      if (/공\s*사\s*(예\s*정\s*)?기\s*간|착공|준공|완공/.test(line)) { const ds = [...line.matchAll(dre)].map(m => yymm(m[1], m[2])); if (ds[0] && !ov.start) ov.start = ds[0]; if (ds[1] && !ov.end) ov.end = ds[1]; }
     }
     const all = L.join(' ');
     let m;
     if ((m = all.match(/지하\s*(\d+)\s*층/))) ov.b = m[1] + 'B';
-    if ((m = all.match(/지상\s*(\d+)\s*층/))) ov.f = m[1] + 'F';
-    if ((m = all.match(/(\d+)\s*개?\s*동/))) ov.dong = m[1];
+    const fl = [...all.matchAll(/지상\s*(\d+)\s*층/g)].map(x => +x[1]);
+    if (fl.length) ov.f = Math.max(...fl) + 'F'; else if ((m = all.match(/층\s*수\s*(\d+)\s*층/))) ov.f = m[1] + 'F';
+    const dg = [...all.matchAll(/(\d+)\s*동\s*[:：]/g)].map(x => +x[1]);
+    if (dg.length > 1) ov.dong = String(Math.max(...dg)); else if ((m = all.match(/(\d+)\s*개\s*동/))) ov.dong = m[1];
     if ((m = all.match(/(\d[\d,]*)\s*세대/))) ov.hh = m[1].replace(/,/g, '');
-    return { h: { site: ov.pname || '' }, ov, m: {}, prog: [], plan: [], req: [] };
+    const warn = (txt.match(/건축\s*허가\s*표지판/g) || []).length > 1 || (all.match(/대지\s*위치/g) || []).length > 1 ? '사진에 표지판이 2개 이상 보여요. 첫 번째(왼쪽) 기준으로 읽었으니, 하나씩 따로 찍으면 더 정확해요.' : '';
+    return { h: { site: ov.pname || '' }, ov, m: {}, prog: [], plan: [], req: [], warn };
   };
   // 보고서 표(라벨 칸 아래에 값 칸) 형태의 사진: 글자 위치(좌표)로 라벨 바로 아래 값을 찾음
   const parsePos = words => {
@@ -587,19 +630,39 @@ window.Rep = (function () {
     for (let i = 0; i < p.length; i += 4) { const y = (p[i] * .3 + p[i + 1] * .59 + p[i + 2] * .11) | 0; p[i] = p[i + 1] = p[i + 2] = y; if (y < mn) mn = y; if (y > mx) mx = y; }
     const sc = 255 / Math.max(40, mx - mn); for (let i = 0; i < p.length; i += 4) { const y = Math.max(0, Math.min(255, (p[i] - mn) * sc)); p[i] = p[i + 1] = p[i + 2] = y; }
     g.putImageData(d, 0, 0); ok(c); }; im.onerror = () => no(new Error('사진을 열지 못했어요.')); im.src = url; });
-  let OCRW = null;
+  let OCRW = null, OCRP = null;
+  const ocrMsg = t => { const e = document.getElementById('ai'); if (e) e.textContent = t; };
+  const ocrWorker = async () => {
+    if (OCRW) return OCRW;
+    const tries = [{ name: '기본 언어 데이터', lp: null, ms: 150000 }, { name: '가벼운 언어 데이터', lp: 'https://tessdata.projectnaptha.com/4.0.0_fast', ms: 90000 }];
+    let last = null;
+    for (const t of tries) {
+      let w = null, timer;
+      try {
+        const opt = { logger: m => { if (m && typeof m.progress === 'number') ocrMsg('🔍 ' + (/language|traineddata/i.test(m.status) ? '한글 데이터 내려받는 중 ' : /recogni/i.test(m.status) ? '글자 읽는 중 ' : '준비 중 ') + Math.round(m.progress * 100) + '%'); } };
+        if (t.lp) opt.langPath = t.lp;
+        w = await Promise.race([window.Tesseract.createWorker('kor+eng', 1, opt), new Promise((_, no) => { timer = setTimeout(() => no(new Error('시간 초과')), t.ms); })]);
+        clearTimeout(timer);
+        try { await w.setParameters({ preserve_interword_spaces: '1' }); } catch (e) {}
+        return (OCRW = w);
+      } catch (e) { clearTimeout(timer); last = e; try { w && w.terminate(); } catch (x) {} ocrMsg('⚠ ' + t.name + ' 실패, 다른 경로로 다시 시도해요…'); }
+    }
+    throw new Error('한글 언어 데이터를 내려받지 못했어요 (인터넷 연결 확인 후 다시 시도). ' + ((last && last.message) || ''));
+  };
   async function ocrSign(url) {
+    if (window.claude && window.claude.use && !('serviceWorker' in navigator && navigator.serviceWorker.controller)) { try { await fetch('https://cdn.jsdelivr.net/npm/tesseract.js@5.1.1/package.json', { method: 'HEAD' }); } catch (e) { throw new Error('이 화면(미리보기)에서는 글자 인식 데이터를 받을 수 없어요. 아래 “글자 붙여넣기로 입력”을 쓰거나, 설치한 앱(GitHub 주소)에서 사진 인식을 사용하세요.'); } }
     if (!window.Tesseract) await new Promise((ok, no) => { const s = document.createElement('script'); s.src = 'https://cdn.jsdelivr.net/npm/tesseract.js@5.1.1/dist/tesseract.min.js'; s.onload = ok; s.onerror = () => no(new Error('글자 읽기 도구를 불러오지 못했어요 (인터넷 연결이 필요해요).')); document.head.append(s); });
-    if (!OCRW) OCRW = await Promise.race([window.Tesseract.createWorker('kor+eng'), new Promise((_, no) => setTimeout(() => no(new Error('언어 데이터를 내려받지 못했어요 (인터넷 연결 확인).')), 120000))]);
-    const c = await ocrPrep(url), r = await OCRW.recognize(c), res = parseSign(r.data.text);
+    const w = await ocrWorker();
+    const c = await ocrPrep(url), r = await w.recognize(c), res = parseSign(r.data.text);
     let pp = {}; try { pp = parsePos(r.data.words); } catch (e) {}
     Object.keys(pp).forEach(k => { if (pp[k]) res.ov[k] = pp[k]; });
     if (res.ov.pname) res.h.site = res.ov.pname;
-    if (!Object.keys(res.ov).length) throw new Error('사진에서 항목을 찾지 못했어요. 읽힌 글자: “' + String(r.data.text || '').replace(/\s+/g, ' ').slice(0, 120) + '” — 표 전체가 화면에 반듯하게 꽉 차도록 다시 찍어 보세요.');
+    res.raw = String(r.data.text || '');
+    if (!Object.keys(res.ov).length) { const e = new Error('사진에서 항목을 찾지 못했어요. 표지판 전체가 반듯하게 꽉 차도록 다시 찍어 보세요.'); e.raw = res.raw; throw e; }
     return res;
   }
   async function readSign(url, fields, rowsTxt) {
-    const q = '첨부 사진은 (가) 공사 개요 표지판이거나 (나) 작성이 끝난 현장 보고서(표 양식)입니다. 사진에 실제로 적힌 내용만 읽어 아래 형식의 JSON 객체 하나로만 답하세요(설명·코드블록 금지). 보이지 않거나 불확실한 값은 빈 문자열("")이나 빈 배열로 두고 절대 추측하지 마세요. 날짜는 YY.MM 형식(예: 25.11), 지하/지상은 1B, 15F 형식, 연면적은 숫자와 단위(예: 163,917㎡)로 쓰고, 표에 적힌 숫자·금액은 적힌 그대로 문자열로 쓰세요. 건축주·발주처는 시행사, 설계자는 설계사, 시공자는 시공사, 공사기간은 공사시작·공사종료로 나누세요.\n' +
+    const q = '첨부 사진은 (가) 공사 개요 표지판이거나 (나) 작성이 끝난 현장 보고서(표 양식)입니다. 사진에 실제로 적힌 내용만 읽어 아래 형식의 JSON 객체 하나로만 답하세요(설명·코드블록 금지). 보이지 않거나 불확실한 값은 빈 문자열("")이나 빈 배열로 두고 절대 추측하지 마세요. 날짜는 YY.MM 형식(예: 25.11), 지하/지상은 1B, 15F 형식, 연면적은 숫자와 단위(예: 163,917㎡)로 쓰고, 표에 적힌 숫자·금액은 적힌 그대로 문자열로 쓰세요. 건축주·발주처는 시행사, 설계자는 설계사, 시공자는 시공사, 감리자는 감리업체, 공사(예정)기간은 공사시작·공사종료로 나누세요. 층수만 적혀 있으면 지상 층수로 쓰고, 여러 동이 있으면 가장 높은 층과 동 수를 쓰세요. 전화번호·연락처·허가번호는 값에 넣지 말고, 설계사·시공사·감리 칸에 회사명 없이 주소만 적혀 있으면 비우세요. 표지판이 둘 이상 보이면 왼쪽(첫 번째) 것만 읽으세요. 글자는 보이는 그대로 옮기고(㈜, 띄어쓰기, 소수점 포함) 바꾸거나 요약하지 마세요.\n' +
       '형식: {"h":{"bu":"사업부","site":"현장명","act":"활동 내용","mgr":"담당자(판촉 주체)"},"ov":{현장 개요 항목},"m":{"자재행번호":{"spec":"현장스펙/당사제품","qty":"물량","unit":"단위","amt":"금액","vendor":"업체"}},"prog":["진행 사항"],"plan":["예정 사항"],"req":["지원 요청"],"photo":{"x":0.55,"y":0.2,"w":0.4,"h":0.5}}\n' +
       '- h: 보고서 제목이 "코드. 유형 : [사업부] 현장명 활동내용 [담당자]" 형태면 나눠서 넣으세요.\n- ov 항목(키: 의미)\n' + fields.map(x => `"${x.k}": ${x.l}${x.c ? ' (● 표시가 있으면 true, 없으면 false)' : ''}`).join('\n') +
       '\n- m: 자재 정보 표에서 내용이 적힌 행만, 아래 행번호를 키로 넣으세요.\n' + rowsTxt + '\n- prog·plan·req: 진행 사항·예정 사항·지원 요청의 ①②③ 항목을 번호 기호 없이 한 줄씩 문자열 배열로 쓰세요.\n- photo: 첨부 사진이 작성된 보고서의 "이미지" 칸이거나 공사 개요판(표지판)일 때, 그 안의 조감도·완공 예상도·현장 사진만 담긴 영역의 왼쪽 위 좌표 x,y와 너비 w, 높이 h를 첨부 사진 전체 크기 대비 0~1 사이 비율로 쓰세요(글자 표 부분은 제외). 그런 그림이 없으면 "photo":null 로 쓰세요.';
@@ -682,7 +745,7 @@ window.Rep = (function () {
           ${inp('h.site', d.h.site, '현장명', 'placeholder="예) KG 바이오탱크 신축공사"')}${inp('h.act', d.h.act, '활동 내용', 'placeholder="예) 판촉의 건"')}</div></div>
         <h4 data-j="1" class="ovt1">1) 현장 개요 <small>· 현장 사진</small></h4>
         <div class="gbt"><b>구분</b>${t.subs.map((s, n) => `<button data-go="${n}" class="${n === i ? 'y' : ''}">${s}</button>`).join('')}</div>
-        <label class="ovbtn">📷 개요서 사진으로 자동 입력 (OCR)<input type="file" accept="image/*" class="phi" hidden></label><span id="pv" hidden></span><button type="button" id="rd" hidden></button><div class="msg" id="ai">개요서 사진을 올리면 표가 자동으로 채워져요. 노란 칸은 확인해 주세요.</div>
+        <label class="ovbtn">📷 개요서 사진으로 자동 입력 (OCR)<input type="file" accept="image/*" class="phi" hidden></label><button type="button" id="pst" class="ovlk">✍ 글자 붙여넣기로 입력 (OCR이 안 될 때)</button><span id="pv" hidden></span><button type="button" id="rd" hidden></button><div class="msg" id="ai">사진을 올리면 자동 입력돼요 · 노란 칸은 확인해 주세요</div>
         <div class="ovw2"><table class="ovt">${f.ov.map(row => '<tr>' + row.map(x => `<th colspan="${x.s}">${x.k === 'prom' ? '판촉 주체' : x.l}</th>`).join('') + '</tr><tr>' + row.map(x => x.c
           ? `<td colspan="${x.s}"><label class="ck"><input type="checkbox" data-p="ov.${x.k}" ${d.ov[x.k] ? 'checked' : ''}><span>해당</span></label></td>`
           : `<td colspan="${x.s}"><textarea rows="1" class="${x.k === 'code' ? 'rd' : ''}" data-p="${x.k === 'prom' ? 'h.mgr' : 'ov.' + x.k}" placeholder="${x.k === 'prom' ? '담당자' : x.ph || ''}">${esc(x.k === 'prom' ? d.h.mgr : d.ov[x.k])}</textarea></td>`).join('') + '</tr>').join('')}</table>
@@ -698,14 +761,14 @@ window.Rep = (function () {
       app.querySelector('.fm').addEventListener('input', e => { if (e.target.matches('.ovt textarea')) grow(e.target); });
       const flat = f.ov.flat().filter(x => x.k !== 'prom');
       const rowsTxt = f.rows.map((x, n) => n + ': ' + (x.g ? x.g + (x.i ? ' ' + x.i : '') : x.i)).join('\n');
-      const auto = async () => {
-        const st = document.getElementById('ai'); st.textContent = '🔍 사진에서 글자를 읽는 중… (처음 한 번은 언어 데이터를 내려받느라 1분쯤 걸릴 수 있어요)';
+      const auto = async pre => {
+        const st = document.getElementById('ai'); st.textContent = '🔍 준비 중… (처음 한 번은 한글 데이터를 내려받아요)'; window.__lastRaw = '';
         try {
-          const r = await readSign(d.photo, flat, rowsTxt); let n = 0; afP.clear();
+          const r = pre || await readSign(d.photo, flat, rowsTxt); let n = 0; afP.clear();
           const S = v => (v == null ? '' : String(v)).trim(), h = r.h || {}, ov = r.ov || {};
           const bu = BU.find(b => S(h.bu).includes(b)); if (bu && !d.h.bu) { d.h.bu = bu; afP.add('h.bu'); n++; }
           ['site', 'act', 'mgr'].forEach(k => { if (S(h[k]) && !d.h[k]) { d.h[k] = S(h[k]); afP.add('h.' + k); n++; } });
-          flat.forEach(x => { const v = ov[x.k]; if (x.c) { if (v === true && !d.ov[x.k]) { d.ov[x.k] = true; afP.add('ov.' + x.k); n++; } } else if (S(v) && !d.ov[x.k]) { d.ov[x.k] = S(v); afP.add('ov.' + x.k); n++; } });
+          flat.forEach(x => { const v = ov[x.k]; if (x.c) { if (v === true && !d.ov[x.k]) { d.ov[x.k] = true; afP.add('ov.' + x.k); n++; } } else if (S(v)) { if (d.ov[x.k] !== S(v)) n++; d.ov[x.k] = S(v); afP.add('ov.' + x.k); } });
           if (d.ov.pname && !d.h.site) { d.h.site = d.ov.pname; afP.add('h.site'); }
           Object.keys(r.m || {}).forEach(key => { const i2 = +key, src = r.m[key] || {}; if (!f.rows[i2] || filled(d.m[i2])) return;
             const row = {}; KS.forEach(k => { row[k] = S(src[k]); if (row[k]) afP.add('m.' + i2 + '.' + k); }); if (filled(row)) { d.m[i2] = row; n++; } });
@@ -715,9 +778,9 @@ window.Rep = (function () {
           let cropped = false; const ph = r.photo;
           if (ph && ['x', 'y', 'w', 'h'].every(k => typeof ph[k] === 'number') && ph.w > .05 && ph.h > .05 && !d.sp[0]) { const c = await cropRegion(d.photo, ph); if (c) { d.sp[0] = c.url; d.sa[0] = c.asp; saveSp(); cropped = true; n++; } }
           persist(); const y = window.scrollY;
-          lastMsg = n ? `✅ ${n}개 항목을 자동 입력했어요. 노란 칸을 확인하고 틀린 곳은 고쳐 주세요.${cropped ? ' 보고서 속 현장 사진도 잘라서 사진 1 칸에 넣었어요.' : ''}` : '사진에서 읽을 수 있는 항목이 없어요. 직접 입력해 주세요.';
+          window.__lastRaw = r.raw || ''; lastMsg = n ? `✅ ${n}개 항목을 자동 입력했어요. 노란 칸을 확인하고 틀린 곳은 고쳐 주세요.${r.warn ? ' ⚠ ' + r.warn : ''}${cropped ? ' 보고서 속 현장 사진도 잘라서 사진 1 칸에 넣었어요.' : ''}` : '사진에서 읽을 수 있는 항목이 없어요. 직접 입력해 주세요.';
           window.Forms.render(app, t, i, I, back, go); window.scrollTo(0, y);
-        } catch (err) { st.textContent = '⚠ 자동 입력 실패: ' + (err.message || err.code || err); }
+        } catch (err) { window.__lastRaw = err.raw || ''; st.textContent = '⚠ 자동 입력 실패: ' + (err.message || err.code || err); }
       };
       const set = (p, v) => { const a = p.split('.'); let o = d; for (let j = 0; j < a.length - 1; j++) o = o[a[j]]; o[a[a.length - 1]] = v; };
       const on = e => {
@@ -765,6 +828,14 @@ window.Rep = (function () {
       document.getElementById('mcl').onclick = () => app.querySelectorAll('details.mg,details.mi').forEach(x => { x.open = false; });
       app.querySelectorAll('.phi').forEach(inp => inp.onchange = e => { const fl = e.target.files[0]; if (!fl) return;
         shrink(fl, (url, asp) => { d.photo = url; d.asp = asp; document.getElementById('pv').innerHTML = `<img src="${url}" alt="">`; e.target.value = ''; auto(); }, 1600); });
+      document.getElementById('ai').onclick = () => { const e = document.getElementById('ai'); if (!window.__lastRaw) return; if (e.dataset.raw) { e.textContent = e.dataset.raw; e.dataset.raw = ''; } else { e.dataset.raw = e.textContent; e.textContent = '읽은 글자(다시 누르면 닫혀요): ' + window.__lastRaw.replace(/\s*\n\s*/g, ' / ').slice(0, 900); } };
+      document.getElementById('pst').onclick = () => {
+        const o = document.createElement('div'); o.className = 'pstw';
+        o.innerHTML = '<div class="pstb"><b>읽은 글자 붙여넣기</b><p>사진을 연 뒤 글자를 길게 눌러 <u>모두 복사</u>(아이폰: 사진의 글자 인식 아이콘 → 모두 복사)해서 아래에 붙여넣으면 항목이 채워져요.</p><textarea id="pstt" placeholder="공사명 ㈜○○ 신축공사&#10;대지위치 …"></textarea><div class="pstr"><button type="button" id="pstx">닫기</button><button type="button" id="psto">항목 채우기</button></div></div>';
+        document.body.append(o); o.querySelector('#pstt').focus();
+        o.querySelector('#pstx').onclick = () => o.remove();
+        o.querySelector('#psto').onclick = () => { const raw = o.querySelector('#pstt').value; if (!raw.trim()) return; const r = parseSign(raw); r.raw = raw; o.remove(); if (!Object.keys(r.ov).length) { document.getElementById('ai').textContent = '붙여넣은 글자에서 항목(공사명, 대지위치 등)을 찾지 못했어요.'; return; } auto(r); };
+      };
       document.getElementById('rd').onclick = () => d.photo ? auto() : (document.getElementById('ai').textContent = '먼저 사진을 촬영하거나 불러오세요.');
       document.getElementById('xl').onclick = async () => {
         const msg = document.getElementById('msg'); msg.textContent = '엑셀 파일 만드는 중…';
@@ -1299,7 +1370,7 @@ E5c:{sec:[R("PCM 코터사 점유 확대",[["거래처 개요",C4],["매출 및 
     const picked = s === 2 && t0 && state.sub != null && !t0.direct ? `${subCode(t0, state.sub)} ${t0.subs[state.sub]}` : '';
     app.innerHTML = `
       <header class="h2">${HERO2}
-        <div class="brand"><b>COAT ON</b><span>Activity Report</span></div>
+        <div class="brand"><b>COAT ON</b><span>Activity Report <em class="bv">v593p26</em></span></div>
         <div class="tools"><button id="arch" aria-label="보고서 보관함">${I.doc}</button><button id="gear" aria-label="설정">${I.gear}</button></div>
         <div class="ttl"><h1>${s === 1 ? '활동 유형 설정' : '세부 유형 선택'}</h1><p>${s === 1 ? '활동 목적을 선택하시면<br>해당 양식으로 보고서를 작성할 수 있습니다.' : '선택한 활동의 세부 항목을 고르면<br>입력 양식이 열립니다.'}</p></div>
       </header>
