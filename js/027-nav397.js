@@ -56,7 +56,7 @@ settings:{n:'설정',k:'설정 언어 테마 알림 다크',sheet:1,o:()=>openSe
 help:{n:'사용법',k:'사용법 도움말 매뉴얼 help 가이드',sheet:1,o:()=>helpOpen()},
 legal:{n:'자료이용안내',k:'자료이용안내 자료이용 이용약관 개인정보 약관 면책',sheet:1,o:()=>legalOpen()},
 info:{n:'정보',k:'정보 버전 앱정보 info',sheet:1,o:()=>showInfo()},
-act:{n:'Activity',k:'activity report 액티비티 리포트 활동 보고서',sheet:1,o:()=>{location.href='activity/index.html'}},
+act:{n:'Activity',k:'activity report 액티비티 리포트 활동 보고서 활동보고 현장판촉',sheet:1,o:()=>{location.href='activity/index.html'}},
 adm:{n:'관리자',k:'관리자 admin 배포 데이터',page:'adm',o:()=>T(7)},
 home:{n:'홈',k:'홈 home 메인 최근작업',page:'home',o:()=>T(2)},
 menu:{n:'전체 메뉴',k:'전체메뉴 메뉴',page:'menu',o:()=>openMenu()}
