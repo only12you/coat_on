@@ -1,3 +1,4 @@
+2026.11.19 v593p28 — Activity: AI 기능 전체(개요판 사진 읽기·AI 교정·AI 분석·후배 양성 리포트) 유지, 일반 브라우저에서는 🔑 AI 연결(본인 Anthropic API 키, 기기 저장)로 동작
 2026.11.19 v593p27 — Activity: 기존 Activity Report(제품/사양 DB 연동)를 삭제하고 활동 보고 프로그램(현장판촉 A1 건축·A2 재도장, 엑셀 저장·미리보기)으로 교체, material.js 제거
 2026.11.15 v593p26 — Activity: 아티팩트에서 Claude 사진 판독(sample) 사용, 판독 지침 보강
 2026.11.15 v593p25 — Activity: 글자 붙여넣기 입력(OCR 대체), 화면에 버전 표시, 미리보기 환경 OCR 안내
