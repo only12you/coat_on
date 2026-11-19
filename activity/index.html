@@ -156,7 +156,7 @@ details{margin-bottom:5px}
 <body>
 <header><button class="hb l" id="hback" aria-label="뒤로"><svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><path d="M15 5l-7 7 7 7" stroke="#14284b" stroke-width="3" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg></button><div id="title"></div><button class="hb r" id="hmenu" aria-label="메뉴"><svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16" stroke="#fff" stroke-width="2.6" stroke-linecap="round"/></svg></button></header>
 <div class="tabs" id="tabs"></div>
-<div class="bar" id="aibar"><button class="btn" id="btnp"><svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true"><circle cx="12" cy="12" r="9.3" fill="none" stroke="#19b27a" stroke-width="3" stroke-dasharray="3.1 2.9"/><circle cx="12" cy="12" r="7" fill="#19b27a"/><circle cx="12" cy="12" r="3" fill="#fff"/></svg><span>AI 교정</span></button><button class="btn" id="bxl"><svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true"><rect x="3" y="12" width="4.6" height="9" rx="1" fill="#4a7cf0"/><rect x="9.7" y="4" width="4.6" height="17" rx="1" fill="#ff9800"/><rect x="16.4" y="8" width="4.6" height="13" rx="1" fill="#e91e63"/></svg><span>엑셀 저장</span></button><button class="btn" id="bprev"><svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true"><path d="M1.5 12S5.5 5 12 5s10.5 7 10.5 7-4 7-10.5 7S1.5 12 1.5 12z" fill="#fff" stroke="#2f4fb8" stroke-width="2"/><circle cx="12" cy="12" r="3.8" fill="#2f4fb8"/></svg><span>미리보기</span></button></div>
+<div class="bar" id="aibar"><button class="btn" id="btnp"><svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true"><circle cx="12" cy="12" r="9.3" fill="none" stroke="#19b27a" stroke-width="3" stroke-dasharray="3.1 2.9"/><circle cx="12" cy="12" r="7" fill="#19b27a"/><circle cx="12" cy="12" r="3" fill="#fff"/></svg><span>AI 교정</span></button><button class="btn" id="bxl"><svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true"><rect x="3" y="12" width="4.6" height="9" rx="1" fill="#4a7cf0"/><rect x="9.7" y="4" width="4.6" height="17" rx="1" fill="#ff9800"/><rect x="16.4" y="8" width="4.6" height="13" rx="1" fill="#e91e63"/></svg><span>엑셀 저장</span></button><button class="btn" id="bprev"><svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true"><path d="M1.5 12S5.5 5 12 5s10.5 7 10.5 7-4 7-10.5 7S1.5 12 1.5 12z" fill="#fff" stroke="#2f4fb8" stroke-width="2"/><circle cx="12" cy="12" r="3.8" fill="#2f4fb8"/></svg><span>미리보기</span></button><button class="btn" id="bkey"><span>🔑</span><span id="bkeyt">AI 연결</span></button></div>
 <div class="msg" id="msg"></div>
 <main>
 <section id="fix"><h2>AI 교정 결과<small>적용할 항목만 체크</small></h2><div id="fixl"></div><div style="display:flex;gap:6px;margin-top:8px"><button class="btn" id="fixa">선택 적용</button><button class="btn" id="fixc">닫기</button></div></section>
@@ -230,6 +230,24 @@ details{margin-bottom:5px}
 <div style="display:flex;gap:6px;width:100%"><button class="btn tb1" id="xt1">보고서</button><button class="btn tb1" id="xt2">참고자료</button><button class="btn" id="xfit">실제 크기</button><button class="btn" id="xsave">📊 저장</button><button class="btn" id="xclose">닫기</button></div></div>
 <div id="xbody" style="flex:1;overflow:auto;background:#e9edf3;padding:8px"></div></div>
 <script>
+const KEYMODE=true,AIK="coaton:aikey",AIM="claude-sonnet-4-6";
+const getK=()=>{try{return localStorage.getItem(AIK)||""}catch(e){return""}};
+const b64=bl=>new Promise(r=>{const f=new FileReader();f.onload=()=>r(String(f.result).split(",")[1]);f.readAsDataURL(bl)});
+async function callAI(input,opts={}){
+ const key=getK();let msgs=typeof input=="string"?[{role:"user",content:input}]:input.map(m=>({role:m.role,content:m.content}));
+ if(opts.images&&opts.images.length){const im=await Promise.all(opts.images.map(async b=>({type:"image",source:{type:"base64",media_type:b.type||"image/jpeg",data:await b64(b)}})));const l=msgs[msgs.length-1];l.content=[...im,{type:"text",text:l.content}]}
+ let r;try{r=await fetch("https://api.anthropic.com/v1/messages",{method:"POST",headers:{"content-type":"application/json","x-api-key":key,"anthropic-version":"2023-06-01","anthropic-dangerous-direct-browser-access":"true"},body:JSON.stringify({model:AIM,max_tokens:4096,messages:msgs,stream:!!opts.onText}),signal:opts.signal})}catch(e){throw{code:e.name=="AbortError"?"cancelled":"net",message:String(e.message||e)}}
+ if(!r.ok){const t=await r.text().catch(()=>"");throw{code:r.status==401||r.status==403?"bad_key":r.status==429?"rate_limited":"api",message:t.slice(0,200)}}
+ let text="";
+ if(opts.onText){const rd=r.body.getReader(),dc=new TextDecoder();let buf="";
+  for(;;){const {done,value}=await rd.read();if(done)break;buf+=dc.decode(value,{stream:true});const ls=buf.split("\n");buf=ls.pop();
+   for(const l of ls){if(!l.startsWith("data:"))continue;try{const j=JSON.parse(l.slice(5));if(j.type=="content_block_delta"&&j.delta&&j.delta.type=="text_delta"){text+=j.delta.text;opts.onText({text,delta:j.delta.text})}}catch(e){}}}}
+ else{const j=await r.json();text=(j.content||[]).filter(c=>c.type=="text").map(c=>c.text).join("")}
+ return {text,truncated:false}}
+function mkSample(){const s=(i,o)=>callAI(i,o);
+ s.json=async(i,o)=>{const r=await callAI(i,o),t=r.text.replace(/```json|```/g,"").trim(),a=t.indexOf("{"),b=t.lastIndexOf("}");try{return JSON.parse(a>=0?t.slice(a,b+1):t)}catch(e){throw{code:"parse",message:"JSON"}}};
+ s.limits=async()=>({images:true});return s}
+window.claude={use:async n=>n==="sample"&&getK()?mkSample():null};
 const $=id=>document.getElementById(id);
 const TYPES=[["A1","건축 현장"],["A2","재도장 현장"],["A3","정비사업 현장"]];
 let cur=0;
@@ -345,9 +363,12 @@ function calcTerm(){const c=curProg();
 document.addEventListener("input",e=>{if(e.target.classList)e.target.classList.remove("ai")});
 
 let SMP=null,imgBlob=null;
-(async()=>{try{SMP=window.claude?await claude.use("sample"):null}catch(e){}
- if(!SMP){["bov","bread"].forEach(k=>$(k).style.display="none");$("btnp").style.display="none";["btns","bwho","btopic","bcoach"].forEach(k=>$(k).style.display="none")}})();
-const ERR={not_granted:"Claude 사용 허용이 필요합니다.",rate_limited:"요청이 많습니다. 잠시 후 다시 시도하세요.",cancelled:"취소됨",images_unavailable:"이 환경에서는 이미지 읽기를 쓸 수 없습니다."};
+async function setupAI(){SMP=null;try{SMP=window.claude?await claude.use("sample"):null}catch(e){}
+ const on=!!SMP;["bov","bread","btnp","btns","bwho","btopic","bcoach"].forEach(k=>$(k).style.display=on?"":"none");
+ $("bkeyt").textContent=on?"AI 연결됨":"AI 연결"}
+setupAI();
+$("bkey").onclick=()=>{const v=prompt(getK()?"AI 키를 바꾸려면 새 키를, 지우려면 비우고 확인을 누르세요.":"Anthropic API 키(sk-ant-...)를 입력하세요. 이 기기의 브라우저에만 저장됩니다.","");if(v===null)return;try{v.trim()?localStorage.setItem(AIK,v.trim()):localStorage.removeItem(AIK)}catch(e){}setupAI().then(()=>say(getK()?"AI에 연결했습니다. 모든 AI 기능을 쓸 수 있습니다.":"AI 키를 지웠습니다."))};
+const ERR={not_granted:"Claude 사용 허용이 필요합니다.",rate_limited:"요청이 많습니다. 잠시 후 다시 시도하세요.",cancelled:"취소됨",images_unavailable:"이 환경에서는 이미지 읽기를 쓸 수 없습니다.",bad_key:"API 키가 올바르지 않습니다. 🔑 AI 연결에서 다시 입력하세요.",net:"네트워크 오류입니다. 연결을 확인하세요.",api:"AI 호출에 실패했습니다.",parse:"AI 응답을 읽지 못했습니다. 다시 시도하세요."};
 const say=t=>{$("msg").textContent=t;$("xmsg").textContent=t};
 const esc=t=>String(t).replace(/[&<>]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;"}[c]));
 function shrink(f){return new Promise(r=>{const im=new Image();im.onload=()=>{const s=Math.min(1,1600/Math.max(im.width,im.height)),c=document.createElement("canvas");c.width=im.width*s;c.height=im.height*s;c.getContext("2d").drawImage(im,0,0,c.width,c.height);c.toBlob(b=>r(b),"image/jpeg",.85)};im.src=URL.createObjectURL(f)})}
