@@ -279,11 +279,11 @@ $("mat2").addEventListener("input",()=>{let s=0;document.querySelectorAll(".amt2
 function setMode(){const a2=cur==1;
  $("ov").style.display=a2?"none":"";$("ov2").style.display=a2?"":"none";$("prgw").style.display=a2?"none":"";
  $("sec2a").style.display=a2?"none":"";$("sec_est").style.display=a2?"none":"";$("sec2b").style.display=a2?"":"none";
- if(a2)syncA2()}
+ if(a2)syncA2();$("bovt").textContent=a2?"재도장":(imgBlob?"개요판 ✓":"개요판");$("bread").style.display=a2?"none":""}
 function a2Info(){const fl=k=>$(k).classList.contains("on");
  const sc=[["ex","외부"],["inn","내부"],["pk","주차장"],["wp","방수"]].filter(([k])=>fl(k)).map(x=>x[1]).join(", ");
  const m=[...document.querySelectorAll("#mat2 .it")].map(d=>{const i=d.querySelectorAll("input");return i[0].value||i[1].value||i[3].value?d.dataset.n+" "+[i[0].value,i[1].value&&i[1].value+(i[2].value||""),i[3].value&&i[3].value+"백만원",i[4].value].filter(Boolean).join(" "):""}).filter(Boolean).join(", ");
- return "\n[활동 구분] 재도장 현장(기존 건물 재도장)\n[재도장 현장] 도장 범위: "+(sc||"미정")+", 예상 금액(백만원): "+($("pamt").value||"미정")+", 입찰 게시일: "+($("bid").value||"미정")+", 수주업체: "+($("win").value||"미정")+", 당사 디자인 제출: "+(fl("dz1")?"함":"안 함")+", 경쟁사 디자인 제출: "+(fl("dz2")?"함":"안 함")+", 특허공법: "+($("pat").value||"없음")+"\n[재도장 자재 입력] "+(m||"없음")}
+ return (DBS?"\n[단지 DB] "+DBS:"")+"\n[활동 구분] 재도장 현장(기존 건물 재도장)\n[재도장 현장] 도장 범위: "+(sc||"미정")+", 예상 금액(백만원): "+($("pamt").value||"미정")+", 입찰 게시일: "+($("bid").value||"미정")+", 수주업체: "+($("win").value||"미정")+", 당사 디자인 제출: "+(fl("dz1")?"함":"안 함")+", 경쟁사 디자인 제출: "+(fl("dz2")?"함":"안 함")+", 특허공법: "+($("pat").value||"없음")+"\n[재도장 자재 입력] "+(m||"없음")}
 function a2Over(s1,V,cw){let top=0,bot=0;const fg=k=>$(k).classList.contains("on")?"●":"";
  const orow=(items,first,minH)=>{const rh=s1.row(20);items.forEach(([l,v,a,b])=>s1.put(rh,a,b,l,X.hdr));if(first)s1.put(rh,7,9,"이미지",X.hdr);
   const rv=s1.row();let h=minH;items.forEach(([l,v,a,b])=>{s1.put(rv,a,b,v,X.val);h=Math.max(h,hh(v,cw(a,b)))});s1.hts[rv]=h;if(first)top=rv;return rv};
@@ -349,8 +349,8 @@ const ERR={cancelled:"취소됨",net:"네트워크 오류입니다. 연결을 �
 const say=t=>{$("msg").textContent=t;$("xmsg").textContent=t};
 const esc=t=>String(t).replace(/[&<>]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;"}[c]));
 function shrink(f){return new Promise(r=>{const im=new Image();im.onload=()=>{const s=Math.min(1,1600/Math.max(im.width,im.height)),c=document.createElement("canvas");c.width=im.width*s;c.height=im.height*s;c.getContext("2d").drawImage(im,0,0,c.width,c.height);c.toBlob(b=>r(b),"image/jpeg",.85)};im.src=URL.createObjectURL(f)})}
-function setOv(b){imgBlob=b;if(!b)OVF=null;$("bread").disabled=!b;$("bovt").textContent=b?"개요판 ✓":"개요판"}
-$("bov").onclick=()=>$("pfo").click();
+function setOv(b){imgBlob=b;if(!b)OVF=null;$("bread").disabled=!b;$("bovt").textContent=cur==1?"재도장":(b?"개요판 ✓":"개요판")}
+$("bov").onclick=()=>cur==1?openDb():$("pfo").click();
 $("pfo").addEventListener("change",async e=>{const f=e.target.files[0];if(!f)return;OVF=f;setOv(await shrink(f));e.target.value="";say("개요판 사진을 불러왔습니다. 읽기 버튼을 눌러 항목을 채우세요.")});
 $("bread").onclick=()=>runOcr();
 
@@ -423,8 +423,8 @@ async function runOcr(){
  }catch(e){say(e&&e.code=="net"?"글자 인식 엔진을 내려받지 못했습니다. 인터넷 연결을 확인하세요.":"읽기에 실패했습니다. 사진을 더 선명하게 찍어 다시 시도하세요.")}
  finally{$("bread").disabled=!imgBlob}
 }
-const TYPO=[[/몇일/g,"며칠"],[/되요/g,"돼요"],[/안되/g,"안 되"],[/않됩니다/g,"안 됩니다"],[/할수/g,"할 수"],[/있을수/g,"있을 수"],[/수있/g,"수 있"],[/수없/g,"수 없"],[/것같/g,"것 같"],[/읍니다/g,"습니다"],[/됬/g,"됐"],[/갈께/g,"갈게"],[/할께/g,"할게"],[/금새/g,"금세"],[/웬지/g,"왠지"],[/오랫만/g,"오랜만"],[/어떻게든지/g,"어떻게든지"],[/설레임/g,"설렘"],[/바램/g,"바람"]];
-function localFix(s){let t=s.replace(/[ \t]{2,}/g," ").replace(/ +([,.?!])/g,"$1").replace(/,(?=[가-힣A-Za-z])/g,", ").replace(/\.(?=[가-힣])/g,". ").replace(/[ \t]+$/gm,"").trim();
+const TYPO=[[/몇일/g,"며칠"],[/되요/g,"돼요"],[/안되/g,"안 되"],[/않됩니다/g,"안 됩니다"],[/할수/g,"할 수"],[/있을수/g,"있을 수"],[/수있/g,"수 있"],[/수없/g,"수 없"],[/것같/g,"것 같"],[/읍니다/g,"습니다"],[/됬/g,"됐"],[/갈께/g,"갈게"],[/할께/g,"할게"],[/금새/g,"금세"],[/웬지/g,"왠지"],[/오랫만/g,"오랜만"],[/어떻게든지/g,"어떻게든지"],[/설레임/g,"설렘"],[/바램/g,"바람"],[/몇 일/g,"며칠"],[/되서/g,"돼서"],[/안돼요/g,"안 돼요"],[/안됨/g,"안 됨"],[/않되/g,"안 되"],[/않돼/g,"안 돼"],[/않된/g,"안 된"],[/않했/g,"안 했"],[/어떻해/g,"어떡해"],[/왠만/g,"웬만"],[/역활/g,"역할"],[/희안/g,"희한"],[/일일히/g,"일일이"],[/곰곰히/g,"곰곰이"],[/깨끗히/g,"깨끗이"],[/꼼꼼이/g,"꼼꼼히"],[/번번히/g,"번번이"],[/틈틈히/g,"틈틈이"],[/수 밖에/g,"수밖에"],[/할려고/g,"하려고"],[/하구요/g,"하고요"],[/(?<!\.)\.\.(?!\.)/g,"."],[/내화 도료/g,"내화도료"],[/수성 도료/g,"수성도료"],[/유통 도료/g,"유통도료"],[/공업 도료/g,"공업도료"],[/보온 재/g,"보온재"],[/단열 재/g,"단열재"],[/시험 성적서/g,"시험성적서"],[/재 도장/g,"재도장"],[/공 사기간/g,"공사기간"],[/건축 주/g,"건축주"],[/시공 사(?=[ ,.])/g,"시공사"]];
+function localFix(s){let t=s.replace(/[ \t]{2,}/g," ").replace(/ +([,.?!])/g,"$1").replace(/,(?=[가-힣A-Za-z])/g,", ").replace(/\.(?=[가-힣])/g,". ").replace(/([?!])(?=[가-힣A-Za-z])/g,"$1 ").replace(/[ \t]+$/gm,"").trim();
  TYPO.forEach(([a,b])=>{t=t.replace(a,b)});return t}
 /* 현공정별 판촉 지식 */
 const SK={
@@ -461,6 +461,7 @@ function estText(){return EST.filter(r=>r.q).map(r=>r.n+" 약 "+fm(r.q)+"㎡").j
 function genStrategy(){const st=getStage(),sk=SK[st],a2=cur==1,l=[];
  if(a2){const fl=k=>$(k).classList.contains("on"),sc=[["ex","외부"],["inn","내부"],["pk","주차장"],["wp","방수"]].filter(([k])=>fl(k)).map(x=>x[1]).join(", ");
   l.push("1. 현황: 재도장 현장. 도장 범위 "+(sc||"미정")+", 예상 금액 "+(V("pamt")?V("pamt")+"백만원":"미정")+", 입찰 게시일 "+(V("bid")||"미정")+".");
+  if(DBS)l.push("   단지 DB 요약: "+DBS);
   l.push("2. 접근 대상: "+(V("win")?"수주업체("+V("win")+")를 먼저 만나 자재 사양을 협의하세요.":"수주업체가 정해지지 않았으니 감리"+(V("sup2")?"("+V("sup2")+")":"")+"와 발주처에 시방·견본 제출 기회를 확인하세요."));
   l.push("3. 디자인 제출: 당사 "+(fl("dz1")?"제출함":"미제출")+", 경쟁사 "+(fl("dz2")?"제출함":"미제출")+". "+(fl("dz1")?"결과 발표 시점을 확인하세요.":"제출 가능 여부와 마감을 확인하세요."));
   l.push("4. 특허공법: "+(V("pat")||"입력된 내용 없음")+(V("pat")?" — 차별 포인트로 앞세우세요.":" — 적용 가능한 공법이 있는지 확인하세요."));
@@ -473,23 +474,72 @@ function genStrategy(){const st=getStage(),sk=SK[st],a2=cur==1,l=[];
   l.push("4. 제안 포인트: "+({"부지조성":"비용 절감·품질 사례","토목":"비용 절감·품질 사례","기초":"비용 절감·인증","지상골조":"비용 절감·친환경 인증","외장·마감":"공기 단축·품질","내부마감":"공기 단축·품질","준공":"품질·하자 대응"}[st]));
   l.push("5. 다음 행동(2~3주 안): "+sk.act.map((a,i)=>"①②③"[i]+" "+a).join(" "))}
  return l.join("\n")}
+const SK2={
+"부지조성":{why:"시방이 아직 백지 상태라 가장 적은 노력으로 영향력을 만들 수 있는 때입니다. 시공사가 정해지기 전이면 시행사·설계사가 결정권을 쥐고 있어 이들을 먼저 봅니다.",err:["지금 단가·견적부터 내밀기 (시방이 없어 의미가 없습니다)","시공사 선정 일정을 모른 채 엉뚱한 사람을 먼저 만나기","한 번 방문하고 연락을 끊기 (착공 후에 가면 시방이 이미 끝나 있습니다)"],q:["시공사는 이미 정해졌습니까? 입찰이라면 언제입니까?","외장 마감과 도장 사양은 설계 도서에 어느 수준까지 반영되어 있습니까?","착공과 골조 착수 예정은 언제입니까?","공기와 공사비 중 이 현장이 더 민감한 쪽은 어디입니까?","자재 승인(샘플·성적서) 절차는 누가 어떻게 진행합니까?"]},
+"토목":{why:"굴착·흙막이 중심이라 마감 자재 판매는 이르지만 지하 방수·바닥·주차장 사양은 이때 협의됩니다. 실제 공정을 쥔 시공사(공무·현장소장)를 1순위로 둡니다.",err:["마감 공정이 멀다며 방문을 미루기 (지하 사양은 지금 정해집니다)","현장소장만 보고 공무팀을 놓치기 (자재 발주는 공무가 합니다)","지하 사양 확인 없이 일반 사양으로 제안하기"],q:["지하층 방수와 바닥 마감 사양은 확정되었습니까?","주차장 바닥은 에폭시·도장·기타 중 어느 방식입니까?","지하 마감 발주는 언제쯤 예상합니까?","공사 중 공기 지연 요인이 있습니까?","자재 승인 담당자는 누구입니까?"]},
+"기초":{why:"골조 착수 직전이라 외장·단열·창호 시방이 확정되기 시작합니다. 시방을 승인하는 감리와 실제로 발주하는 시공사를 함께 봐야 합니다.",err:["골조 착수 뒤로 미루기 (철골이면 내화도료 시기를 놓칩니다)","시험성적서·인증서를 미리 준비하지 않아 승인 시점에 못 내기","구조(철골/RC)를 확인하지 않고 내화 제안하기"],q:["구조는 철골입니까, RC입니까?","내화 피복 방식과 시기는 어떻게 계획되어 있습니까?","외장 마감과 단열 시방은 언제 확정됩니까?","자재 승인 요청은 언제까지 접수합니까?","공기 단축 요구가 있습니까?"]},
+"지상골조":{why:"외장·창호·단열 시방과 발주가 확정되는 가장 중요한 시기입니다. 시방은 건축주·감리가 승인하고 발주는 시공사가 하므로 두 축을 동시에 잡아야 합니다.",err:["이미 발주가 끝난 자재를 협의하기 (확정 여부부터 확인해야 합니다)","건축주 미팅에서 제품 설명만 하고 공기·비용 이점을 근거로 보이지 못하기","협력사(시공업체)를 놓쳐 시공성 이슈로 탈락하기"],q:["외장 마감과 창호 발주는 확정되었습니까? 아니라면 언제입니까?","내화도료와 외벽 도장은 누가 어떤 사양으로 진행합니까?","공기에서 가장 병목인 공종은 무엇입니까?","대안 사양을 승인받는 절차와 기간은 어떻게 됩니까?","협력사는 이미 정해졌습니까?"]},
+"외장·마감":{why:"시공이 시작되어 즉시 납품이 가능한 시기입니다. 실제로 시공하는 협력사와 시공사가 가장 빠른 길이라 이들이 1순위입니다.",err:["협력사와 단가만 협상하고 시방 승인 절차를 놓치기","납기를 확인하지 않고 약속하기 (공정 지연 책임이 돌아옵니다)","내부 마감 발주 시점을 놓치고 외부 건에만 매달리기"],q:["외부 물량은 확정되었습니까? 남은 물량이 있습니까?","납기는 언제까지 필요합니까?","시공 중 하자나 보완 이슈가 있습니까?","내부 마감과 바닥·주차장 발주는 언제입니까?","감리 검수 기준은 무엇입니까?"]},
+"내부마감":{why:"발주가 임박했거나 이미 지난 경우가 많습니다. 현장에서 실제 작업을 하는 협력사·시공사 중심으로 남은 물량과 검수를 챙기는 단계입니다.",err:["이미 끝난 발주를 새 제안처럼 접근하기","검수·하자 대응 준비 없이 납품만 하기","준공 후 유지보수 접점을 만들지 않기"],q:["내부 도장·바닥 물량 중 남은 것은 무엇입니까?","검수 일정과 기준은 무엇입니까?","준공 예정일은 언제입니까?","추가 공사나 변경 계약이 있습니까?","준공 후 유지보수 담당자는 누구입니까?"]},
+"준공":{why:"시공이 끝나 신규 납품 기회는 줄고 하자 보수·유지관리와 후속 현장 소개가 기회입니다. 이후 관리를 맡는 건축주·시행사를 먼저 봅니다.",err:["준공했다고 관계를 끊기 (후속 현장은 여기서 나옵니다)","하자 접수 창구와 보증 기간을 모른 채 제안하기","시행사·시공사의 다음 현장을 묻지 않기"],q:["하자 접수와 보수는 누가 어떻게 처리합니까?","정기 유지보수 도장 계획이 있습니까?","동일 시행사·시공사의 다음 현장이 있습니까?","보증 기간은 얼마입니까?","사용 중 가장 불만인 부위는 어디입니까?"]}};
+const RE2={why:"재도장은 입찰·수주 구조라 입찰 게시일과 수주업체가 판세를 가릅니다. 사양을 정하는 발주 쪽(건축주)과 심사 기준을 쥔 감리를 먼저 봅니다.",err:["입찰 마감 뒤에 움직이기","경쟁사 디자인 제출 여부를 모르고 제안하기","디자인·견본만 내고 시험성적서와 특허공법 차별점을 정리하지 않기"],q:["입찰 마감과 심사 일정은 언제입니까?","디자인 제출은 어떤 기준으로 평가합니까?","도장 범위(외부·내부·주차장·방수)는 확정되었습니까?","예정 금액과 예산 한도는 얼마입니까?","수주업체가 정해졌다면 누구이고 사양 결정권은 어디에 있습니까?"],act:["입찰 마감·심사 일정 확인","견본·시험성적서 제출 준비","경쟁사 제출 내용 파악"]};
 function genReport(){const st=getStage(),sk=SK[st],f=(k,d)=>V(k)||d||"확인 필요";const a2=cur==1,l=[];
+ const k2=a2?RE2:(SK2[st]||null),rw=id=>[...$(id).querySelectorAll("input")].map(i=>i.value.trim()).filter(Boolean).join(" / ");
+ const ar=parseFloat(String(V("area")).replace(/[^\d.]/g,""))||0,sz=ar>=50000?"대형":ar>=10000?"중형":ar>0?"소형":"";
  l.push("[후배 양성 전체 리포트]");l.push("");
- l.push("1. 현장 한눈에 보기");l.push("- 현장: "+f("nm")+" ("+f("addr")+")");l.push("- 규모·용도: "+f("use")+", 연면적 "+f("area")+"㎡, 지하 "+f("b1","-")+"층/지상 "+f("f1","-")+"층");
- l.push("- 사업 참여자: 시행사 "+f("own")+", 설계 "+f("des")+", 시공 "+f("con")+", 감리 "+f("sup2"));l.push("- 공사기간: "+f("ps")+" ~ "+f("pe"));l.push("");
+ l.push("1. 현장 한눈에 보기");l.push("- 현장: "+f("nm")+" ("+f("addr")+")");l.push("- 규모·용도: "+f("use")+", 연면적 "+f("area")+"㎡"+(sz?"("+sz+")":"")+", 지하 "+f("b1","-")+"층/지상 "+f("f1","-")+"층");
+ l.push("- 사업 참여자: 시행사 "+f("own")+", 설계 "+f("des")+", 시공 "+f("con")+", 감리 "+f("sup2"));l.push("- 공사기간: "+f("ps")+" ~ "+f("pe"));if(a2&&DBS)l.push("- 단지 DB: "+DBS);
+ if(rw("prog"))l.push("- 진행 사항: "+rw("prog"));if(rw("plan"))l.push("- 예정 사항: "+rw("plan"));l.push("");
  l.push("2. 현공정 진단과 타이밍");l.push(a2?"- 재도장 현장이라 공정 대신 입찰·수주 단계가 기준입니다.":(sk?"- "+st+" 단계 → 다음은 "+sk.next+". "+sk.now:"- 현공정을 먼저 부여하세요(공사 시작·종료 입력 후 '현 공정 분석')."));l.push("");
  l.push("3. 미팅 대상별 접근 전략");l.push(genWho());l.push("");
  l.push("4. 제안 주제와 메시지");l.push(genTopic());l.push("");
  l.push("5. 자재별 기회와 진입 시점");l.push(sk&&!a2?"- "+sk.mat:"- 도장 범위와 입찰 상황에 따라 판단하세요.");l.push("- 참고 개산 물량: "+(estText()||"입력된 물량 없음"));l.push("");
+ const kind={L:"물류·공장은 대면적 바닥·외벽이 핵심이라 바닥 에폭시와 외벽 마감을 우선 봅니다.",A:"공동주택은 세대·공용부 반복 물량이라 총 시공비와 하자 민원이 핵심입니다.",O:"업무·상업 시설은 외관·로비 마감 품질과 경쟁력이 핵심입니다.",X:""}[useKind()];
+ const szt={대형:"물량과 납기 리스크가 크므로 본사 구매·시공사 공무 같은 의사결정 라인을 먼저 확인하고 납기 대응력을 앞세웁니다.",중형:"현장소장·공무와 직접 협의가 가능한 규모라 현장 접점을 빠르게 만드는 것이 유리합니다.",소형:"협력사(시공업체) 단위에서 결정되는 경우가 많아 시공업체를 직접 만나는 쪽이 빠릅니다."}[sz];
+ l.push("6. 판단 근거 (왜 이렇게 판단하는가)");l.push("- 순서: "+(k2?k2.why:"현공정이 정해지지 않아 근거를 만들 수 없습니다. 공사 시작·종료를 입력해 공정부터 부여하세요."));if(szt)l.push("- 규모: "+szt);if(kind)l.push("- 용도: "+kind);l.push("");
+ l.push("7. 흔한 실수 3가지");(k2?k2.err:["현공정을 모른 채 접근하기","결정권자와 발주자를 구분하지 않기","한 번 만나고 후속 연락을 끊기"]).forEach((e,i)=>l.push((i+1)+") "+e));l.push("");
+ l.push("8. 현장 관리자 미팅 때 물어볼 질문");(k2?k2.q:["현재 공정과 다음 공정 일정은 어떻게 됩니까?","외장·도장·단열·창호 시방은 확정되었습니까?","발주는 누가 언제 합니까?","공기와 비용 중 더 민감한 쪽은 어디입니까?","자재 승인 절차는 어떻게 됩니까?"]).forEach((e,i)=>l.push((i+1)+". "+e));l.push("");
  const miss=["nm","addr","use","area","ps","pe","own","des","con","sup2"].filter(k=>!V(k)).map(k=>L[k]);
- l.push("6. 주의할 점");l.push("- 이 리포트는 입력된 개요에서 자동 작성한 초안입니다. 현장 사실과 맞는지 직접 확인하세요.");l.push("- 확인 필요 항목: "+(miss.length?miss.join(", "):"없음"));l.push("");
- l.push("7. 다음 행동");l.push(genStrategy().split("\n").slice(-1)[0].replace(/^\d+\.\s*다음 행동\(2~3주 안\):\s*/,"2~3주 안: "));return l.join("\n")}
+ if(!st&&!a2)miss.push("현공정");if(!a2&&(st=="기초"||st=="지상골조"))miss.push("구조(철골/RC)");
+ l.push("9. 추가로 확인할 정보");l.push("- "+(miss.length?miss.join(", "):"현재 입력된 항목은 모두 채워져 있습니다. 미팅에서 위 질문으로 보강하세요."));l.push("- 이 리포트는 입력된 개요에서 자동 작성한 초안입니다. 현장 사실과 맞는지 직접 확인하세요.");l.push("");
+ const act=a2?RE2.act:(sk?sk.act:[]);
+ l.push("10. 다음 2~3주 체크리스트");act.forEach(a=>l.push("☐ "+a));l.push("☐ 위 '추가로 확인할 정보' 채우기");l.push("☐ 미팅 후 진행·예정 사항 입력");l.push("☐ 2주 뒤 재연락 일정 잡기");return l.join("\n")}
 function runItem(out,fn){const info=siteInfo(false);if(!info){say("개요 항목을 먼저 입력하거나 개요판 사진을 읽어 오세요.");return}$(out).value=fn();say("자동 작성했습니다. 현장 사실과 맞는지 확인·수정하세요.")}
 $("bwho").onclick=()=>runItem("ana_who",genWho);
 $("btopic").onclick=()=>runItem("ana_topic",genTopic);
 $("btns").onclick=()=>runItem("strategy",genStrategy);
 $("bcoach").onclick=()=>{const info=siteInfo(true);if(!info){say("개요 항목을 먼저 입력하거나 개요판 사진을 읽어 오세요.");return}$("coachrep").textContent=genReport();say("전체 리포트를 작성했습니다.")};
 $("bcopy").onclick=async()=>{const t=$("coachrep").textContent;if(!t)return;try{await navigator.clipboard.writeText(t);say("리포트를 복사했습니다.")}catch(e){say("복사가 막혀 있습니다. 글을 길게 눌러 직접 복사하세요.")}};
+/* ===== 재도장: 단지 DB 불러오기 ===== */
+let DBJ=null,DBP=null,DBS="";
+function dbLoad(){return DBP||(DBP=fetch("../apt-db.json").then(r=>{if(!r.ok)throw 0;return r.json()}).then(j=>{const I=j.i||{};j.d.forEach(x=>{const e=I[x[0]];x.h=(x[1]+" "+j.sd[x[2]]+" "+j.sg[x[3]]+" "+x[4]+(e?" "+e[1]:"")).replace(/\s+/g,"").toLowerCase()});DBJ=j;return j}).catch(e=>{DBP=null;throw e}))}
+function dbFind(q){const t=q.trim().toLowerCase().split(/\s+/).filter(Boolean);if(!t.length)return[];const out=[];
+ for(const x of DBJ.d){if(t.every(w=>x.h.includes(w))){out.push(x);if(out.length>=300)break}}
+ const k=t[0];out.sort((a,b)=>(b[1].toLowerCase().startsWith(k)-a[1].toLowerCase().startsWith(k))||a[1].localeCompare(b[1],"ko"));return out.slice(0,40)}
+function dbRow(x){const j=DBJ,e=(j.i||{})[x[0]],hh=(x[8]||[]).reduce((s,z)=>s+(+z[1]||0),0);
+ return '<button class="btn" data-c="'+x[0]+'" style="display:block;width:100%;text-align:left;margin-bottom:6px;padding:10px"><b>'+esc(x[1])+'</b><br><small>'+esc(j.sd[x[2]]+" "+j.sg[x[3]]+" "+x[4])+" · "+hh.toLocaleString()+"세대 · "+(Math.round(+x[5])||0)+"개동"+(e&&e[2]?" · 사용승인 "+e[2].slice(0,4):"")+"</small></button>"}
+function openDb(){let m=$("dbm");
+ if(!m){m=document.createElement("div");m.id="dbm";m.style.cssText="position:fixed;inset:0;z-index:60;background:var(--bg);color:var(--tx);display:flex;flex-direction:column;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)";
+  m.innerHTML='<div style="display:flex;gap:8px;padding:10px"><input id="dbq" placeholder="단지명·지역·도로명 (예: 시흥 삼성)" style="flex:1"><button class="btn" id="dbx">닫기</button></div><div id="dbs" style="padding:0 12px 8px;font-size:12px;color:var(--sub)"></div><div id="dbl" style="flex:1;overflow:auto;padding:0 10px 20px"></div>';
+  document.body.appendChild(m);
+  $("dbx").onclick=()=>{m.style.display="none"};
+  let tm;$("dbq").addEventListener("input",()=>{clearTimeout(tm);tm=setTimeout(()=>{if(!DBJ)return;const r=dbFind($("dbq").value);$("dbl").innerHTML=r.map(dbRow).join("");$("dbs").textContent=$("dbq").value.trim()?(r.length?r.length+"개 단지 (최대 40개 표시)":"검색 결과가 없습니다"):"이름이나 지역을 입력하세요"},150)});
+  $("dbl").addEventListener("click",e=>{const b=e.target.closest("[data-c]");if(!b)return;const x=DBJ.d.find(y=>y[0]==b.dataset.c);if(x)dbPick(x)})}
+ m.style.display="flex";$("dbq").focus();$("dbs").textContent="단지 DB를 불러오는 중...";
+ dbLoad().then(()=>{$("dbs").textContent="단지 "+DBJ.d.length.toLocaleString()+"개 · 이름이나 지역을 입력하세요"}).catch(()=>{$("dbs").textContent="단지 DB를 불러오지 못했습니다. CoatOn 앱 안에서 인터넷에 연결해 다시 여세요."})}
+function dbPick(x){const j=DBJ,e=(j.i||{})[x[0]],sd=j.sd[x[2]],sg=j.sg[x[3]];
+ const ty=(x[8]||[]).map(z=>[+z[0],+z[1]||0]),hh=ty.reduce((s,z)=>s+z[1],0),dn=Math.round(+x[5])||0,fl=e?+e[3]||0:0,ug=e?+e[4]||0:0;
+ const road=e&&e[1]?e[1]:(sd+" "+sg+" "+x[4]).trim(),ap=e&&e[2]?e[2].slice(0,4)+"-"+e[2].slice(4,6)+"-"+e[2].slice(6,8):"",yr=ap?new Date().getFullYear()-(+ap.slice(0,4)):0;
+ const set=(k,v)=>{const el=$(k);if(!el||v==null||v==="")return;el.value=String(v);el.dispatchEvent(new Event("input",{bubbles:true}));el.classList.add("ai")};
+ set("nm",x[1]);set("addr",road);set("dong",dn||"");set("unit",hh||"");set("b1",ug?ug+"B":"");set("f1",fl?fl+"F":"");set("use",e?e[0]:"아파트");set("area",x[6]>0?Math.round(x[6]):"");set("rem","단지 DB(K-apt) 기준 · 면적은 관리비부과면적");
+ const top=ty.slice().sort((a,b)=>b[1]-a[1]).slice(0,3).map(z=>z[0]+"㎡ "+z[1]+"세대").join(", ");
+ DBS=[ap?"사용승인 "+ap+(yr>0?"("+yr+"년차)":""):"",e&&e[5]?e[5]:"",fl?"최고 "+fl+"층"+(ug?"/지하 "+ug+"층":""):"",hh?hh.toLocaleString()+"세대 "+dn+"개동":"",top?"주요 타입 "+top:"",x[6]>0?"관리비부과면적 "+Math.round(x[6]).toLocaleString()+"㎡":""].filter(Boolean).join(" · ");
+ syncA2();title();
+ const r0=$("prog").querySelector("input");if(r0&&!r0.value.trim()){r0.value="단지 DB: "+DBS;r0.classList.add("ai")}
+ let b=$("dbsum");if(!b){b=document.createElement("div");b.id="dbsum";b.className="calc";$("ov2").appendChild(b)}
+ b.textContent="🏢 단지 DB: "+DBS+" (K-apt 단지 기본정보)";
+ $("dbm").style.display="none";say("단지 DB에서 '"+x[1]+"' 정보를 불러왔습니다. 공사기간·감리·입찰 정보는 직접 입력하세요.")}
+{const _ra=resetAll;resetAll=function(){_ra();DBS="";const b=$("dbsum");if(b)b.remove()}}
 const PRE=[[/창고|물류|공장|센터|CDC/i,{H:10,op:5,pp:20,ep:50}],[/공동주택|아파트|주거|오피스텔/,{H:2.9,op:25,pp:90,ep:15}],[/업무|사무|오피스|판매|상가/,{H:4.2,op:35,pp:30,ep:10}]];
 $("kp").innerHTML=[["kst","구조","구조","s"],["kH","층고","층고(m)"],["kop","개구율","개구율(%)"],["kpp","외벽도장","외벽 도장 적용률(%)"],["kep","바닥에폭시","바닥 에폭시 적용률(%)"],["kfi","내화","철골 내화 원단위(㎡/㎡)"]].map(x=>`<div title="${x[2]}"><label>${x[1]}</label>${x[3]?'<select id="kst"><option>철골</option><option>RC</option></select>':`<input id="${x[0]}" inputmode="decimal">`}</div>`).join("");
 const num=v=>parseFloat(String(v).replace(/[^\d.]/g,""))||0,fm=n=>Math.round(n).toLocaleString();
