@@ -436,24 +436,59 @@ let SMP=null,imgBlob=null;
 (async()=>{try{SMP=window.claude?await claude.use("sample"):null}catch(e){}
  if(!SMP){$("btnp").style.display="none";["btns","bwho","btopic","bcoach"].forEach(k=>$(k).style.display="none")}})();
 const ERR={not_granted:"Claude 사용 허용이 필요합니다.",rate_limited:"요청이 많습니다. 잠시 후 다시 시도하세요.",cancelled:"취소됨",images_unavailable:"이 환경에서는 이미지 읽기를 쓸 수 없습니다."};
-const say=t=>{$("msg").textContent=t;$("xmsg").textContent=t};
+let _mt;const say=t=>{$("msg").textContent=t;$("xmsg").textContent=t;clearTimeout(_mt);if(t)_mt=setTimeout(()=>{$("msg").textContent="";$("xmsg").textContent=""},4500)};
 const esc=t=>String(t).replace(/[&<>]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;"}[c]));
 function shrink(f){return new Promise(r=>{const im=new Image();im.onload=()=>{const s=Math.min(1,1600/Math.max(im.width,im.height)),c=document.createElement("canvas");c.width=im.width*s;c.height=im.height*s;c.getContext("2d").drawImage(im,0,0,c.width,c.height);c.toBlob(b=>r(b),"image/jpeg",.85)};im.src=URL.createObjectURL(f)})}
-function setOv(b){imgBlob=b;$("bread").disabled=!b;$("bovt").textContent=b?"개요판 ✓":"개요판";if($("zread")){$("zread").disabled=!b;$("zovt").textContent="재도장"}}
+let OVF=null;
+function setOv(b){imgBlob=b;if(!b)OVF=null;$("bread").disabled=!b;$("bovt").textContent=b?"개요판 ✓":"개요판";if($("zread")){$("zread").disabled=!b;$("zovt").textContent="재도장"}}
 $("bov").onclick=()=>$("pfo").click();
-$("pfo").addEventListener("change",async e=>{const f=e.target.files[0];if(!f)return;setOv(await shrink(f));e.target.value="";say("개요판 사진을 불러왔습니다. 읽기 버튼을 눌러 항목을 채우세요.")});
+$("pfo").addEventListener("change",async e=>{const f=e.target.files[0];if(!f)return;OVF=f;setOv(await shrink(f));e.target.value="";say("개요판 사진을 불러왔습니다. 읽기 버튼을 눌러 항목을 채우세요.")});
+function loadScript(u){return new Promise((ok,no)=>{const s=document.createElement("script");s.src=u;s.onload=ok;s.onerror=()=>no({code:"net"});document.head.appendChild(s)})}
+let OCRX=null;
+async function ocrEng(){if(!window.Tesseract)await loadScript("https://cdn.jsdelivr.net/npm/tesseract.js@5.1.1/dist/tesseract.min.js");
+ if(!OCRX){OCRX=await Promise.race([Tesseract.createWorker("kor+eng",1,{logger:m=>{if(m.status&&typeof m.progress=="number"&&m.status!="recognizing text")say("글자 인식 준비 중... "+Math.round(m.progress*100)+"%")}}),new Promise((_,r)=>setTimeout(()=>r({code:"net"}),120000))]);
+  try{await OCRX.setParameters({preserve_interword_spaces:"1",user_defined_dpi:"300"})}catch(e){}}return OCRX}
+function ocrPrep(src,w,h){const L=Math.max(w,h),s=L>2800?2400/L:L<1600?Math.min(2.5,2000/L):1,cv=document.createElement('canvas');cv.width=Math.max(1,Math.round(w*s));cv.height=Math.max(1,Math.round(h*s));const x=cv.getContext('2d',{willReadFrequently:true});x.fillStyle='#fff';x.fillRect(0,0,cv.width,cv.height);x.imageSmoothingQuality='high';x.drawImage(src,0,0,cv.width,cv.height);
+ const im=x.getImageData(0,0,cv.width,cv.height),d=im.data,n=d.length/4,hi=new Uint32Array(256);for(let i=0;i<n;i++){const g=(d[i*4]*77+d[i*4+1]*150+d[i*4+2]*29)>>8;d[i*4]=g;hi[g]++}
+ let a=0,lo=0,up=255;const t=n*.02;for(let v=0;v<256;v++){a+=hi[v];if(a>=t){lo=v;break}}a=0;for(let v=255;v>=0;v--){a+=hi[v];if(a>=t){up=v;break}}
+ const rg=Math.max(40,up-lo);let sm=0,sq=0;for(let i=0;i<n;i++){let g=(d[i*4]-lo)*255/rg;g=g<0?0:g>255?255:g;d[i*4]=d[i*4+1]=d[i*4+2]=g;sm+=g;sq+=g*g}
+ x.putImageData(im,0,0);const mean=sm/n;return {cv:cv,blank:(sq/n-mean*mean)<150&&mean>235}}
+function ocrRot(cv,deg){const o=document.createElement('canvas'),q=deg%180!==0;o.width=q?cv.height:cv.width;o.height=q?cv.width:cv.height;const x=o.getContext('2d');x.translate(o.width/2,o.height/2);x.rotate(deg*Math.PI/180);x.drawImage(cv,-cv.width/2,-cv.height/2);return o}
+function ocrFix(t){return String(t||'').replace(/\r/g,'').replace(/[ \t ]+/g,' ').replace(/(\d)\s*(?:um|pm|μm|µm|jim|Hm)\b/gi,'$1㎛').replace(/(\d)\s*(?:m2|rn2|m²)\b/g,'$1㎡').replace(/(?<=\d)[Oo](?=\d)/g,'0').replace(/(?<=\d)[Oo](?=\s*(?:㎛|%|℃|㎡))/g,'0').replace(/(?<=\d)[lI|](?=\d)/g,'1').replace(/％/g,'%').split('\n').map(l=>l.trim()).filter(l=>{if(!l)return true;const k=l.replace(/\s/g,'');if(k.length<2)return false;const ok=(k.match(/[가-힣A-Za-z0-9.,:;()%\/\-~㎡㎛℃°·]/g)||[]).length;return k.length>=12||ok/k.length>=.5}).join('\n').replace(/\n{3,}/g,'\n\n')}
+const ocrScore=t=>(String(t||'').match(/[가-힣A-Za-z0-9]/g)||[]).length;
+async function ocrBest(wk,cv){let best=(await wk.recognize(cv)).data.text;if(ocrScore(best)<60){for(const dg of [90,270]){const t=(await wk.recognize(ocrRot(cv,dg))).data.text;if(ocrScore(t)>ocrScore(best)*1.5)best=t}}return ocrFix(best)}
+async function ocrBmp(f){try{return await createImageBitmap(f,{imageOrientation:'from-image'})}catch(e){return await new Promise((ok,no)=>{const u=URL.createObjectURL(f),i=new Image();i.onload=()=>{URL.revokeObjectURL(u);ok(i)};i.onerror=()=>no(new Error('이미지를 열 수 없습니다'));i.src=u})}}
+async function ocrText(f){const wk=await ocrEng(),bm=await ocrBmp(f);say("개요판 글자를 인식하는 중...");
+ const pr=ocrPrep(bm,bm.width||bm.naturalWidth,bm.height||bm.naturalHeight);try{bm.close&&bm.close()}catch(e){}return await ocrBest(wk,pr.cv)}
+function parseOv(raw){
+ const lines=raw.split(/\n/).map(s=>s.replace(/[|｜]/g," ").replace(/\s+/g," ").trim()).filter(Boolean),out={};
+ const F=[["nm",/(공\s?사\s?명|사\s?업\s?명|건\s?설\s?명|프로젝트\s?명?|현\s?장\s?명)/],["addr",/(대\s?지\s?위\s?치|현\s?장\s?위\s?치|소\s?재\s?지|위\s?치|주\s?소)/],["own",/(건\s?축\s?주|시\s?행\s?사|사\s?업\s?주|발\s?주\s?(?:자|처)?)/],["des",/(설\s?계\s?(?:자|사|업\s?체)?)/],["con",/(시\s?공\s?(?:자|사|업\s?체)?)/],["sup2",/(감\s?리\s?(?:자|사|업\s?체|단)?)/],["area",/(연\s?면\s?적)/],["use",/(주\s?용\s?도|용\s?도)/]];
+ lines.forEach((ln,i)=>{F.forEach(([k,re])=>{if(out[k])return;const m=ln.match(re);if(!m)return;
+  let v=ln.slice(m.index+m[0].length).replace(/^[\s:：.\-·]+/,"").trim();
+  if(!v&&m.index<=1&&lines[i+1]&&!F.some(([,r])=>r.test(lines[i+1])))v=lines[i+1];
+  if(k==="area"){const n=v.match(/\d[\d,]*(?:\.\d+)?/);v=n?n[0]:""}
+  if(v)out[k]=v})});
+ const all=lines.join("\n"),ti=lines.findIndex(l=>/공\s?사\s?기\s?간|공\s?기/.test(l));
+ if(ti>=0){const ds=[...(lines[ti]+" "+(lines[ti+1]||"")).matchAll(/(\d{2,4})\s*[.\-/년]\s*(\d{1,2})/g)].map(m=>m[1].slice(-2)+"."+m[2].padStart(2,"0"));if(ds[0])out.ps=ds[0];if(ds[1])out.pe=ds[1]}
+ if(!out.area){const ns=[...all.matchAll(/(\d[\d,]{3,}(?:\.\d+)?)\s*(?:㎡|m2|m²|m\b)/gi)].map(x=>x[1]).sort((a,b)=>parseFloat(b.replace(/,/g,""))-parseFloat(a.replace(/,/g,"")));if(ns[0])out.area=ns[0]}
+ if(!out.use){const u=all.match(/(창고시설|공동주택|업무시설|근린생활시설|판매시설|물류센터|공장|오피스텔|아파트|교육연구시설|숙박시설)/);if(u)out.use=u[1]}
+ let m;if(m=all.match(/지\s?하\s*(\d+)\s*층?/))out.b1=m[1];if(m=all.match(/지\s?상\s*(\d+)\s*층?/))out.f1=m[1];
+ if(m=all.match(/(\d{1,3})\s*개?\s*동(?![가-힣])/))out.dong=m[1];if(m=all.match(/([\d,]+)\s*세\s?대/))out.unit=m[1];
+ return out}
 $("bread").onclick=()=>runOcr();
 
 async function runOcr(){
- if(!SMP){say("이 화면에서는 AI 읽기를 쓸 수 없습니다. Claude 앱 안에서 열어 주세요.");return}
  if(!imgBlob){say("먼저 개요판 버튼으로 사진을 불러오세요.");return}
- say("개요판을 읽는 중...");
+ say("개요판을 읽는 중... (처음에는 글자 데이터를 내려받느라 1~2분 걸릴 수 있습니다)");$("bread").disabled=true;
  const keys=["code","nm","addr","own","des","con","sup2","area","use","ps","pe","b1","f1","dong","unit","stage","rem"];
  try{
-  const d=await SMP.json("첨부 이미지는 건설 현장 공사 개요판입니다. 보이는 내용만 읽어 JSON 객체 하나로만 답하세요(설명·코드블록 금지). 키: code=현장코드, nm=프로젝트(공사)명칭, addr=소재지, own=시행사(건축주), des=설계사, con=시공사, sup2=감리업체, area=연면적(숫자와 콤마만), use=주용도, ps=공사시작(YY.MM), pe=공사종료(YY.MM), b1=지하층수(숫자), f1=지상층수(숫자), dong=동수(숫자), unit=세대수(숫자), stage=현공정, rem=비고(개요판의 기타 사항·특이사항을 핵심만 한 줄 30자 이내로 요약, 나열·문장 금지, 없으면 빈 문자열). 이미지에 없거나 불확실하면 빈 문자열. 추측 금지.",{images:[imgBlob]});
+  let d=null;
+  if(SMP){try{d=await SMP.json("첨부 이미지는 건설 현장 공사 개요판입니다. 보이는 내용만 읽어 JSON 객체 하나로만 답하세요(설명·코드블록 금지). 키: code=현장코드, nm=프로젝트(공사)명칭, addr=소재지, own=시행사(건축주), des=설계사, con=시공사, sup2=감리업체, area=연면적(숫자와 콤마만), use=주용도, ps=공사시작(YY.MM), pe=공사종료(YY.MM), b1=지하층수(숫자), f1=지상층수(숫자), dong=동수(숫자), unit=세대수(숫자), stage=현공정, rem=비고(개요판의 기타 사항·특이사항을 핵심만 한 줄 30자 이내로 요약, 나열·문장 금지, 없으면 빈 문자열). 이미지에 없거나 불확실하면 빈 문자열. 추측 금지.",{images:[imgBlob]})}catch(e){d=null}}
+  if(!d)d=parseOv(await ocrText(OVF||imgBlob));
   let n=0;keys.forEach(k=>{let v=d&&d[k];const el=$(k);if(v&&k==="rem"){v=String(v).replace(/\s+/g," ").trim();if(v.length>40)v=v.slice(0,38).replace(/[,，、·\s]+$/,"")+"…"}if(v&&!el.value){el.value=String(v);el.classList.add("ai");n++}});
-  title();calcTerm();schedEst();schedStg();syncMgr();if(cur==1)toA2();say(n?n+"개 항목을 채웠습니다. 파란색 칸은 AI가 읽은 값이니 확인하세요.":"새로 채울 항목이 없습니다.");
- }catch(e){say(ERR[e.code]||"읽기에 실패했습니다. 사진을 더 선명하게 찍어 다시 시도하세요.")}
+  title();calcTerm();schedEst();schedStg();syncMgr();if(cur==1)toA2();say(n?n+"개 항목을 채웠습니다. 파란색 칸은 사진에서 읽은 값이니 반드시 확인하세요.":"읽을 수 있는 항목이 없었습니다. 사진을 더 선명하고 정면에서 다시 찍어 보세요.");
+ }catch(e){say(e&&e.code=="net"?"글자 인식 엔진을 내려받지 못했습니다. 인터넷 연결을 확인하세요.":(ERR[e.code]||"읽기에 실패했습니다. 사진을 더 선명하게 찍어 다시 시도하세요."))}
+ finally{$("bread").disabled=!imgBlob}
 }
 
 let FIX=[];
@@ -867,7 +902,7 @@ $("a2").innerHTML=`<div class="zh"><button class="zbk" id="zback" aria-label="�
 <div class="zseg" id="zseg"><button>건설 현장</button><button class="on">재도장 현장</button><button>정비사업 현장</button></div>
 <div class="zst" id="zst">${["현장개요","자재정보","진행사항","예정사항","지원요청"].map((t,i)=>`<button data-i="${i+1}" class="${i?"":"on"}"><i>${i+1}</i><span>${t}</span></button>`).join("")}</div>
 <div class="zp on" id="zp1">
-${zcard("bld","현장 기본정보",`<div class="zg2">${zf("z_code","현장코드")}${zf("z_nm","현장명")}</div>${zf("z_addr","소재지")}${zf("z_sa","판촉 주체 (담당자)")}<div class="zg2">${'<div>'+zdt("z_bid","입찰 게시일","date")+`<div class="zf zrow"><label>수주업체</label><input id="z_win"></div></div>`}${zf("z_sup2","감리업체")}</div>`,`<span class="zq"><button id="znew">New</button><button id="zov"><span id="zovt">재도장</span></button><button id="zread" disabled>읽기</button></span>`)}
+${zcard("bld","현장 기본정보",`<div class="zg2">${zf("z_code","현장코드")}${zf("z_nm","현장명")}</div>${zf("z_addr","소재지")}${zf("z_sa","판촉 주체 (담당자)")}${zdt("z_bid","입찰 게시일","date")}<div class="zg2">${zf("z_win","수주업체")}${zf("z_sup2","감리업체")}</div>`,`<span class="zq"><button id="znew">New</button><button id="zov"><span id="zovt">재도장</span></button><button id="zread" disabled>읽기</button></span>`)}
 ${zcard("coin","공사 범위 및 예산",`<div class="zpills" id="zsc">${ZM.map((n,i)=>`<button data-i="${i}">${n}</button>`).join("")}</div><div class="zbud"><b>예산</b><div class="zbv"><span>약</span><input id="z_amt" inputmode="decimal" placeholder="0"><span>백만원</span></div></div>`)}
 ${zcard("cal","공사 일정 및 규모",`<div class="zg2">${zmo("z_ps","공사시작")}${zmo("z_pe","공사종료")}</div><div class="zg2">${zn("z_b1","지하","층")}${zn("z_f1","지상","층")}</div><div class="zg2">${zn("z_dong","동수","동")}${zn("z_unit","세대수","세대")}</div>`)}
 ${zcard("clip","영업 활동 현황",ztg("z_dsg","당사 디자인 제출")+ztg("z_cds","경쟁사 디자인 제출")+ztg("z_pat","특허공법"))}
