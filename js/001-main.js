@@ -5,7 +5,17 @@ const $=s=>document.querySelector(s),F=(n,d=2)=>isFinite(n)?(+n).toLocaleString(
 const SV=d=>`<svg viewBox="0 0 24 24" width="1.15em" height="1.15em" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="flex:none">${d}</svg>`,IC={doc:SV('<path d="M7 3h7l5 5v13H7z"/><path d="M14 3v5h5M10 13h6M10 17h6"/>'),trash:SV('<path d="M4 7h16M9 7V4h6v3M6 7l1 13h10l1-13M10 11v6M14 11v6"/>'),share:SV('<circle cx="6" cy="12" r="2.3"/><circle cx="18" cy="6" r="2.3"/><circle cx="18" cy="18" r="2.3"/><path d="M8 11l8-4M8 13l8 4"/>'),chev:SV('<path d="M6 9l6 6 6-6"/>')};
 let MF='all',LFJ=[];
 let DB=JSON.parse(LS.db||'null')||DEF.map(p=>({...p})),S=JSON.parse(LS.st||'null')||{area:'1',labor:0,coats:[{}]};if(!(+S.area>0))S.area='';try{if(LS.av!='2'){S.area='';LS.av='2'}}catch(e){}
-const sv=()=>{try{LS.db=JSON.stringify(DB);LS.st=JSON.stringify(S)}catch(e){try{window.CODATA&&CODATA.saveFail(e)}catch(_){}}try{window.LCCX&&LCCX.pull&&LCCX.pull()}catch(e){}},P=n=>DB.find(p=>p.n==n);
+/* v593p34: 제품별 단가 기억 — 코트·도장 시스템에서 입력한 제품단가/희석제단가를 S.pp에 저장하고, 제품을 바꾸거나 단가가 비면 자동으로 채움 */
+function ppSync(){let ch=0;const pp=S.pp=S.pp&&typeof S.pp=='object'?S.pp:{};
+ const L=[].concat(Array.isArray(S.coats)?S.coats:[],(typeof SY!=='undefined'&&Array.isArray(SY.layers))?SY.layers:[]);
+ L.forEach(c=>{if(!c||typeof c!=='object')return;const k=String(c.n||'').trim();if(!k)return;
+  const chg=c._pn!==undefined&&c._pn!==k,m=pp[k];if(c._pn!==k){c._pn=k;ch=1}
+  ['price','tprice'].forEach(f=>{const v=+c[f];
+   if(chg){if(m&&m[f]>0&&c[f]!==m[f]){c[f]=m[f];ch=1}}
+   else if(v>0){const o=pp[k]=pp[k]||{};if(o[f]!==v){o[f]=v;ch=1}}
+   else if(c[f]===undefined&&m&&m[f]>0){c[f]=m[f];ch=1}})});
+ return ch}
+const sv=()=>{try{ppSync()}catch(e){}try{LS.db=JSON.stringify(DB);LS.st=JSON.stringify(S)}catch(e){try{window.CODATA&&CODATA.saveFail(e)}catch(_){}}try{window.LCCX&&LCCX.pull&&LCCX.pull()}catch(e){}},P=n=>DB.find(p=>p.n==n);
 /* v265: DB에 없는 제품·직접 입력 값도 공식으로 계산 (포장 18L 기본, 입력한 DFT·SVR·Loss·희석율·단가 사용) */
 /* v491 사양 DB ↔ 제품 DB 제품 연결: 이름이 조금 달라도(공백·괄호·제조사명·모델번호) 같은 제품을 찾아 소개·규격을 연동 */
 function pfN(s){return String(s||'').toLowerCase().replace(/㈜|\(주\)/g,'').replace(/[\s\-_.,·()\[\]{}\/\\'"‘’“”]+/g,'')}
@@ -802,7 +812,7 @@ if(s.tn)s.tn=s.tn.replace(/^\/\s*|\s*(?:저장\s*기간|포장\s*규격|색상|�
 return s};
 parseDry=L=>D(normL(L).filter(l=>!NZ.test(l)));parsePot=L=>P(normL(L).filter(l=>!NZ.test(l)))}
 
-const APPV={v:'v593p33',d:'2026.11.12'};
+const APPV={v:'v593p34',d:'2026.11.24'};
 function gnav(n){document.body.classList.toggle('inapp',n!=2);document.querySelectorAll('#gnav .hni').forEach((b,i)=>b.classList.toggle('on',i==NAVI(n)))}
 const APPMK={n:'',c:''};/* 제작자 정보: 현재 비공개. 값을 넣으면 '저작권·이용 안내'에 제작자 행이 나타납니다 */
 function showInfo(){
@@ -841,7 +851,7 @@ let SY=(()=>{try{return JSON.parse(LS.sy||'null')}catch(e){return null}})()||{};
 if(!Array.isArray(SY.layers))SY.layers=[];
 if(typeof SY.area!=='string'&&typeof SY.area!=='number')SY.area='';
 if(!(SY.act>=0&&SY.act<SY.layers.length))SY.act=-1;
-const syS=()=>{try{LS.sy=JSON.stringify(SY)}catch(e){}};
+const syS=()=>{let ch=0;try{ch=ppSync()}catch(e){}try{LS.sy=JSON.stringify(SY)}catch(e){}if(ch)try{LS.st=JSON.stringify(S)}catch(e){}};
 const syLabsOld=n=>({1:['도장'],2:['하도','상도'],3:['하도','중도','상도'],4:['하도','중도','상도1','상도2'],5:['하도','중도1','중도2','상도1','상도2']})[n]||[]; const syLb=()=>SY.layers.map((l,i,a)=>{if(l.lb!==undefined)return l.lb||'미지정';const gr=a.filter(x=>x.g==l.g),k=gr.indexOf(l);return syLabsOld(gr.length)[k]||'미지정'});
 const syCol=Array.from({length:80},(_,i)=>['#1560e6','#0f8f6b','#c98a2b','#7b4fc4','#c9525c'][i%5]);
 /* 시스템 묶음: 각 제품(layer)은 g(시스템 번호)를 가지며 SY.groups[g].name 이 시스템 이름 */
